@@ -1,0 +1,52 @@
+# Python
+
+Backend/datasets/
+node_modules/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.pyc
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Build files
+dist/
+build/
+
+# Node modules
+node_modules/
+
+# React/Vite
+.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage
+.coverage
+htmlcov/
+
+# Cache
+.cache/
+

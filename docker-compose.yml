@@ -1,0 +1,83 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: textile_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-textile_waste}
+      POSTGRES_USER: ${POSTGRES_USER:-textile_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-textile_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U textile_user -d textile_waste"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  mongodb:
+    image: mongo:7-jammy
+    container_name: textile_mongodb
+    environment:
+      MONGO_INITDB_DATABASE: textile_intelligence
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    container_name: textile_redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    restart: always
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: textile_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql://textile_user:textile_pass@postgres:5432/textile_waste}
+      - MONGODB_URL=${MONGODB_URL:-mongodb://mongodb:27017/textile_intelligence}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
+      - ENV=${ENV:-production}
+    volumes:
+      - ./Backend:/app
+      - backend_uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+      redis:
+        condition: service_started
+    restart: always
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: textile_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  postgres_data:
+  mongo_data:
+  redis_data:
+  backend_uploads:
