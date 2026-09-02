@@ -379,6 +379,13 @@ async def standalone_analyze_image(
     return result
 
 
+@app.get("/api/deepfashion/status")
+def deepfashion_status(current_user: User = Depends(get_current_user)):
+    from app.ai.deepfashion_service import get_deepfashion_status
+
+    return get_deepfashion_status()
+
+
 @app.post("/api/sustainability/analyze")
 def analyze_sustainability(payload: schemas.MaterialPredictionRequest, current_user: User = Depends(get_current_user)):
     """Calculate factor-backed sustainability estimates for an explicit material and quantity."""
@@ -814,6 +821,37 @@ def get_admin_analytics(
         "system_status": "Healthy / Operational",
         "database_size_bytes": 0
     }
+
+@app.get("/api/analytics/executive", response_model=schemas.ExecutiveAnalytics)
+def get_executive_analytics(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    if current_user.role not in ["Administrator", "Sustainability Manager", "Recycling Facility Operator"]:
+        raise HTTPException(status_code=403, detail="Access denied")
+
+    total_batches = db.query(WasteBatch).count()
+    total_waste = db.query(func.sum(WasteBatch.quantity)).scalar() or 0.0
+    analyzed_batches = db.query(WasteBatch).filter(WasteBatch.status.in_(["Analyzed", "Processed"])).count()
+    diverted_weight = db.query(func.sum(WasteBatch.quantity)).filter(WasteBatch.status.in_(["Analyzed", "Processed"])).scalar() or 0.0
+    co2 = db.query(func.sum(AnalysisResult.co2_savings)).scalar() or 0.0
+    water = db.query(func.sum(AnalysisResult.water_savings)).scalar() or 0.0
+    circularity = db.query(func.avg(AnalysisResult.overall_circularity_score)).scalar() or 0.0
+    material_rows = db.query(WasteBatch.fabric_type, func.count(WasteBatch.id)).group_by(WasteBatch.fabric_type).all()
+    category_rows = db.query(WasteBatch.waste_category, func.count(WasteBatch.id)).filter(WasteBatch.waste_category.isnot(None)).group_by(WasteBatch.waste_category).all()
+    category_quantity_rows = db.query(WasteBatch.waste_category, func.sum(WasteBatch.quantity)).filter(WasteBatch.waste_category.isnot(None)).group_by(WasteBatch.waste_category).all()
+    return {
+        "total_waste_kg": float(total_waste),
+        "total_batches": total_batches,
+        "analyzed_batches": analyzed_batches,
+        "diversion_rate": round(diverted_weight / total_waste * 100, 1) if total_waste else 0.0,
+        "co2_saved_kg": round(float(co2), 1),
+        "water_saved_liters": round(float(water), 1),
+        "circularity_average": round(float(circularity), 1),
+        "material_distribution": {material: count for material, count in material_rows},
+        "category_distribution": {category: count for category, count in category_rows},
+        "category_quantities": {category: float(quantity) for category, quantity in category_quantity_rows},
+    }
 # --- USER MANAGEMENT ENDPOINTS (ADMIN ONLY) ---
 @app.get("/api/users", response_model=List[schemas.UserResponse])
 def list_users(
@@ -1014,6 +1052,7 @@ def model_status():
 
 
 # Health check endpoint
+@app.get("/health")
 @app.get("/api/health")
 def health_check():
     """Health check endpoint for monitoring."""

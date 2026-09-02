@@ -1,4 +1,10 @@
-﻿"""Unified inference service â€” Keras or sklearn backend + end-to-end pipeline.
+﻿"""[DEPRECATED] Unified inference service — Keras or sklearn backend + end-to-end pipeline.
+
+DEPRECATION STATUS: This module is kept for backward compatibility with algorithms.py and 
+textile_analysis_service.py. The active inference path is EfficientNet-B0.
+
+ACTIVE INFERENCE MODEL: EfficientNet-B0 (PyTorch) — see Backend/app/services/fabric_classifier.py
+FORWARD PATH: Refactor callers to use get_fabric_classifier() from fabric_classifier.py
 
 Runtime model status contract (represents what can actually run right now):
   AVAILABLE   â€” model artifact loaded and validated; real inference possible

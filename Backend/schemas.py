@@ -246,3 +246,15 @@ class AdminAnalytics(BaseModel):
     active_connections: int
     system_status: str
     database_size_bytes: int
+
+class ExecutiveAnalytics(BaseModel):
+    total_waste_kg: float
+    total_batches: int
+    analyzed_batches: int
+    diversion_rate: float
+    co2_saved_kg: float
+    water_saved_liters: float
+    circularity_average: float
+    material_distribution: dict
+    category_distribution: dict
+    category_quantities: dict

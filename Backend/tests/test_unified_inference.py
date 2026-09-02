@@ -3,6 +3,7 @@ import io
 import pytest
 from PIL import Image
 from app.ai.inference_service import run_unified_analysis, MaterialInferenceService
+from app.ai.deepfashion_service import get_deepfashion_status
 
 
 def _create_sample_image() -> bytes:
@@ -45,3 +46,21 @@ def test_inference_service_singleton():
     svc1 = MaterialInferenceService.get_instance()
     svc2 = MaterialInferenceService.get_instance()
     assert svc1 is svc2
+
+
+def test_deepfashion_reports_dataset_without_fabricating_inference():
+    status = get_deepfashion_status()
+    assert status["dataset_available"] is True
+    assert status["image_count"] == 44096
+    assert status["attributes_available"] is True
+    assert status["bounding_boxes_available"] is True
+    assert status["landmarks_available"] is True
+    assert status["segmentation_available"] is True
+    assert status["retrieval_annotations_available"] is True
+
+    result = run_unified_analysis(image_bytes=None)
+    garment = result["garment_analysis"]
+    assert garment["status"] == "MODEL_NOT_READY"
+    assert garment["category"] is None
+    assert garment["attributes"] == []
+    assert garment["confidence"] is None

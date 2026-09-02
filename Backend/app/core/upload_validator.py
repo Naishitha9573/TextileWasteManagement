@@ -4,7 +4,7 @@ from __future__ import annotations
 import io
 from typing import Tuple
 from PIL import Image, ImageOps
-
+ 
 ALLOWED_MIME_TYPES = {
     "image/jpeg",
     "image/jpg",

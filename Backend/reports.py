@@ -17,6 +17,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from sqlalchemy.orm import Session
 from database import WasteBatch, AnalysisResult, User
+from app.ai.deepfashion_service import get_deepfashion_status
 
 
 class ReportGenerator:
@@ -106,6 +107,17 @@ class ReportGenerator:
         
         elements.append(summary_table)
         elements.append(Spacer(1, 0.2*inch))
+
+        deepfashion = get_deepfashion_status()
+        elements.append(Paragraph("Garment Analysis", heading_style))
+        elements.append(Paragraph(
+            "DeepFashion dataset available; compatible inference model not available. "
+            "Dataset: DeepFashion | Model: NOT AVAILABLE | Garment Inference: MODEL NOT READY | "
+            "Category: Not available | Attributes: Not available | Confidence: Not available. "
+            f"Dataset images detected: {deepfashion['image_count']}.",
+            styles['Normal'],
+        ))
+        elements.append(Spacer(1, 0.2*inch))
         
         # Detailed batch information
         elements.append(Paragraph("Batch Details & AI Provenance", heading_style))
@@ -188,7 +200,9 @@ class ReportGenerator:
         
         headers = [
             'Batch ID', 'Fabric Type', 'Source', 'Qty (kg)', 'Color', 'Condition', 
-            'Prediction Source', 'Circularity Score', 'CO2 Saved (EST kg)', 'Water Saved (EST L)', 'Review Required'
+            'Collection Date', 'Prediction', 'Confidence', 'Top Predictions', 'Prediction Source',
+            'Waste Category', 'Circularity Score', 'CO2 Saved (EST kg)', 'Water Saved (EST L)', 'Recommendation',
+            'Garment Dataset', 'Garment Model', 'Garment Category', 'Garment Confidence'
         ]
         
         for col, header in enumerate(headers, start=1):
@@ -211,11 +225,20 @@ class ReportGenerator:
             worksheet.cell(row=row_idx, column=4).value = batch.quantity
             worksheet.cell(row=row_idx, column=5).value = batch.color
             worksheet.cell(row=row_idx, column=6).value = batch.condition
-            worksheet.cell(row=row_idx, column=7).value = batch.analysis.prediction_source if batch.analysis else "MANUAL_HINT"
-            worksheet.cell(row=row_idx, column=8).value = batch.analysis.overall_circularity_score if batch.analysis else None
-            worksheet.cell(row=row_idx, column=9).value = batch.analysis.co2_savings if batch.analysis else None
-            worksheet.cell(row=row_idx, column=10).value = batch.analysis.water_savings if batch.analysis else None
-            worksheet.cell(row=row_idx, column=11).value = "YES" if (batch.analysis and batch.analysis.manual_review_required) else "NO"
+            worksheet.cell(row=row_idx, column=7).value = batch.collection_date
+            worksheet.cell(row=row_idx, column=8).value = batch.analysis.predicted_material if batch.analysis else "Not available"
+            worksheet.cell(row=row_idx, column=9).value = batch.analysis.material_confidence if batch.analysis else None
+            worksheet.cell(row=row_idx, column=10).value = "Not available"
+            worksheet.cell(row=row_idx, column=11).value = batch.analysis.prediction_source if batch.analysis else "MANUAL_HINT"
+            worksheet.cell(row=row_idx, column=12).value = batch.waste_category or (batch.analysis.circularity_category if batch.analysis else "Not available")
+            worksheet.cell(row=row_idx, column=13).value = batch.analysis.overall_circularity_score if batch.analysis else None
+            worksheet.cell(row=row_idx, column=14).value = batch.analysis.co2_savings if batch.analysis else None
+            worksheet.cell(row=row_idx, column=15).value = batch.analysis.water_savings if batch.analysis else None
+            worksheet.cell(row=row_idx, column=16).value = batch.analysis.recycling_strategy if batch.analysis else "Not available"
+            worksheet.cell(row=row_idx, column=17).value = "DeepFashion AVAILABLE"
+            worksheet.cell(row=row_idx, column=18).value = "NOT AVAILABLE"
+            worksheet.cell(row=row_idx, column=19).value = "Not available"
+            worksheet.cell(row=row_idx, column=20).value = None
             
         excel_buffer = io.BytesIO()
         workbook.save(excel_buffer)
@@ -232,8 +255,10 @@ class ReportGenerator:
         
         writer.writerow([
             'Batch ID', 'Fabric Type', 'Source', 'Quantity (kg)', 'Color', 'Condition',
-            'Waste Category', 'Prediction Source', 'Confidence Status', 'Circularity Score',
-            'CO2 Saved (EST kg)', 'Water Saved (EST L)', 'Manual Review Required'
+            'Collection Date', 'Prediction', 'Confidence', 'Top Predictions', 'Waste Category',
+            'Prediction Source', 'Confidence Status', 'Circularity Score', 'CO2 Saved (EST kg)',
+            'Water Saved (EST L)', 'Recommendation', 'Garment Dataset', 'Garment Model',
+            'Garment Category', 'Garment Attributes', 'Garment Confidence'
         ])
         
         for batch in batches:
@@ -244,13 +269,22 @@ class ReportGenerator:
                 batch.quantity,
                 batch.color,
                 batch.condition,
+                batch.collection_date,
+                batch.analysis.predicted_material if batch.analysis else "Not available",
+                batch.analysis.material_confidence if batch.analysis else "Not available",
+                "Not available",
                 batch.waste_category or (batch.analysis.circularity_category if batch.analysis else "Unassigned"),
                 batch.analysis.prediction_source if batch.analysis else "MANUAL_HINT",
                 batch.analysis.confidence_status if batch.analysis else "UNKNOWN",
-                batch.analysis.overall_circularity_score if batch.analysis else "",
-                batch.analysis.co2_savings if batch.analysis else 0.0,
-                batch.analysis.water_savings if batch.analysis else 0.0,
-                "YES" if (batch.analysis and batch.analysis.manual_review_required) else "NO",
+                batch.analysis.overall_circularity_score if batch.analysis else "Not available",
+                batch.analysis.co2_savings if batch.analysis and batch.analysis.co2_savings is not None else "Not available",
+                batch.analysis.water_savings if batch.analysis and batch.analysis.water_savings is not None else "Not available",
+                batch.analysis.recycling_strategy if batch.analysis else "Not available",
+                "DeepFashion AVAILABLE",
+                "NOT AVAILABLE",
+                "Not available",
+                "Not available",
+                "Not available",
             ])
             
         return output.getvalue()

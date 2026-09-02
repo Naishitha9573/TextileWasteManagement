@@ -8,15 +8,16 @@ export default function FabricClassification() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [modelReady, setModelReady] = useState(null);
-  const [textureResult, setTextureResult] = useState(null);
-  const [textureLoading, setTextureLoading] = useState(false);
-  const [textureError, setTextureError] = useState('');
 
   useEffect(() => {
     fetch('/api/health')
       .then((response) => response.json())
       .then((health) => setModelReady(health.model_loaded))
       .catch(() => setModelReady(null));
+    fetch('/api/deepfashion/status', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+      .then((response) => response.json())
+      .then(setDeepFashion)
+      .catch(() => setDeepFashion(null));
   }, []);
 
   const chooseFile = (event) => {
@@ -158,6 +159,7 @@ export default function FabricClassification() {
             </> : <div className="classification-error">Fabric model is currently unavailable.</div>}
             {result.environmental_impact && <div className="top-predictions"><h3>Estimated Environmental Impact</h3><div className="prediction-row"><span>CO2 Savings</span><strong>{result.environmental_impact.co2?.value == null ? 'Not available' : `${result.environmental_impact.co2.value} ${result.environmental_impact.co2.unit}`}</strong></div><div className="prediction-row"><span>Water Saved</span><strong>{result.environmental_impact.water?.value == null ? 'Not available' : `${result.environmental_impact.water.value} ${result.environmental_impact.water.unit}`}</strong></div><div className="color-detail">Status: {result.environmental_impact.calculation_status || 'Not available'}</div><details className="color-detail"><summary>Calculation Basis</summary><div>Material: {result.material_prediction?.material || 'Not available'}</div><div>Quantity: {result.quantity_kg ?? 'Not available'} kg</div><div>CO2 factor: {result.environmental_impact.co2?.factor ?? 'Not available'} {result.environmental_impact.co2?.factor_unit || ''}</div><div>Water factor: {result.environmental_impact.water?.factor ?? 'Not available'} {result.environmental_impact.water?.factor_unit || ''}</div><div>Source/Basis: {result.environmental_impact.basis || 'Not available'}</div></details></div>}
             {result.color && <div className="top-predictions color-analysis"><h3>Color Analysis</h3><div className="dominant-color"><span className="color-swatch" style={{ backgroundColor: result.color.hex }} /> <strong>{result.color.name}</strong><strong>{formatPercentage(result.color.percentage)}</strong></div><div className="color-detail">RGB: {result.color.rgb.join(', ')}</div><div className="color-detail">HEX: {result.color.hex}</div><h3>Dominant Color Palette</h3>{result.dominant_colors.map((color) => <div className="prediction-row" key={color.hex}><span><span className="color-swatch" style={{ backgroundColor: color.hex }} /> {color.name}</span><strong>{formatPercentage(color.percentage)}</strong></div>)}</div>}
+            <div className="top-predictions"><h3>Garment Analysis</h3><div className="prediction-row"><span>DeepFashion dataset</span><strong>{deepFashion?.dataset_available ? 'AVAILABLE' : 'NOT AVAILABLE'}</strong></div><div className="prediction-row"><span>Garment inference</span><strong>MODEL NOT READY</strong></div><div className="color-detail">No garment category or attributes are shown without a compatible trained model.</div></div>
           </> : <div className="empty-result">Your model result will appear here after analysis.</div>}
 
           <div className="top-predictions" style={{ marginTop: '1.5rem' }}>

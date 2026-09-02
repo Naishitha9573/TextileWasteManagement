@@ -1,4 +1,10 @@
-"""MobileNetV3 input preprocessing — serializable for Keras model save/load."""
+"""[DEPRECATED] MobileNetV3 input preprocessing — serializable for Keras model save/load.
+
+DEPRECATION STATUS: This module is no longer used by the active EfficientNet-B0 inference pipeline.
+It is preserved for historical reference and comparison only.
+
+ACTIVE INFERENCE MODEL: EfficientNet-B0 (PyTorch) — see Backend/app/services/fabric_classifier.py
+"""
 from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
 
 

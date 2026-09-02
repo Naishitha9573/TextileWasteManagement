@@ -1,7 +1,9 @@
 import sys
+import io
 import os
 import pytest
 from fastapi.testclient import TestClient
+from PIL import Image
 
 # Add Backend folder to path for import convenience
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -133,6 +135,31 @@ def test_auth_and_routing():
     assert res_batches.status_code == 200
     batches = res_batches.json()
     assert len(batches) >= 0
+
+
+def test_analyze_endpoint_returns_unified_material_and_garment_status():
+    login_res = client.post("/api/auth/token", json={"username": "recycler", "password": "recycler123"})
+    token = login_res.json()["access_token"]
+    image = Image.new("RGB", (224, 224), color="blue")
+    image_bytes = io.BytesIO()
+    image.save(image_bytes, format="JPEG")
+
+    response = client.post(
+        "/api/analyze",
+        headers={"Authorization": f"Bearer {token}"},
+        files={"file": ("fabric.jpg", image_bytes.getvalue(), "image/jpeg")},
+        data={"condition": "Good", "quantity_kg": "1.0"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["prediction"]["class_name"] in {
+        "Cotton", "Denim", "Fleece", "Nylon", "Polyester", "Silk", "Terrycloth", "Viscose", "Wool"
+    }
+    assert payload["garment_analysis"]["status"] == "MODEL_NOT_READY"
+    assert payload["garment_analysis"]["category"] is None
+    assert payload["waste_classification"]["source"] == "RULE_ENGINE"
+    assert payload["recommendation"]["source"] == "RULE_ENGINE"
 
 def test_batch_creation_and_analysis():
     # Login as recycler

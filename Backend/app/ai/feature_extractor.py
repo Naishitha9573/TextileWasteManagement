@@ -1,4 +1,10 @@
-"""Extract visual features from textile images for sklearn-based classification."""
+"""[DEPRECATED] Extract visual features from textile images for sklearn-based classification.
+
+DEPRECATION STATUS: This module is no longer used by the active EfficientNet-B0 inference pipeline.
+It is preserved for historical reference and comparison only.
+
+ACTIVE INFERENCE MODEL: EfficientNet-B0 (PyTorch) — see Backend/app/services/fabric_classifier.py
+"""
 from __future__ import annotations
 
 import hashlib

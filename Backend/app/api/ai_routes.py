@@ -93,21 +93,6 @@ async def analyze_image(file: UploadFile = File(...), current_user: User = Depen
     return result
 
 
-@router.post("/texture-analysis")
-async def analyze_texture_endpoint(file: UploadFile = File(...), current_user: User = Depends(get_current_user)):
-    """Run the standalone handcrafted texture analysis without participating in training."""
-    if not file.filename:
-        raise HTTPException(status_code=400, detail="No file provided")
-    content = await file.read()
-    valid, message = validate_uploaded_image(content, file.filename, file.content_type or "")
-    if not valid:
-        raise HTTPException(status_code=400, detail=message)
-    try:
-        return analyze_texture_features(content, file.filename)
-    except Exception as exc:
-        raise HTTPException(status_code=422, detail=f"The texture image could not be analyzed: {exc}") from exc
-
-
 @router.get("/models")
 def list_models(current_user: User = Depends(get_current_user)):
     registry = ModelRegistry(str(MODELS_DIR))
