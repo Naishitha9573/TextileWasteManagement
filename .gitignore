@@ -70,3 +70,19 @@ Backend/models/*.joblib
 Backend/models/*.keras
 Backend/models/*.h5
 
+
+# DeepFashion training checkpoints
+Backend/models/deepfashion/*.pth
+Backend/models/deepfashion/*.pt
+Backend/models/deepfashion/*.ckpt
+
+# Training outputs
+checkpoints/
+training_outputs/
+runs/
+
+# Datasets
+datasets/
+DeepFashion/
+IBUG/
+
