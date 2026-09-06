@@ -1,0 +1,427 @@
+{
+  "dataset_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\ibug_fabrics",
+  "total_classes": 25,
+  "total_images": 7885,
+  "readable_images": 7885,
+  "corrupted_images": 0,
+  "file_extensions": {
+    ".jpg": 4,
+    ".png": 7881
+  },
+  "dimensions": {
+    "min_width": 400,
+    "max_width": 400,
+    "average_width": 400.0,
+    "min_height": 400,
+    "max_height": 400,
+    "average_height": 400.0
+  },
+  "empty_class_folders": [],
+  "missing_class_folders": [],
+  "missing_class_folders_note": "No expected final class list was assumed; missing folders require an external expected-class list.",
+  "class_records": [
+    {
+      "class_name": "Acrylic",
+      "image_count": 48,
+      "readable_image_count": 48,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 48
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Artificial_fur",
+      "image_count": 4,
+      "readable_image_count": 4,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 4
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Artificial_leather",
+      "image_count": 12,
+      "readable_image_count": 12,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 12
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Blended",
+      "image_count": 1645,
+      "readable_image_count": 1645,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 1645
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Chenille",
+      "image_count": 52,
+      "readable_image_count": 52,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 52
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Corduroy",
+      "image_count": 96,
+      "readable_image_count": 96,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 96
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Cotton",
+      "image_count": 2352,
+      "readable_image_count": 2352,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 2352
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Crepe",
+      "image_count": 104,
+      "readable_image_count": 104,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 104
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Denim",
+      "image_count": 648,
+      "readable_image_count": 648,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 648
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Felt",
+      "image_count": 16,
+      "readable_image_count": 16,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 16
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Fleece",
+      "image_count": 132,
+      "readable_image_count": 132,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 132
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Leather",
+      "image_count": 64,
+      "readable_image_count": 64,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 64
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Linen",
+      "image_count": 76,
+      "readable_image_count": 76,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 76
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Lut",
+      "image_count": 16,
+      "readable_image_count": 16,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 16
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Nylon",
+      "image_count": 228,
+      "readable_image_count": 228,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 228
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Polyester",
+      "image_count": 904,
+      "readable_image_count": 904,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 904
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Satin",
+      "image_count": 96,
+      "readable_image_count": 96,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 96
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Silk",
+      "image_count": 200,
+      "readable_image_count": 200,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 200
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Suede",
+      "image_count": 20,
+      "readable_image_count": 20,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 20
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Terrycloth",
+      "image_count": 120,
+      "readable_image_count": 120,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 120
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Unclassified",
+      "image_count": 492,
+      "readable_image_count": 492,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 492
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Utilities",
+      "image_count": 8,
+      "readable_image_count": 8,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".jpg": 4,
+        ".png": 4
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Velvet",
+      "image_count": 44,
+      "readable_image_count": 44,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 44
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Viscose",
+      "image_count": 148,
+      "readable_image_count": 148,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 148
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    },
+    {
+      "class_name": "Wool",
+      "image_count": 360,
+      "readable_image_count": 360,
+      "corrupted_image_count": 0,
+      "file_extensions": {
+        ".png": 360
+      },
+      "min_width": 400,
+      "max_width": 400,
+      "average_width": 400.0,
+      "min_height": 400,
+      "max_height": 400,
+      "average_height": 400.0,
+      "empty": false
+    }
+  ],
+  "corrupted_files": [],
+  "read_only": true
+}

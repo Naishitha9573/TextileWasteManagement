@@ -1,0 +1,5 @@
+category,count,percentage,average_confidence
+correct_high_confidence,522,70.54054054054055,0.9633219047981204
+correct_low_confidence,110,14.864864864864865,0.654801456765695
+incorrect_high_confidence,44,5.9459459459459465,0.9094710756431926
+incorrect_low_confidence,64,8.64864864864865,0.5549316003452986

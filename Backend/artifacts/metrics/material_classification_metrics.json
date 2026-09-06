@@ -1,0 +1,69 @@
+{
+  "evaluated_at": "2026-08-13T14:07:59.963453+00:00",
+  "model_version": "material-mobilenetv3-v0.1-3class",
+  "architecture": "mobilenet_v3_small",
+  "backend": "keras",
+  "num_classes": 3,
+  "classes": [
+    "Cotton",
+    "Denim",
+    "Mixed Fabrics"
+  ],
+  "current_model_scope": "3 CLASS ONLY",
+  "test_samples": 225,
+  "accuracy": 0.5333,
+  "precision": 0.5389,
+  "recall": 0.5333,
+  "f1_score": 0.5312,
+  "confusion_matrix": [
+    [
+      48,
+      7,
+      20
+    ],
+    [
+      15,
+      31,
+      29
+    ],
+    [
+      16,
+      18,
+      41
+    ]
+  ],
+  "classification_report": {
+    "Cotton": {
+      "precision": 0.6075949367088608,
+      "recall": 0.64,
+      "f1-score": 0.6233766233766234,
+      "support": 75.0
+    },
+    "Denim": {
+      "precision": 0.5535714285714286,
+      "recall": 0.41333333333333333,
+      "f1-score": 0.4732824427480916,
+      "support": 75.0
+    },
+    "Mixed Fabrics": {
+      "precision": 0.45555555555555555,
+      "recall": 0.5466666666666666,
+      "f1-score": 0.49696969696969695,
+      "support": 75.0
+    },
+    "accuracy": 0.5333333333333333,
+    "macro avg": {
+      "precision": 0.5389073069452816,
+      "recall": 0.5333333333333333,
+      "f1-score": 0.5312095876981373,
+      "support": 225.0
+    },
+    "weighted avg": {
+      "precision": 0.5389073069452817,
+      "recall": 0.5333333333333333,
+      "f1-score": 0.5312095876981373,
+      "support": 225.0
+    }
+  },
+  "status": "evaluated"
+}

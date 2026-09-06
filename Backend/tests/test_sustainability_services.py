@@ -23,3 +23,15 @@ def test_sustainability_service_returns_structured_analysis():
     assert result["scores"]["overall_sustainability_score"] >= 70
     assert result["recommendation"]["primary_recommendation"]
     assert result["environmental_impact"]["co2_savings"] >= 0
+
+
+def test_sustainability_estimates_scale_with_quantity_and_material():
+    service = SustainabilityService()
+    cotton_one = service.analyze_material("Cotton", "Excellent", 1.0)["environmental_impact"]
+    cotton_ten = service.analyze_material("Cotton", "Excellent", 10.0)["environmental_impact"]
+    polyester_one = service.analyze_material("Polyester", "Excellent", 1.0)["environmental_impact"]
+
+    assert cotton_ten["co2_savings"] == cotton_one["co2_savings"] * 10
+    assert cotton_ten["water_savings"] == cotton_one["water_savings"] * 10
+    assert cotton_one["co2_savings"] != polyester_one["co2_savings"]
+    assert cotton_one["water_savings"] != polyester_one["water_savings"]

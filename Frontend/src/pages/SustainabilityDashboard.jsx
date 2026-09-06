@@ -6,6 +6,7 @@ import autoTable from 'jspdf-autotable';
 export default function SustainabilityDashboard() {
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
+  const formatMetric = (value, suffix = '') => value == null ? 'Data unavailable' : `${Number(value).toLocaleString()}${suffix}`;
   const fetchAnalytics = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -32,11 +33,11 @@ export default function SustainabilityDashboard() {
     autoTable(doc, {
       head: [['Metric', 'Value achieved', 'Environmental Significance']],
       body: [
-        ['Carbon Footprint Mitigation', `${(analytics.co2_saved_kg || 0).toLocaleString()} kg CO2`, 'Equivalent greenhouse gases offset from raw manufacturing'],
-        ['Hydric Resource Preservation', `${(analytics.water_saved_liters || 0).toLocaleString()} Liters`, 'Water offset from pesticide/growth processes in cotton/linen'],
-        ['Landfill Diversion Weight', `${(analytics.landfill_diverted_kg || 0).toLocaleString()} kg`, 'Solid textile waste completely prevented from entering standard landfills'],
-        ['Waste Diversion Efficiency', `${(analytics.diversion_rate || 0)}%`, 'Percentage of registered textile batches successfully recycled/reused'],
-        ['Average Circularity Index', `${(analytics.circularity_avg || 0)}%`, 'Average recovery score across all processed textile components']
+        ['Carbon Footprint Mitigation', formatMetric(analytics.co2_saved_kg, ' kg CO2'), 'Equivalent greenhouse gases offset from raw manufacturing'],
+        ['Hydric Resource Preservation', formatMetric(analytics.water_saved_liters, ' Liters'), 'Water offset from pesticide/growth processes in cotton/linen'],
+        ['Landfill Diversion Weight', formatMetric(analytics.landfill_diverted_kg, ' kg'), 'Solid textile waste completely prevented from entering standard landfills'],
+        ['Waste Diversion Efficiency', formatMetric(analytics.diversion_rate, '%'), 'Percentage of registered textile batches successfully recycled/reused'],
+        ['Average Circularity Index', formatMetric(analytics.circularity_avg, '%'), 'Average recovery score across all processed textile components']
       ],
       startY: 45,
       theme: 'striped',
@@ -125,8 +126,8 @@ export default function SustainabilityDashboard() {
               </div>
               <div>
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>CO₂ Emissions Prevented</span>
-                <h2 style={{ fontSize: '2.2rem', margin: '4px 0' }}>{analytics?.co2_saved_kg.toLocaleString()} <span style={{ fontSize: '1rem', color: 'var(--text-muted)' }}>kg CO₂</span></h2>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Equivalent to planting {Math.round(analytics?.co2_saved_kg / 22)} trees/year</span>
+                <h2 style={{ fontSize: '2.2rem', margin: '4px 0' }}>{formatMetric(analytics?.co2_saved_kg, ' kg CO₂')}</h2>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{analytics?.co2_saved_kg == null ? 'Data unavailable' : `Equivalent to planting ${Math.round(analytics.co2_saved_kg / 22)} trees/year`}</span>
               </div>
             </div>
             <div className="glass-panel" style={{ padding: '24px', display: 'flex', gap: '20px', alignItems: 'center' }}>
@@ -135,7 +136,7 @@ export default function SustainabilityDashboard() {
               </div>
               <div>
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Hydric Offset Saved</span>
-                <h2 style={{ fontSize: '2.2rem', margin: '4px 0' }}>{analytics?.water_saved_liters.toLocaleString()} <span style={{ fontSize: '1rem', color: 'var(--text-muted)' }}>Liters</span></h2>
+                <h2 style={{ fontSize: '2.2rem', margin: '4px 0' }}>{formatMetric(analytics?.water_saved_liters, ' Liters')}</h2>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Conserved manufacturing process water</span>
               </div>
             </div>
@@ -146,23 +147,23 @@ export default function SustainabilityDashboard() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '16px' }}>
               <div style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Solid Waste Diverted</span>
-                <h3 style={{ fontSize: '1.8rem', margin: '6px 0', color: 'var(--accent-indigo)' }}>{analytics?.landfill_diverted_kg.toLocaleString()} kg</h3>
+                <h3 style={{ fontSize: '1.8rem', margin: '6px 0', color: 'var(--accent-indigo)' }}>{formatMetric(analytics?.landfill_diverted_kg, ' kg')}</h3>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Saved from landfill decay</span>
               </div>
               
               <div style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Avg. Circularity Index</span>
-                <h3 style={{ fontSize: '1.8rem', margin: '6px 0', color: 'var(--accent-emerald)' }}>{analytics?.circularity_avg}%</h3>
+                <h3 style={{ fontSize: '1.8rem', margin: '6px 0', color: 'var(--accent-emerald)' }}>{formatMetric(analytics?.circularity_avg, '%')}</h3>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Quality & Recyclability baseline</span>
               </div>
             </div>
             <div style={{ marginTop: '20px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '6px' }}>
                 <span>Overall Landfill Diversion Rate</span>
-                <span style={{ fontWeight: '600' }}>{analytics?.diversion_rate}%</span>
+                <span style={{ fontWeight: '600' }}>{formatMetric(analytics?.diversion_rate, '%')}</span>
               </div>
               <div style={{ width: '100%', background: 'rgba(255,255,255,0.04)', height: '8px', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ width: `${analytics?.diversion_rate}%`, background: 'var(--grad-primary)', height: '100%', borderRadius: '4px' }}></div>
+                <div style={{ width: `${analytics?.diversion_rate ?? 0}%`, background: 'var(--grad-primary)', height: '100%', borderRadius: '4px' }}></div>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import os
+﻿import os
 import datetime 
 from typing import List, Optional
 from types import SimpleNamespace
@@ -20,12 +20,21 @@ import inventory
 from app.services.sustainability_service import SustainabilityService
 from app.api.ai_routes import router as ai_router
 
+from app.core.upload_validator import validate_uploaded_image
+from app.ai.inference_service import run_unified_analysis
+from app.services.fabric_classifier import get_fabric_classifier
+from app.services.waste_classifier import WasteModelNotReadyError, get_waste_classifier
+
 app = FastAPI(title="Textile Waste Intelligence Platform API")
 sustainability_service = SustainabilityService()
+
+cors_origins_env = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000")
+origins = [origin.strip() for origin in cors_origins_env.split(",") if origin.strip()]
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For development, allow all origins
+    allow_origins=origins if origins else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,7 +50,10 @@ from database import init_db
 @app.on_event("startup")
 def startup():
     init_db()
-    
+
+    fabric_classifier = get_fabric_classifier()
+    print(f"[FABRIC MODEL] {fabric_classifier.health()}")
+
     # Initialize MongoDB connection as secondary database
     try:
         mongo.init_mongo()
@@ -66,13 +78,13 @@ def startup():
                 db.add(user)
             db.commit()
             
-            # Seed sample waste batches
-            seed_batches(db)
-            
-            # Seed notifications
-            seed_notifications(db)
-            
-            print("Database successfully seeded.")
+            # Demo data is opt-in; default startup must not fabricate inventory.
+            if os.getenv("SEED_DEMO_DATA", "false").lower() == "true":
+                seed_batches(db)
+                seed_notifications(db)
+                print("Database seeded with explicitly requested demo data.")
+            else:
+                print("Database initialized without demo inventory or notifications.")
     except Exception as e:
         print(f"Error seeding database: {e}")
     finally:
@@ -265,6 +277,11 @@ def create_batch(
     # Only Recyclers, Manufacturers, and Admins can create batches
     if current_user.role not in ["Recycling Facility Operator", "Textile Manufacturer", "Administrator"]:
         raise HTTPException(status_code=403, detail="Not authorized to log inventory batches")
+
+    print(
+        f"[BATCH REQUEST] material={batch_in.fabric_type} quantity={batch_in.quantity} "
+        f"source={batch_in.source} condition={batch_in.condition}"
+    )
         
     batch = WasteBatch(
         fabric_type=batch_in.fabric_type,
@@ -277,8 +294,14 @@ def create_batch(
         user_id=current_user.id
     )
     db.add(batch)
-    db.commit()
+    try:
+        db.commit()
+    except Exception as exc:
+        db.rollback()
+        print(f"[BATCH SAVE] database=ERROR commit=FAILED error={exc}")
+        raise HTTPException(status_code=503, detail="Unable to save batch. Please check database connection.") from exc
     db.refresh(batch)
+    print(f"[BATCH SAVE] database=OK commit=SUCCESS batch_id={batch.id}")
     
     # Add a notification
     notif = Notification(
@@ -333,6 +356,74 @@ def delete_batch(id: int, current_user: User = Depends(get_current_user), db: Se
     db.commit()
     return {"message": f"Batch {id} deleted successfully"}
 # --- IMAGE ANALYSIS & MACHINE LEARNING CLASSIFICATION ---
+@app.post("/api/analyze")
+async def standalone_analyze_image(
+    file: UploadFile = File(...),
+    fabric_type_hint: Optional[str] = Form("Mixed Fabrics"),
+    condition: Optional[str] = Form("Good"),
+    quantity_kg: Optional[float] = Form(None),
+    current_user: User = Depends(get_current_user),
+):
+    image_bytes = await file.read()
+    valid, err_msg = validate_uploaded_image(image_bytes, file.filename, file.content_type)
+    if not valid:
+        raise HTTPException(status_code=400, detail=err_msg)
+
+    result = run_unified_analysis(
+        image_bytes=image_bytes,
+        filename=file.filename,
+        fabric_type_hint=fabric_type_hint or "Mixed Fabrics",
+        condition=condition or "Good",
+        quantity_kg=quantity_kg,
+    )
+    return result
+
+
+@app.post("/api/sustainability/analyze")
+def analyze_sustainability(payload: schemas.MaterialPredictionRequest, current_user: User = Depends(get_current_user)):
+    """Calculate factor-backed sustainability estimates for an explicit material and quantity."""
+    result = sustainability_service.analyze_material(
+        material=payload.fabric_type,
+        condition=payload.condition,
+        quantity=payload.quantity,
+    )
+    impact = result["environmental_impact"]
+    return {
+        "success": True,
+        "material": payload.fabric_type,
+        "quantity_kg": payload.quantity,
+        "estimated_co2_kg": impact.get("co2_savings"),
+        "estimated_water_liters": impact.get("water_savings"),
+        "co2_factor": impact.get("co2_factor"),
+        "water_factor": impact.get("water_factor"),
+        "factor_status": impact.get("factor_status"),
+        "methodology": impact.get("methodology"),
+        "environmental_impact": impact.get("environmental_impact") or impact,
+        "source": "CONFIGURED_ESTIMATE",
+    }
+
+
+@app.post("/api/waste/predict")
+async def predict_waste_category(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user),
+):
+    image_bytes = await file.read()
+    valid, err_msg = validate_uploaded_image(image_bytes, file.filename, file.content_type)
+    if not valid:
+        raise HTTPException(status_code=400, detail=err_msg)
+    try:
+        from io import BytesIO
+        from PIL import Image
+
+        result = get_waste_classifier().predict(Image.open(BytesIO(image_bytes)))
+        return result
+    except WasteModelNotReadyError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"Unable to classify image: {exc}") from exc
+
+
 @app.post("/api/batches/{id}/analyze")
 async def analyze_batch_image(
     id: int,
@@ -340,51 +431,56 @@ async def analyze_batch_image(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    # Retrieve the batch
     batch = db.query(WasteBatch).filter(WasteBatch.id == id).first()
     if not batch:
         raise HTTPException(status_code=404, detail="Batch not found")
-        
-    # Read files for analysis
+
     image_bytes = None
     filename = "simulated_upload.png"
     if file:
         image_bytes = await file.read()
         filename = file.filename
+        valid, err_msg = validate_uploaded_image(image_bytes, filename, file.content_type)
+        if not valid:
+            raise HTTPException(status_code=400, detail=err_msg)
         
     # 1. Computer Vision Image Analysis
     cv_features = algorithms.analyze_image(image_bytes, filename)
     
-    # 2. Material Classification (Purity, Blends, Quality)
-    comp_q = algorithms.get_composition_and_quality(batch.fabric_type, batch.condition)
-    
-    # Override texture details if cv extracts them
-    # Determine waste category
-    sustainability_result = sustainability_service.analyze_material(
-        material=batch.fabric_type,
-        condition=batch.condition,
-        quantity=batch.quantity,
-        damage=cv_features["damage_detected"],
-        contamination=cv_features["contamination_detected"],
-    )
-    w_category = sustainability_result["waste_category"]
-    
-    # 3. Recommendations & Environmental Calculations
-    recs = algorithms.get_recycling_recommendations(batch.fabric_type, w_category)
-    scores = algorithms.calculate_scores(
-        batch.fabric_type, 
-        batch.condition, 
-        w_category, 
-        cv_features["damage_detected"], 
-        cv_features["contamination_detected"]
-    )
-    env_impacts = algorithms.calculate_environmental_impact(batch.fabric_type, batch.quantity, w_category)
     classification_report = algorithms.generate_classification_report(
         batch=batch,
         image_bytes=image_bytes,
         filename=filename,
         cv_features=cv_features,
     )
+
+    # Keep model output separate from the user-entered batch hint.
+    material_for_analysis = "UNKNOWN / UNSUPPORTED"
+    mat_cls = classification_report.get("material_classification", {})
+    if mat_cls.get("source") == "MODEL" and mat_cls.get("predicted_fabric"):
+        material_for_analysis = mat_cls["predicted_fabric"]
+    elif image_bytes is None and batch.fabric_type:
+        material_for_analysis = batch.fabric_type
+
+    sustainability_result = sustainability_service.analyze_material(
+        material=material_for_analysis,
+        condition=batch.condition,
+        quantity=batch.quantity,
+        material_confidence=float(mat_cls.get("confidence") or 0.0) / 100.0,
+        condition_confidence=1.0,
+    )
+    w_category = sustainability_result["waste_category"]
+
+    recs = algorithms.get_recycling_recommendations(material_for_analysis, w_category)
+    scores = algorithms.calculate_scores(
+        material_for_analysis,
+        batch.condition,
+        w_category,
+        False,
+        False,
+    )
+    env_impacts = algorithms.calculate_environmental_impact(material_for_analysis, batch.quantity, w_category)
+    batch.waste_category = w_category
     
     # Create or update AnalysisResult
     analysis = db.query(AnalysisResult).filter(AnalysisResult.batch_id == batch.id).first()
@@ -394,8 +490,15 @@ async def analyze_batch_image(
     analysis.fabric_texture = cv_features["fabric_texture"]
     analysis.fabric_pattern = cv_features["fabric_pattern"]
     analysis.fabric_color = cv_features["fabric_color"]
-    analysis.damage_detected = cv_features["damage_detected"]
-    analysis.contamination_detected = cv_features["contamination_detected"]
+
+    analysis.predicted_material = mat_cls.get("predicted_fabric")
+    analysis.material_confidence = mat_cls.get("confidence")
+    analysis.confidence_status = mat_cls.get("confidence_status") or (
+        "MANUAL_REVIEW_REQUIRED" if mat_cls.get("low_confidence") else None
+    )
+    analysis.model_version = mat_cls.get("model_version")
+    analysis.manual_review_required = bool(mat_cls.get("low_confidence") or mat_cls.get("manual_review_required"))
+    analysis.prediction_source = mat_cls.get("source")
     
     # Save scores
     analysis.recyclability_score = scores["recyclability_score"]
@@ -424,10 +527,10 @@ async def analyze_batch_image(
     db.commit()
     
     # Add relevant notifications
-    if cv_features["contamination_detected"]:
+    if mat_cls.get("low_confidence"):
         notif = Notification(
             type="warning",
-            message=f"CRITICAL Warning: Contamination detected in Batch #{batch.id} ({batch.fabric_type}). Special disposal recommended."
+            message=f"Low-confidence material prediction for Batch #{batch.id} ({mat_cls.get('confidence') or 0}%). Manual inspection recommended."
         )
         db.add(notif)
         
@@ -463,8 +566,11 @@ async def analyze_batch_image(
             "fabric_texture": analysis.fabric_texture,
             "fabric_pattern": analysis.fabric_pattern,
             "fabric_color": analysis.fabric_color,
-            "damage_detected": analysis.damage_detected,
-            "contamination_detected": analysis.contamination_detected,
+            "color_name": cv_features.get("color_name", "Unknown"),
+            "color_hex": cv_features.get("color_hex"),
+            "color_confidence": cv_features.get("color_confidence", 0.0),
+            "condition_status": "USER_PROVIDED" if batch.condition else "UNKNOWN",
+            "condition_source": "USER_PROVIDED" if batch.condition else "UNKNOWN",
             "recyclability_score": analysis.recyclability_score,
             "reuse_score": analysis.reuse_score,
             "sustainability_score": analysis.sustainability_score,
@@ -474,6 +580,11 @@ async def analyze_batch_image(
             "recycling_strategy": analysis.recycling_strategy,
             "co2_savings": analysis.co2_savings,
             "water_savings": analysis.water_savings,
+            "co2_factor": env_impacts.get("co2_factor"),
+            "water_factor": env_impacts.get("water_factor"),
+            "factor_status": env_impacts.get("factor_status"),
+            "methodology": env_impacts.get("methodology"),
+            "environmental_impact": env_impacts.get("environmental_impact") or env_impacts,
             "landfill_reduction": analysis.landfill_reduction,
             "created_at": analysis.created_at,
             **analysis_payload,
@@ -493,10 +604,8 @@ def predict_material(payload: schemas.MaterialPredictionRequest, current_user: U
 
     cv_features = {
         "fabric_texture": "Smooth / Soft" if payload.fabric_type in ["Cotton", "Silk", "Linen"] else "Coarse / Woven",
-        "fabric_pattern": "Solid Color" if not payload.damage else "Textured Pattern",
+        "fabric_pattern": "Solid Color",
         "fabric_color": payload.color or "Neutral",
-        "damage_detected": payload.damage,
-        "contamination_detected": payload.contamination,
     }
 
     classification_report = algorithms.generate_classification_report(
@@ -509,8 +618,8 @@ def predict_material(payload: schemas.MaterialPredictionRequest, current_user: U
         material=payload.fabric_type,
         condition=payload.condition,
         quantity=payload.quantity,
-        damage=payload.damage,
-        contamination=payload.contamination,
+        damage=False,
+        contamination=False,
     )
 
     return {
@@ -565,8 +674,6 @@ def waste_classification_report(id: int, current_user: User = Depends(get_curren
             "fabric_texture": analysis.fabric_texture,
             "fabric_pattern": analysis.fabric_pattern,
             "fabric_color": analysis.fabric_color,
-            "damage_detected": analysis.damage_detected,
-            "contamination_detected": analysis.contamination_detected,
         },
     )
 
@@ -703,9 +810,9 @@ def get_admin_analytics(
     return {
         "total_users": total_users,
         "total_batches": total_batches,
-        "active_connections": 12,  # Simulated active users
+        "active_connections": total_users,
         "system_status": "Healthy / Operational",
-        "database_size_bytes": os.path.getsize("./textile_waste.db") if os.path.exists("./textile_waste.db") else 1024
+        "database_size_bytes": 0
     }
 # --- USER MANAGEMENT ENDPOINTS (ADMIN ONLY) ---
 @app.get("/api/users", response_model=List[schemas.UserResponse])
@@ -883,10 +990,34 @@ def export_csv_report(
     )
 
 
+# Model status endpoint â€” runtime availability of the ML classifier (no auth,
+# mirrors /api/health; exposes no filesystem paths or secrets).
+@app.get("/api/model/status")
+def model_status():
+    try:
+        service = get_fabric_classifier()
+        payload = service.health()
+        payload["available"] = service.is_ready
+        payload["status"] = "AVAILABLE" if service.is_ready else "MODEL_NOT_READY"
+        payload["architecture"] = "EfficientNet-B0"
+        payload["classes"] = list(service.class_names) if service.is_ready else None
+        return payload
+    except Exception:
+        return {
+            "available": False,
+            "status": "MODEL_NOT_READY",
+            "model_name": "EfficientNet-B0",
+            "architecture": "EfficientNet-B0",
+            "num_classes": 9,
+            "error": "Model status could not be determined",
+        }
+
+
 # Health check endpoint
 @app.get("/api/health")
 def health_check():
     """Health check endpoint for monitoring."""
+    fabric_health = get_fabric_classifier().health()
     postgres_ok = False
     mongodb_ok = False
 
@@ -905,10 +1036,15 @@ def health_check():
         mongodb_ok = False
 
     return {
-        "status": "healthy",
+        "status": "ok",
+        "model_loaded": fabric_health["model_loaded"],
+        "model_name": fabric_health["model_name"],
+        "device": fabric_health["device"],
+        "num_classes": fabric_health["num_classes"],
         "service": "Textile Waste Intelligence Platform API",
         "timestamp": datetime.datetime.utcnow().isoformat(),
         "postgresql_connected": postgres_ok,
         "mongodb_connected": mongodb_ok
     }
+
 

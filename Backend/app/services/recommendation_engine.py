@@ -17,7 +17,22 @@ class RecommendationEngine:
         contamination: bool,
         recyclability_score: float,
         reuse_score: float,
+        material_confidence: float = 1.0,
+        condition_confidence: float = 1.0,
+        contamination_confidence: float = 1.0,
     ) -> Dict[str, Any]:
+        confidence_multiplier = max(0.0, min(1.0, material_confidence * condition_confidence * contamination_confidence))
+        if material == "UNKNOWN / UNSUPPORTED":
+            return {
+                "primary_recommendation": "Manual material verification",
+                "alternative_recommendation": "Hold for textile specialist review",
+                "reason": "The current 3-class model could not reliably identify this material.",
+                "recovery_rate": 0.0,
+                "difficulty": "Unknown",
+                "estimated_cost": 0.0,
+                "confidence": 0.0,
+                "confidence_inputs": {"material_confidence": material_confidence, "condition_confidence": condition_confidence, "contamination_confidence": contamination_confidence},
+            }
         if waste_category == "Hazardous Textile Waste":
             return {
                 "primary_recommendation": "Secure disposal",
@@ -26,7 +41,8 @@ class RecommendationEngine:
                 "recovery_rate": 0.1,
                 "difficulty": "High",
                 "estimated_cost": 180.0,
-                "confidence": 0.92,
+                "confidence": round(min(0.95, 0.3 * confidence_multiplier), 2),
+                "confidence_inputs": {"material_confidence": material_confidence, "condition_confidence": condition_confidence, "contamination_confidence": contamination_confidence},
             }
 
         if recyclability_score >= 85:
@@ -68,5 +84,6 @@ class RecommendationEngine:
             "recovery_rate": round(recovery_rate, 2),
             "difficulty": self.processing_difficulty.get(waste_category, "Medium"),
             "estimated_cost": round(cost, 2),
-            "confidence": round(min(0.95, 0.6 + (recyclability_score / 200)), 2),
+            "confidence": round(min(0.95, (0.6 + (recyclability_score / 200)) * confidence_multiplier), 2),
+            "confidence_inputs": {"material_confidence": material_confidence, "condition_confidence": condition_confidence, "contamination_confidence": contamination_confidence},
         }

@@ -4,10 +4,12 @@ from typing import Any, Dict, Optional
 from app.core.sustainability_constants import (
     CARBON_FACTORS,
     ENERGY_FACTORS,
+    FACTOR_SOURCE,
     WATER_FACTORS,
 )
 from app.services.recommendation_engine import RecommendationEngine
 from app.services.scoring_service import ScoringService
+from app.services.environmental_impact_service import calculate_environmental_impact
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +26,9 @@ class SustainabilityService:
         quantity: float,
         damage: bool = False,
         contamination: bool = False,
+        material_confidence: float = 1.0,
+        condition_confidence: float = 1.0,
+        contamination_confidence: float = 1.0,
     ) -> Dict[str, Any]:
         waste_category = self._classify_waste(condition, damage, contamination)
         scores = self.scoring_service.calculate_scores(material, condition, waste_category, damage, contamination)
@@ -35,9 +40,21 @@ class SustainabilityService:
             contamination=contamination,
             recyclability_score=scores["recyclability_score"],
             reuse_score=scores["reuse_score"],
+            material_confidence=material_confidence,
+            condition_confidence=condition_confidence,
+            contamination_confidence=contamination_confidence,
         )
 
-        environmental_impact = self._estimate_environmental_impact(material, quantity, waste_category)
+        environmental_impact = calculate_environmental_impact(material, quantity, waste_category)
+        logger.info(
+            "SUSTAINABILITY material=%s quantity_kg=%s co2_factor=%s water_factor=%s calculated_co2=%s calculated_water=%s",
+            material,
+            quantity,
+            environmental_impact.get("co2_factor"),
+            environmental_impact.get("water_factor"),
+            environmental_impact.get("co2_savings"),
+            environmental_impact.get("water_savings"),
+        )
         logger.info("Sustainability analysis completed", extra={"material": material, "condition": condition, "waste_category": waste_category})
 
         return {
@@ -62,30 +79,3 @@ class SustainabilityService:
             return "Recyclable"
         return "Compostable"
 
-    def _estimate_environmental_impact(self, material: str, quantity: float, waste_category: str) -> Dict[str, Any]:
-        carbon_factor = CARBON_FACTORS.get(material, 3.0)
-        water_factor = WATER_FACTORS.get(material, 1500)
-        energy_factor = ENERGY_FACTORS.get(material, 0.8)
-
-        if waste_category == "Hazardous Textile Waste":
-            return {
-                "co2_savings": 0.0,
-                "water_savings": 0.0,
-                "energy_savings": 0.0,
-                "landfill_reduction": 0.0,
-                "resource_recovery": 0.0,
-            }
-
-        co2_savings = round(quantity * carbon_factor, 2)
-        water_savings = round(quantity * water_factor, 2)
-        energy_savings = round(quantity * energy_factor, 2)
-        landfill_reduction = round(quantity * 1.0, 2)
-        resource_recovery = round(quantity * 0.7, 2)
-
-        return {
-            "co2_savings": co2_savings,
-            "water_savings": water_savings,
-            "energy_savings": energy_savings,
-            "landfill_reduction": landfill_reduction,
-            "resource_recovery": resource_recovery,
-        }

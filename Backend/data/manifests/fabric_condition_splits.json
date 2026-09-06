@@ -1,0 +1,1256 @@
+{
+  "dataset": "fabric_condition",
+  "split_root": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition",
+  "random_state": 42,
+  "test_size": 0.15,
+  "validation_size": 0.15,
+  "split_counts": {
+    "train": 172,
+    "validation": 37,
+    "test": 38
+  },
+  "prepared_at": "2026-08-18T11:42:37.968692+00:00",
+  "entries": {
+    "train": [
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0089_002_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0089_002_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0053_019_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0053_019_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0003_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0003_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0057_019_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0057_019_06.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0005_002_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0005_002_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0073_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0073_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0006_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0006_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0004_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0004_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0003_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0003_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0008_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0008_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0040_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0040_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0038_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0038_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0016_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0016_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0002_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0002_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0109_025_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0109_025_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0017_002_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0017_002_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0043_019_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0043_019_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0101_022_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0101_022_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0011_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0011_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0002_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0002_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0013_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0013_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0015_006_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0015_006_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0031_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0031_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0050_019_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0050_019_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0012_006_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0012_006_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0012_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0012_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0010_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0010_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0107_025_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0107_025_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0014_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0014_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0009_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0009_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0076_030_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0076_030_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0105_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0105_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0017_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0017_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0004_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0004_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0022_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0022_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0072_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0072_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0046_019_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0046_019_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0016_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0016_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0068_023_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0068_023_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0005_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0005_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0104_022_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0104_022_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0019_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0019_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0032_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0032_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0018_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0001_002_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0001_002_00.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0010_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0010_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0065_022_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0065_022_00.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0003_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0003_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0016_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0016_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0018_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0019_016_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0019_016_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0005_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0005_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0004_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0004_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0020_016_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0020_016_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0016_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0016_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0012_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0012_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0080_036_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0080_036_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0020_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0020_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0035_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0035_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0019_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0019_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0020_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0020_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0015_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0015_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0009_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0009_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0012_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0012_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0066_023_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0066_023_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0047_019_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0047_019_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0014_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0014_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0014_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0014_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0003_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0003_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0020_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0020_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0028_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0028_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0012_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0012_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0026_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0026_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0083_029_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0083_029_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0013_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0013_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0009_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0009_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0092_030_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0092_030_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0102_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0102_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0001_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0001_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0094_027_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0094_027_05.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0019_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0019_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0030_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0030_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0011_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0011_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0069_023_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0069_023_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0011_006_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0011_006_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0008_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0008_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0060_022_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0060_022_06.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0006_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0006_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0074_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0074_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0005_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0005_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0099_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0099_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0085_030_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0085_030_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0059_019_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0059_019_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0013_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0013_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0042_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0042_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0054_019_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0054_019_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0007_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0007_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0010_006_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0010_006_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0077_022_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0077_022_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0017_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0017_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0003_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0003_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0007_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0007_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0010_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0010_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0010_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0010_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0049_030_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0049_030_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0001_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0001_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0017_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0017_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0023_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0023_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0002_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0002_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0006_002_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0006_002_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0081_006_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0081_006_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0008_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0008_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0084_030_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0084_030_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0004_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0004_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0018_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0004_002_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0004_002_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0001_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0001_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0008_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0008_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0019_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0019_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0071_030_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0071_030_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0088_030_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0088_030_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0016_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0016_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0037_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0037_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0011_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0011_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0048_019_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0048_019_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0011_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0011_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0016_006_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0016_006_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0082_030_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0082_030_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0013_006_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0013_006_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0058_019_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0058_019_06.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0018_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0016_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0016_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_00_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0018_00_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0007_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0007_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0018_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0017_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0017_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0009_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0009_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0017_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0017_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0002_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0002_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0013_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0013_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0018_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0014_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0014_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0003_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0003_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0029_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0029_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0009_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0009_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0005_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0005_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0016_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0016_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0004_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0004_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0097_030_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0097_030_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0044_019_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0044_019_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0019_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0019_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0070_023_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0070_023_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0005_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0005_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0014_006_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0014_006_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0019_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0019_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0021_016_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0021_016_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0011_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0011_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0006_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0006_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0010_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0010_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0034_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0034_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0008_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0008_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0039_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0039_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0007_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0007_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0012_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0012_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0051_019_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0051_019_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0020_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0020_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0015_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0015_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0014_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0014_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0108_025_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Defective\\0108_025_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0015_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0015_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0006_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0006_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0010_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\train\\Non_Defective\\0010_000_02.png",
+        "label": "Non_Defective"
+      }
+    ],
+    "validation": [
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0075_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0075_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0045_019_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0045_019_04.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0090_002_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0090_002_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0024_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0024_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0064_022_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0064_022_00.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0002_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0002_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0106_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0106_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0012_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0012_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0020_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0020_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0033_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0033_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0014_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0014_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0005_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0005_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0001_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0001_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0003_002_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0003_002_00.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0007_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0007_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0056_019_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0056_019_06.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0017_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0017_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0017_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0017_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0079_025_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0079_025_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0008_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0008_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0015_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0015_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0007_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0007_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0013_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0013_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0027_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0027_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0086_030_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0086_030_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0001_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0001_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0011_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0011_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0004_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0004_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0008_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0008_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0006_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0006_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0006_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0006_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0087_030_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0087_030_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0052_019_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0052_019_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0007_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0007_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0091_030_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0091_030_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0098_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Defective\\0098_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0004_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\validation\\Non_Defective\\0004_000_05.png",
+        "label": "Non_Defective"
+      }
+    ],
+    "test": [
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0055_019_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0055_019_06.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0015_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0015_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0012_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0012_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0061_022_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0061_022_06.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0103_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0103_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0011_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0011_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0006_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0006_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0020_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0020_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0001_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0001_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0036_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0036_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0010_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0010_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0100_025_08.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0100_025_08.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0005_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0005_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0002_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0002_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0014_000_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0014_000_02.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0078_025_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0078_025_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0018_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0018_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0001_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0001_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0002_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0002_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0019_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0019_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0015_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0015_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0018_000_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0018_000_03.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0013_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0013_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0093_030_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0093_030_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0013_000_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0013_000_01.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0015_000_04.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0015_000_04.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0003_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0003_000_00.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0009_000_05.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0009_000_05.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0041_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0041_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0067_023_01.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0067_023_01.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0025_019_02.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0025_019_02.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0063_022_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0063_022_00.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0062_022_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0062_022_00.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0096_030_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0096_030_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0002_002_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0002_002_00.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0009_000_06.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0009_000_06.png",
+        "label": "Non_Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Defective\\0095_010_03.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Defective\\0095_010_03.png",
+        "label": "Defective"
+      },
+      {
+        "source": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition\\Non_Defective\\0020_000_00.png",
+        "split_path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\splits\\fabric_condition\\test\\Non_Defective\\0020_000_00.png",
+        "label": "Non_Defective"
+      }
+    ]
+  }
+}

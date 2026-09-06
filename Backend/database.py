@@ -4,16 +4,44 @@ from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, F
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import Date, inspect, text
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql+psycopg2://postgres:Naishitha9573@localhost:5432/Textile"
-)
+
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except ImportError:
+    pass
+
+# Primary database: PostgreSQL (requirement). A SQLite URL may be supplied
+# EXPLICITLY via DATABASE_URL for lightweight development/test usage only.
+DEFAULT_DATABASE_URL = "postgresql+psycopg2://textile_user:textile_pass@localhost:5432/textile_waste"
+DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL)
 MONGODB_URL = os.getenv(
     "MONGODB_URL",
     "mongodb://localhost:27017/textile_intelligence"
 )
 
-engine = create_engine(DATABASE_URL)
+_IS_SQLITE = DATABASE_URL.startswith("sqlite")
+
+if _IS_SQLITE:
+    engine = create_engine(
+        DATABASE_URL,
+        connect_args={"check_same_thread": False},
+    )
+else:
+    try:
+        engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+        with engine.connect() as conn:
+            pass
+    except Exception as exc:
+        raise RuntimeError(
+            "Cannot connect to the primary PostgreSQL database "
+            f"({DATABASE_URL}). Check that the server is running and that "
+            "DATABASE_URL is correct. The application intentionally does NOT "
+            "fall back to SQLite silently. To use SQLite explicitly (dev/test "
+            "only), set DATABASE_URL=sqlite:///./textile_waste.db"
+        ) from exc
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 class User(Base):
@@ -72,6 +100,14 @@ class AnalysisResult(Base):
     co2_savings = Column(Float)  # kg CO2
     water_savings = Column(Float)  # Liters
     landfill_reduction = Column(Float)  # kg
+
+    # ML prediction metadata (optional — populated when model inference runs)
+    predicted_material = Column(String, nullable=True)
+    material_confidence = Column(Float, nullable=True)
+    confidence_status = Column(String, nullable=True)
+    model_version = Column(String, nullable=True)
+    manual_review_required = Column(Boolean, default=False)
+    prediction_source = Column(String, nullable=True)  # MODEL, MANUAL_HINT, RULE_ENGINE
     
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     batch = relationship("WasteBatch", back_populates="analysis")
@@ -93,6 +129,19 @@ def _ensure_inventory_columns():
                 conn.execute(text("ALTER TABLE waste_batches ADD COLUMN waste_category VARCHAR"))
             if "notes" not in columns:
                 conn.execute(text("ALTER TABLE waste_batches ADD COLUMN notes VARCHAR"))
+        if inspector.has_table("analysis_results"):
+            columns = {col["name"] for col in inspector.get_columns("analysis_results")}
+            ml_cols = {
+                "predicted_material": "VARCHAR",
+                "material_confidence": "FLOAT",
+                "confidence_status": "VARCHAR",
+                "model_version": "VARCHAR",
+                "manual_review_required": "BOOLEAN DEFAULT FALSE",
+                "prediction_source": "VARCHAR",
+            }
+            for col_name, col_type in ml_cols.items():
+                if col_name not in columns:
+                    conn.execute(text(f"ALTER TABLE analysis_results ADD COLUMN {col_name} {col_type}"))
 
 
 def init_db():

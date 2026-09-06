@@ -10,7 +10,7 @@ export default function RecyclerDashboard() {
   const [selectedBatch, setSelectedBatch] = useState(null);
   
   // Form fields for new batch
-  const [fabricType, setFabricType] = useState('Cotton');
+  const [fabricType, setFabricType] = useState('');
   const [source, setSource] = useState('');
   const [quantity, setQuantity] = useState('');
   const [color, setColor] = useState('');
@@ -19,6 +19,23 @@ export default function RecyclerDashboard() {
   
   // Image analysis file state
   const [uploadFile, setUploadFile] = useState(null);
+  const [modelStatus, setModelStatus] = useState(null);
+  const [batchError, setBatchError] = useState('');
+  const [textureFile, setTextureFile] = useState(null);
+  const [textureResult, setTextureResult] = useState(null);
+  const [textureLoading, setTextureLoading] = useState(false);
+  const [textureError, setTextureError] = useState('');
+
+  const fetchModelStatus = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/model/status', { headers: { Authorization: `Bearer ${token}` } });
+      if (res.ok) setModelStatus(await res.json());
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const fetchBatches = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -38,10 +55,15 @@ export default function RecyclerDashboard() {
   };
   useEffect(() => {
     fetchBatches();
+    fetchModelStatus();
   }, []);
   const handleRegisterBatch = async (e) => {
     e.preventDefault();
-    if (!source || !quantity || !color) return;
+    setBatchError('');
+    if (!fabricType || !source || !quantity || !color || Number(quantity) <= 0) {
+      setBatchError('Enter a material, source, color, and quantity greater than zero.');
+      return;
+    }
     
     try {
       const token = localStorage.getItem('token');
@@ -67,9 +89,13 @@ export default function RecyclerDashboard() {
         setQuantity('');
         setColor('');
         fetchBatches();
+      } else {
+        const payload = await res.json().catch(() => ({}));
+        setBatchError(payload.detail || 'Unable to save batch. Please check database connection.');
       }
     } catch (err) {
       console.error(err);
+      setBatchError('Unable to save batch. Please check database connection.');
     }
   };
   const handleDelete = async (id) => {
@@ -116,6 +142,42 @@ export default function RecyclerDashboard() {
       console.error(err);
     } finally {
       setIsAnalyzing(false);
+    }
+  };
+
+  const handleTextureAnalysis = async () => {
+    if (!textureFile) {
+      setTextureError('Choose an image before running texture analysis.');
+      return;
+    }
+
+    setTextureLoading(true);
+    setTextureError('');
+    setTextureResult(null);
+
+    try {
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+      formData.append('file', textureFile);
+
+      const res = await fetch('/api/texture-analysis', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setTextureError(payload.detail || payload.message || 'The image could not be analyzed for texture.');
+        return;
+      }
+
+      setTextureResult(payload);
+    } catch (err) {
+      console.error(err);
+      setTextureError('Unable to reach the texture-analysis service.');
+    } finally {
+      setTextureLoading(false);
     }
   };
   const getScoreColor = (score) => {
@@ -320,6 +382,26 @@ export default function RecyclerDashboard() {
         </div>
         {/* Right Side: Image Analysis & Circularity Analytics */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+          {modelStatus && (
+            <div className="glass-panel" style={{ padding: '16px', borderLeft: `4px solid ${modelStatus.available ? 'var(--accent-teal)' : 'var(--accent-rose)'}` }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <h4 style={{ fontFamily: 'var(--font-header)', margin: 0 }}>Material Classifier — EfficientNet-B0</h4>
+                <span style={{
+                  fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', fontWeight: 600,
+                  background: modelStatus.available ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                  color: modelStatus.available ? 'var(--accent-emerald)' : 'var(--accent-rose)'
+                }}>
+                  {modelStatus.available ? 'ML MODEL ACTIVE' : (modelStatus.model_status || 'UNAVAILABLE')}
+                </span>
+              </div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'grid', gap: '4px' }}>
+                <span>Architecture: {modelStatus.architecture || 'EfficientNet-B0'} ({modelStatus.device || 'unknown'})</span>
+                <span>Classes: {modelStatus.classes?.join(', ') || 'Unavailable until checkpoint loads'}</span>
+                <span>Model status: {modelStatus.model_loaded ? 'AVAILABLE' : 'MODEL_NOT_READY'}</span>
+              </div>
+            </div>
+          )}
           
           {selectedBatch ? (
             <div className="glass-panel" style={{ padding: '24px' }}>
@@ -377,10 +459,175 @@ export default function RecyclerDashboard() {
                   </button>
                 </div>
               ) : (
-                // Analyzed State - Score & Analysis Details
+                // Analyzed State — ML classification and rule-engine recovery
+                // assessment are intentionally displayed as separate sections.
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  
-                  {/* Radial Circularity Score */}
+                  {(() => {
+                    const mc = selectedBatch.analysis?.classification_report?.material_classification;
+                    const source = mc?.source || selectedBatch.analysis?.prediction_source;
+                    const mlActive = source === 'MODEL' && (mc?.model_available !== false);
+                    const mlUnavailable = !mlActive && (source === 'MODEL_NOT_AVAILABLE' || mc?.model_available === false);
+                    const probabilities = mc?.probabilities && Object.keys(mc.probabilities).length > 0 ? mc.probabilities : null;
+                    const maxProb = probabilities ? Math.max(...Object.values(probabilities)) : 0;
+
+                    return (
+                      /* ── SECTION A: ML MATERIAL CLASSIFICATION ── */
+                      <div style={{
+                        background: (mc?.manual_review_required || selectedBatch.analysis?.manual_review_required)
+                          ? 'rgba(239, 68, 68, 0.08)' : 'rgba(255,255,255,0.02)',
+                        border: (mc?.manual_review_required || selectedBatch.analysis?.manual_review_required)
+                          ? '1px solid rgba(239, 68, 68, 0.25)' : '1px solid rgba(255,255,255,0.06)',
+                        borderRadius: '10px', padding: '14px'
+                      }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                          <h4 style={{ fontSize: '0.9rem', fontFamily: 'var(--font-header)', margin: 0 }}>Material Classification</h4>
+                          <span style={{
+                            fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', fontWeight: 600,
+                            background: mlActive ? 'rgba(16, 185, 129, 0.15)' : (mlUnavailable ? 'rgba(239, 68, 68, 0.15)' : 'rgba(99, 102, 241, 0.2)'),
+                            color: mlActive ? 'var(--accent-emerald)' : (mlUnavailable ? 'var(--accent-rose)' : '#818cf8')
+                          }}>
+                            {mlActive ? 'ML MODEL ACTIVE' : (mlUnavailable ? 'ML MODEL UNAVAILABLE' : 'NOT AVAILABLE')}
+                          </span>
+                        </div>
+
+                        {mlActive && (
+                          <div style={{ fontSize: '0.85rem', display: 'grid', gap: '6px' }}>
+                            <div><strong>Predicted Material:</strong> {mc?.predicted_fabric || selectedBatch.analysis?.predicted_material || 'UNKNOWN / UNSUPPORTED'}</div>
+                            <div><strong>ML Confidence:</strong> {mc?.confidence ?? selectedBatch.analysis?.material_confidence ?? '—'}% ({mc?.confidence_status || selectedBatch.analysis?.confidence_status || 'N/A'})</div>
+                            <div><strong>Model:</strong> {mc?.model_name || 'EfficientNet-B0'}</div>
+                            <div><strong>Model Status:</strong> {mc?.model_status || 'MODEL_NOT_READY'}</div>
+                            {probabilities && (
+                              <div style={{ marginTop: '6px', display: 'grid', gap: '4px' }}>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Class probability distribution</span>
+                                {Object.entries(probabilities).map(([cls, pct]) => (
+                                  <div key={cls} style={{ display: 'grid', gridTemplateColumns: '80px 1fr 52px', alignItems: 'center', gap: '8px', fontSize: '0.78rem' }}>
+                                    <span>{cls}</span>
+                                    <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden' }}>
+                                      <div style={{ width: `${pct}%`, maxWidth: '100%', height: '100%', background: pct === maxProb ? 'var(--grad-primary)' : 'rgba(255,255,255,0.18)' }} />
+                                    </div>
+                                    <span style={{ textAlign: 'right', color: 'var(--text-secondary)' }}>{Number(pct).toFixed(1)}%</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            {(mc?.manual_review_required || selectedBatch.analysis?.manual_review_required || mc?.unknown_or_unsupported) && (
+                              <div style={{ color: 'var(--accent-rose)', fontWeight: 600, marginTop: '4px', background: 'rgba(239,68,68,0.1)', padding: '6px 10px', borderRadius: '6px' }}>
+                                Unable to reliably identify this material with the current model.
+                              </div>
+                            )}
+                            <div style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>ML confidence comes only from the model's prediction probability and is independent of the recovery score below.</div>
+                          </div>
+                        )}
+
+                        {mlUnavailable && (
+                          <div style={{ fontSize: '0.85rem', display: 'grid', gap: '6px' }}>
+                            <div>Material classification could not be performed.</div>
+                            <div style={{ color: 'var(--accent-rose)', fontWeight: 600 }}>Reason: {mc?.error || mc?.warning || 'Model could not be loaded for inference.'}</div>
+                            <div style={{ color: 'var(--text-secondary)' }}>Rule-based recovery assessment is still available below.</div>
+                          </div>
+                        )}
+
+                        {!mlActive && !mlUnavailable && (
+                          <div style={{ fontSize: '0.85rem', display: 'grid', gap: '6px' }}>
+                            <div><strong>ML Classification:</strong> Not Available</div>
+                            <div><strong>ML Confidence:</strong> —</div>
+                            {selectedBatch.fabric_type && (
+                              <div><strong>User-declared fabric (not ML-verified):</strong> {selectedBatch.fabric_type}</div>
+                            )}
+                            <div style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
+                              Historical Result — no model prediction was stored for this batch.
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+
+                  {/* ── SECTION B: TEXTURE ANALYSIS ── */}
+                  <div style={{
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    borderRadius: '10px',
+                    padding: '14px',
+                    display: 'grid',
+                    gap: '10px'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <h4 style={{ fontSize: '0.9rem', fontFamily: 'var(--font-header)', margin: 0 }}>Texture Analysis</h4>
+                      <span style={{
+                        fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', fontWeight: 600,
+                        background: 'rgba(99, 102, 241, 0.15)', color: '#a5b4fc'
+                      }}>
+                        HANDCRAFTED
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gap: '10px' }}>
+                      <label style={{ display: 'grid', gap: '6px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                        Fabric sample image for texture scan
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => {
+                            const nextFile = e.target.files?.[0] || null;
+                            setTextureFile(nextFile);
+                            setTextureError('');
+                            setTextureResult(null);
+                          }}
+                          style={{ color: 'var(--text-primary)' }}
+                        />
+                      </label>
+
+                      {textureFile && (
+                        <div style={{ fontSize: '0.8rem', color: 'var(--accent-emerald)' }}>
+                          Selected: {textureFile.name}
+                        </div>
+                      )}
+
+                      <button
+                        onClick={handleTextureAnalysis}
+                        className="btn btn-secondary"
+                        style={{ width: '100%', justifyContent: 'center' }}
+                        disabled={!textureFile || textureLoading}
+                      >
+                        {textureLoading ? 'Analyzing texture...' : 'Run Texture Analysis'}
+                      </button>
+
+                      {textureError && (
+                        <div style={{ color: 'var(--accent-rose)', fontSize: '0.8rem', background: 'rgba(239, 68, 68, 0.08)', borderRadius: '8px', padding: '8px 10px' }}>
+                          {textureError}
+                        </div>
+                      )}
+
+                      {textureResult && (
+                        <div style={{ display: 'grid', gap: '8px', fontSize: '0.82rem' }}>
+                          <div><strong>Texture type:</strong> {textureResult.summary?.texture_type || 'Unknown'}</div>
+                          <div><strong>GLCM contrast:</strong> {Number(textureResult.glcm?.contrast || 0).toFixed(4)}</div>
+                          <div><strong>GLCM homogeneity:</strong> {Number(textureResult.glcm?.homogeneity || 0).toFixed(4)}</div>
+                          <div><strong>LBP variance:</strong> {Number(textureResult.lbp?.variance || 0).toFixed(2)}</div>
+                          <div><strong>Gabor dominant orientation:</strong> {Number(textureResult.gabor?.dominant_orientation || 0).toFixed(1)}°</div>
+
+                          <div style={{ color: 'var(--text-secondary)' }}>
+                            Observations: {(textureResult.summary?.observations || []).join(' • ') || 'No observations available.'}
+                          </div>
+
+                          <details style={{ color: 'var(--text-secondary)' }}>
+                            <summary style={{ cursor: 'pointer' }}>Raw texture JSON</summary>
+                            <pre style={{ marginTop: '8px', whiteSpace: 'pre-wrap', fontSize: '0.76rem', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', padding: '8px' }}>
+                              {JSON.stringify({
+                                glcm: textureResult.glcm,
+                                lbp: textureResult.lbp,
+                                gabor: textureResult.gabor,
+                                summary: textureResult.summary,
+                              }, null, 2)}
+                            </pre>
+                          </details>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ── SECTION C: RULE-BASED RECOVERY ASSESSMENT ── */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                     <div className="score-circle-wrapper">
                       <svg className="score-radial" width="120" height="120">
@@ -404,53 +651,65 @@ export default function RecyclerDashboard() {
                         {selectedBatch.analysis?.overall_circularity_score}%
                       </div>
                     </div>
-                    <div>
-                      <h4 style={{ fontSize: '1rem', marginBottom: '4px' }}>Circularity Assessment</h4>
+
+                    <div style={{ display: 'grid', gap: '6px' }}>
+                      <h4 style={{ fontSize: '1rem', margin: 0 }}>Recovery Potential</h4>
+                      <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: '4px', background: 'rgba(16, 185, 129, 0.15)', color: 'var(--accent-emerald)', fontWeight: 600 }}>
+                        RULE ENGINE
+                      </span>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>
+                        Assessment Method: Rule Engine
+                      </div>
                       <span className={`badge ${getBadgeClass(selectedBatch.analysis?.circularity_category)}`}>
                         {selectedBatch.analysis?.circularity_category}
                       </span>
                     </div>
                   </div>
-                  {/* Feature Breakdown Table */}
-                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Detected Color:</span>
-                      <span style={{ fontWeight: '600' }}>{selectedBatch.analysis?.fabric_color}</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Texture Pattern:</span>
-                      <span style={{ fontWeight: '600' }}>{selectedBatch.analysis?.fabric_texture} / {selectedBatch.analysis?.fabric_pattern}</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Structural Damage:</span>
-                      <span style={{ color: selectedBatch.analysis?.damage_detected ? 'var(--accent-rose)' : 'var(--accent-emerald)', fontWeight: '600' }}>
-                        {selectedBatch.analysis?.damage_detected ? 'Yes (Deduction)' : 'None'}
-                      </span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Chemical Contamination:</span>
-                      <span style={{ color: selectedBatch.analysis?.contamination_detected ? 'var(--accent-rose)' : 'var(--accent-emerald)', fontWeight: '600' }}>
-                        {selectedBatch.analysis?.contamination_detected ? 'Alert (High risk)' : 'None'}
-                      </span>
-                    </div>
-                  </div>
-                  {/* Recommendation Card */}
+                  {/* ── SECTION C: RECYCLING RECOMMENDATION (RULE ENGINE) ── */}
                   <div style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.15)', borderRadius: '10px', padding: '16px' }}>
-                    <h4 style={{ color: 'var(--accent-emerald)', fontSize: '0.9rem', marginBottom: '6px', fontFamily: 'var(--font-header)' }}>Recycling Recommendation</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <h4 style={{ color: 'var(--accent-emerald)', fontSize: '0.9rem', fontFamily: 'var(--font-header)', margin: 0 }}>Recycling Recommendation</h4>
+                      <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: '4px', background: 'rgba(16, 185, 129, 0.15)', color: 'var(--accent-emerald)', fontWeight: 600 }}>
+                        RULE ENGINE
+                      </span>
+                    </div>
                     <p style={{ fontSize: '0.85rem', lineHeight: '1.4', color: 'var(--text-primary)' }}>
                       {selectedBatch.analysis?.recycling_strategy}
                     </p>
                   </div>
                   {/* Environmental Impacts */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '8px', textAlign: 'center' }}>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>CO2 Savings</span>
-                      <p style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--accent-emerald)', margin: '2px 0' }}>-{selectedBatch.analysis?.co2_savings} kg</p>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Estimated Environmental Impact</span>
+                      <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: '4px', background: 'rgba(6, 182, 212, 0.15)', color: 'var(--accent-teal)', fontWeight: 600 }}>
+                        ESTIMATED
+                      </span>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '8px', textAlign: 'center' }}>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Water Saved</span>
-                      <p style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--accent-teal)', margin: '2px 0' }}>{selectedBatch.analysis?.water_savings} L</p>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '8px', textAlign: 'center' }}>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>CO2 Savings</span>
+                        <p style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--accent-emerald)', margin: '2px 0' }}>
+                          {selectedBatch.analysis?.co2_savings == null ? 'Not available' : `${selectedBatch.analysis.co2_savings} kg CO2e`}
+                        </p>
+                      </div>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '8px', textAlign: 'center' }}>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Water Saved</span>
+                        <p style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--accent-teal)', margin: '2px 0' }}>
+                          {selectedBatch.analysis?.water_savings == null ? 'Not available' : `${selectedBatch.analysis.water_savings} L`}
+                        </p>
+                      </div>
                     </div>
+                    <details style={{ marginTop: '10px', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                      <summary style={{ cursor: 'pointer' }}>Calculation Basis</summary>
+                      <div style={{ display: 'grid', gap: '4px', marginTop: '8px' }}>
+                        <span>Material: {selectedBatch.analysis?.predicted_material || selectedBatch.fabric_type || 'Unavailable'}</span>
+                        <span>Quantity: {selectedBatch.quantity ?? 'Unavailable'} kg</span>
+                        <span>CO2 factor: {selectedBatch.analysis?.co2_factor ?? 'Not available'} kg CO2e/kg</span>
+                        <span>Water factor: {selectedBatch.analysis?.water_factor ?? 'Not available'} L/kg</span>
+                        <span>Status: {selectedBatch.analysis?.co2_savings == null || selectedBatch.analysis?.water_savings == null ? 'Not available' : 'ESTIMATED'}</span>
+                        <span>Source/Basis: {selectedBatch.analysis?.methodology || 'Not available'}</span>
+                      </div>
+                    </details>
                   </div>
                 </div>
               )}
@@ -473,6 +732,7 @@ export default function RecyclerDashboard() {
                 <div className="form-group">
                   <label>Fabric Type</label>
                   <select className="form-select" value={fabricType} onChange={(e) => setFabricType(e.target.value)}>
+                    <option value="">Select material</option>
                     <option>Cotton</option>
                     <option>Polyester</option>
                     <option>Wool</option>
@@ -549,6 +809,7 @@ export default function RecyclerDashboard() {
                   Log to Inventory
                 </button>
               </div>
+              {batchError && <div style={{ color: 'var(--accent-rose)', marginTop: '12px', fontSize: '0.85rem' }}>{batchError}</div>}
             </form>
           </div>
         </div>

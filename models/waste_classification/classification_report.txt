@@ -1,0 +1,27 @@
+              precision    recall  f1-score   support
+
+      Cotton   0.934169  0.856322  0.893553       348
+       Denim   0.988889  0.927083  0.956989        96
+      Fleece   0.695652  0.800000  0.744186        20
+       Nylon   0.584906  0.861111  0.696629        36
+   Polyester   0.779661  0.718750  0.747967       128
+        Silk   0.558824  0.950000  0.703704        20
+  Terrycloth   1.000000  1.000000  1.000000        16
+     Viscose   0.481481  0.541667  0.509804        24
+        Wool   0.766667  0.884615  0.821429        52
+
+    accuracy                       0.837838       740
+   macro avg   0.754472  0.837728  0.786029       740
+weighted avg   0.855931  0.837838  0.842640       740
+
+
+Class mapping:
+0 = Cotton
+1 = Denim
+2 = Fleece
+3 = Nylon
+4 = Polyester
+5 = Silk
+6 = Terrycloth
+7 = Viscose
+8 = Wool

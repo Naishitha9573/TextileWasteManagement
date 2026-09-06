@@ -15,14 +15,9 @@ client = TestClient(app)
 
 @pytest.fixture(scope="module", autouse=True)
 def setup_db():
-    # Clean up any leftover test database state
-    db_file = "./textile_waste.db"
-    if os.path.exists(db_file):
-        try:
-            os.remove(db_file)
-        except Exception:
-            pass
-            
+    # conftest.py pins DATABASE_URL to an explicit isolated test database
+    # (SQLite by default, or TEST_DATABASE_URL if provided). Never touch a
+    # production database file here.
     init_db()
     
     # Explicitly seed test users

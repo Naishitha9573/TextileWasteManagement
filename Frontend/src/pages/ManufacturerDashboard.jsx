@@ -185,7 +185,7 @@ export default function ManufacturerDashboard() {
           {/* Environmental offset card */}
           <div style={{ background: 'rgba(16, 185, 129, 0.04)', border: '1px solid rgba(16, 185, 129, 0.15)', borderRadius: '12px', padding: '20px' }}>
             <span style={{ fontSize: '0.8rem', color: 'var(--accent-emerald)', fontWeight: '600' }}>Factory Offset impact</span>
-            <h2 style={{ fontSize: '1.8rem', margin: '4px 0', color: '#fff' }}>-{analytics?.co2_savings_kg.toLocaleString()} kg CO₂</h2>
+            <h2 style={{ fontSize: '1.8rem', margin: '4px 0', color: '#fff' }}>{analytics?.co2_savings_kg == null ? 'Data unavailable' : `-${analytics.co2_savings_kg.toLocaleString()} kg CO₂`}</h2>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: '1.4', marginTop: '6px' }}>
               By supplying raw post-production waste directly to verified chemical and mechanical recyclers, your facility has prevented this volume of carbon emissions from initial fabric fabrication.
             </p>

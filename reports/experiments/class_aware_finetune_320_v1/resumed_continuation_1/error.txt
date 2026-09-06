@@ -1,0 +1,64 @@
+Traceback (most recent call last):
+  File "C:\Users\sama\OneDrive\Desktop\naishtex\Textile\src\class_aware_finetune_320_v1.py", line 278, in main
+    logits = model(images)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torchvision\models\efficientnet.py", line 344, in forward
+    return self._forward_impl(x)
+           ~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torchvision\models\efficientnet.py", line 334, in _forward_impl
+    x = self.features(x)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\container.py", line 253, in forward
+    input = module(input)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\container.py", line 253, in forward
+    input = module(input)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torchvision\models\efficientnet.py", line 165, in forward
+    result = self.block(input)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\container.py", line 253, in forward
+    input = module(input)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\container.py", line 253, in forward
+    input = module(input)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\activation.py", line 475, in forward
+    return F.silu(input, inplace=self.inplace)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\nn\functional.py", line 2444, in silu
+    return torch._C._nn.silu_(input)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^
+RuntimeError: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 7372800 bytes.
+
+Last completed epoch: 11
+Last validation Macro F1: 0.8059325681593011
+Last validation accuracy: 0.8567567567567568

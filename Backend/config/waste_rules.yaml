@@ -1,0 +1,48 @@
+# Configurable Waste Classification Rules
+version: "1.0"
+description: "Rules for assigning waste category based on condition, damage, and contamination status."
+
+rules:
+  - id: contamination_check
+    condition_match: null
+    damage_match: null
+    contamination_match: true
+    waste_category: "Hazardous Textile Waste"
+
+  - id: excellent_condition
+    condition_match: "Excellent"
+    damage_match: null
+    contamination_match: false
+    waste_category: "Reusable"
+
+  - id: good_damaged
+    condition_match: "Good"
+    damage_match: true
+    contamination_match: false
+    waste_category: "Repairable"
+
+  - id: good_undamaged
+    condition_match: "Good"
+    damage_match: false
+    contamination_match: false
+    waste_category: "Reusable"
+
+  - id: fair_damaged
+    condition_match: "Fair"
+    damage_match: true
+    contamination_match: false
+    waste_category: "Upcyclable"
+
+  - id: fair_undamaged
+    condition_match: "Fair"
+    damage_match: false
+    contamination_match: false
+    waste_category: "Recyclable"
+
+  - id: poor_condition
+    condition_match: "Poor"
+    damage_match: null
+    contamination_match: false
+    waste_category: "Recyclable"
+
+default_category: "Compostable"

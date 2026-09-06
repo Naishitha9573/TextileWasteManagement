@@ -1,12 +1,27 @@
 import io
-import hashlib
+from pathlib import Path
 import numpy as np
 from PIL import Image
+import yaml
 
-try:
-    from ml.fabric_classifier import fabric_classifier
-except Exception:  # pragma: no cover - fallback if sklearn import fails in minimal environments
-    fabric_classifier = None
+from app.services.scoring_service import calculate_circularity_score
+from app.services.color_analysis import analyze_image_color_bytes
+from app.services.environmental_impact_service import calculate_environmental_impact as calculate_configured_impact
+
+
+def _log(scope: str, message: str) -> None:
+    print(f"[{scope}] {message}")
+
+
+def _load_waste_rules() -> dict:
+    config_path = Path(__file__).resolve().parent / "config" / "waste_rules.yaml"
+    if config_path.exists():
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                return yaml.safe_load(f) or {}
+        except Exception:
+            pass
+    return {}
 
 
 def analyze_image(image_bytes: bytes, filename: str) -> dict:
@@ -14,13 +29,12 @@ def analyze_image(image_bytes: bytes, filename: str) -> dict:
     Parses an uploaded image using PIL and numpy to extract features:
     - Dominant/Average color
     - Edge density (for texture and pattern)
-    - Value standard deviation (for damage detection)
-    - Contamination indicators
-    If image loading fails, falls back to a deterministic feature set based on the filename hash.
+    - Value statistics for texture and pattern analysis
+    If image loading fails, returns unknown visual features. Filename-derived values are not evidence.
     """
     try:
         image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-        # Resize to speed up computations
+        color_result = analyze_image_color_bytes(image_bytes)
         image.thumbnail((250, 250))
         img_np = np.array(image)
         
@@ -29,13 +43,11 @@ def analyze_image(image_bytes: bytes, filename: str) -> dict:
         r, g, b = int(avg_color[0]), int(avg_color[1]), int(avg_color[2])
         color_hex = f"#{r:02x}{g:02x}{b:02x}"
         
-        # Map to common name
-        color_name = map_rgb_to_name(r, g, b)
+        color_name, color_confidence = map_rgb_to_name(r, g, b)
 
         # 2. Texture & Pattern analysis
         gray = image.convert("L")
         gray_np = np.array(gray)
-        # Calculate horizontal and vertical differences (rough edge detector)
         h_diff = np.abs(gray_np[:-1, :] - gray_np[1:, :])
         v_diff = np.abs(gray_np[:, :-1] - gray_np[:, 1:])
         edge_score = float(np.mean(h_diff) + np.mean(v_diff))
@@ -50,81 +62,128 @@ def analyze_image(image_bytes: bytes, filename: str) -> dict:
             texture = "Smooth / Soft"
             pattern = "Solid Color"
 
-        # 3. Damage & Contamination detection
-        # High intensity variance across the gray image can mean staining or tearing
-        std_dev = float(np.std(gray_np))
-        damage_detected = std_dev > 50.0  # High contrast spots/holes
-        
-        # Contamination: check for significant yellow/brown tint or green spots in non-yellow/green fabrics
-        # Or compare color channels
-        channel_diff = float(np.mean(np.abs(img_np[:, :, 0] - img_np[:, :, 1])) + np.mean(np.abs(img_np[:, :, 1] - img_np[:, :, 2])))
-        contamination_detected = channel_diff > 45.0 and ("White" in color_name or "Grey" in color_name)
-
         return {
             "fabric_texture": texture,
             "fabric_pattern": pattern,
+            "color_name": color_name,
+            "color_hex": color_hex,
+            "color_confidence": color_confidence,
             "fabric_color": f"{color_name} ({color_hex})",
-            "damage_detected": damage_detected,
-            "contamination_detected": contamination_detected
+            "color": color_result["color"],
+            "dominant_colors": color_result["dominant_colors"],
         }
 
     except Exception:
-        # High fidelity fallback using filename hash for consistent mock simulation
-        hasher = hashlib.md5(filename.encode("utf-8"))
-        hash_val = int(hasher.hexdigest()[:8], 16)
-        
-        textures = ["Smooth / Soft", "Coarse / Woven", "Medium Knit", "Fine Fiber"]
-        patterns = ["Solid Color", "Striped Pattern", "Printed Graphic", "Melange"]
-        colors = ["Navy Blue (#1a2b4c)", "Classic Crimson (#b22222)", "Sage Green (#8fbc8f)", "Cream White (#fffdd0)", "Coal Black (#2b2b2b)"]
-        
         return {
-            "fabric_texture": textures[hash_val % len(textures)],
-            "fabric_pattern": patterns[(hash_val >> 2) % len(patterns)],
-            "fabric_color": colors[(hash_val >> 4) % len(colors)],
-            "damage_detected": (hash_val % 7) == 0,
-            "contamination_detected": (hash_val % 11) == 0
+            "fabric_texture": "Unknown",
+            "fabric_pattern": "Unknown",
+            "color_name": "Unknown",
+            "color_hex": None,
+            "color_confidence": 0.0,
+            "fabric_color": "Unknown",
         }
 
+
 def generate_classification_report(batch, image_bytes: bytes = None, filename: str = "simulated_upload.png", cv_features: dict = None) -> dict:
-    """Produces a structured material-classification and waste-report payload for a textile batch."""
+    """
+    Produces a structured material-classification and waste-report payload for a textile batch.
+
+    ML material results come ONLY from model inference. When no image is provided or the
+    model is unavailable, `predicted_fabric` carries only the user-declared batch hint
+    (clearly labelled via `source`), never a fabricated ML output.
+    """
     if cv_features is None:
         cv_features = {}
 
     condition = getattr(batch, "condition", "Good") or "Good"
     fabric_type_hint = getattr(batch, "fabric_type", None) or "Mixed Fabrics"
 
-    feature_source = {} if not image_bytes else None
-    if image_bytes and fabric_classifier:
+    # Runtime model state (loaded once, cached by the singleton service).
+    try:
+        from app.services.fabric_classifier import get_fabric_classifier
+        _service = get_fabric_classifier()
+        runtime_model_status = "AVAILABLE" if _service.is_ready else "UNAVAILABLE"
+    except Exception:
+        _service = None
+        runtime_model_status = "UNAVAILABLE"
+
+    material_source = "NO_IMAGE"
+    prediction = {
+        "predicted_fabric": fabric_type_hint,
+        "ml_material": None,
+        "confidence": None,
+        "confidence_percent": None,
+        "fiber_composition": get_composition_and_quality(fabric_type_hint, condition).get("fiber_composition", "Mixed Fibers"),
+        "all_probabilities": {},
+        "probabilities": {},
+        "probability_ratios": None,
+        "low_confidence": False,
+        "warning": None,
+        "model_version": None,
+        "model_available": False,
+        "model_status": runtime_model_status,
+        "model_name": (_service.health().get("model_name") if _service else None),
+    }
+
+    if image_bytes:
         try:
-            feature_source = fabric_classifier.extract_features_from_image(image_bytes)
-        except Exception:
-            feature_source = {}
+            from app.services.fabric_classifier import ModelNotReadyError, get_fabric_classifier
+            classifier = get_fabric_classifier()
+            image = Image.open(io.BytesIO(image_bytes))
+            prediction_result = classifier.predict(image)
 
-    if not feature_source:
-        digest = hashlib.md5((filename or str(batch.id)).encode("utf-8")).hexdigest()
-        h = int(digest[:8], 16)
-        feature_source = {
-            "hue_peak": float(h % 360),
-            "saturation": float((h % 70 + 20) / 100),
-            "brightness": float((h % 60 + 25) / 100),
-            "edge_density": float((h % 30 + 10) / 100),
-            "pixel_variance": float((h % 1400) + 200),
-            "texture_score": float((h % 50 + 20) / 100),
-        }
+            if prediction_result.get("success"):
+                material_source = "MODEL"
+                predicted_material = prediction_result["prediction"]["class_name"]
+                confidence_value = prediction_result["prediction"]["confidence"] * 100
+                prediction = {
+                    "predicted_fabric": predicted_material,
+                    "ml_material": predicted_material,
+                    "confidence": confidence_value,
+                    "confidence_percent": confidence_value,
+                    "confidence_ratio": confidence_value / 100,
+                    "confidence_status": "AVAILABLE",
+                    "manual_review_required": False,
+                    "fiber_composition": "Unknown / not laboratory verified" if predicted_material == "UNKNOWN / UNSUPPORTED" else get_composition_and_quality(predicted_material, condition).get("fiber_composition", "Unknown / not laboratory verified"),
+                    "all_probabilities": {name: value * 100 for name, value in prediction_result["probabilities"].items()},
+                    "probabilities": {name: value * 100 for name, value in prediction_result["probabilities"].items()},
+                    "probability_ratios": prediction_result["probabilities"],
+                    "model_name": "EfficientNet-B0",
+                    "num_classes": len(classifier.class_names),
+                    "supported_classes": list(classifier.class_names),
+                    "model_available": True,
+                    "model_status": "AVAILABLE",
+                }
+            else:
+                material_source = "MODEL_NOT_AVAILABLE"
+                prediction["source_note"] = (
+                    "ML classification could not be performed; "
+                    "'predicted_fabric' is the user-declared batch hint only."
+                )
+                prediction["warning"] = prediction_result.get(
+                    "message", "ML model unavailable — material classification not performed."
+                )
+                prediction["error"] = prediction_result.get("message")
+                prediction["model_status"] = prediction_result.get("model_status") or runtime_model_status
+        except ModelNotReadyError as exc:
+            material_source = "MODEL_NOT_AVAILABLE"
+            prediction["warning"] = "Model inference unavailable — material classification not performed."
+            prediction["error"] = "EfficientNet-B0 model is not ready."
+            print(f"[FABRIC MODEL] NOT_READY: {exc}")
+            prediction["model_status"] = runtime_model_status
+        except Exception as exc:
+            material_source = "MODEL_NOT_AVAILABLE"
+            prediction["warning"] = "Model inference unavailable — material classification not performed."
+            prediction["error"] = "Internal error during inference."
+            print(f"[FABRIC MODEL] ERROR: inference raised: {exc}")
+            prediction["model_status"] = runtime_model_status
+    else:
+        prediction["warning"] = "No image provided — material from manual batch hint only."
 
-    if cv_features:
-        feature_source["edge_density"] = min(feature_source.get("edge_density", 0.2) + (0.04 if cv_features.get("damage_detected") else 0.0), 1.0)
-        if "Coarse" in str(cv_features.get("fabric_texture", "")):
-            feature_source["texture_score"] = min(feature_source.get("texture_score", 0.3) + 0.1, 1.0)
-
-    prediction = {"predicted_fabric": fabric_type_hint, "confidence": 60.0, "fiber_composition": "Mixed Fibers", "all_probabilities": {}}
-    if fabric_classifier:
-        try:
-            prediction = fabric_classifier.predict(feature_source)
-        except Exception:
-            prediction = {"predicted_fabric": fabric_type_hint, "confidence": 60.0, "fiber_composition": "Mixed Fibers", "all_probabilities": {}}
-
-    waste_category = get_waste_classification(condition, cv_features.get("damage_detected", False), cv_features.get("contamination_detected", False))
+    damage_detected = bool(cv_features.get("damage_detected", False))
+    contamination_detected = bool(cv_features.get("contamination_detected", False))
+    waste_category = get_waste_classification(condition, damage_detected, contamination_detected)
+    waste_source = "RULE_ENGINE"
     if not waste_category:
         waste_category = "Recyclable"
 
@@ -132,8 +191,8 @@ def generate_classification_report(batch, image_bytes: bytes = None, filename: s
         prediction.get("predicted_fabric", fabric_type_hint),
         condition,
         waste_category,
-        cv_features.get("damage_detected", False),
-        cv_features.get("contamination_detected", False),
+        damage_detected,
+        contamination_detected,
     )
 
     recyclability_score = scores.get("overall_circularity_score", 0.0)
@@ -150,37 +209,76 @@ def generate_classification_report(batch, image_bytes: bytes = None, filename: s
         assessment_status = "Low recyclability"
         recommended_action = "Use downcycling or energy recovery pathways"
 
+    confidence_display = prediction.get("confidence")
+    confidence_note_text = (
+        f"{confidence_display}%" if confidence_display is not None else "Not available"
+    )
+    _log("RULE_ENGINE", f"Recovery potential: {round(recyclability_score, 1)}%")
+
+    processing_notes = [
+        f"Material source: {material_source}",
+        f"Waste category source: {waste_source}",
+        f"Condition {condition} → {waste_category}",
+        f"Material confidence: {confidence_note_text}",
+    ]
+    if material_source != "MODEL":
+        processing_notes.append(
+            "Recovery assessment uses the user-declared fabric hint; no ML material classification was applied."
+        )
+    if prediction.get("warning"):
+        processing_notes.append(prediction["warning"])
+    model_classes = prediction.get("supported_classes") or (_service.class_names if _service else [])
     return {
         "material_classification": {
-            "predicted_fabric": prediction.get("predicted_fabric", fabric_type_hint),
-            "confidence": prediction.get("confidence", 0.0),
+            "predicted_fabric": prediction.get("predicted_fabric") or "UNKNOWN / UNSUPPORTED",
+            "ml_material": prediction.get("ml_material"),
+            "model_available": prediction.get("model_available", False),
+            "confidence": prediction.get("confidence"),
+            "confidence_percent": prediction.get("confidence_percent"),
+            "confidence_ratio": prediction.get("confidence_ratio"),
+            "confidence_status": prediction.get("confidence_status"),
+            "confidence_threshold": prediction.get("confidence_threshold"),
+            "manual_review_required": prediction.get("manual_review_required", False),
             "fiber_composition": prediction.get("fiber_composition", "Mixed Fibers"),
-            "probabilities": prediction.get("all_probabilities", {}),
+            "probabilities": prediction.get("probabilities", {}),
+            "probability_ratios": prediction.get("probability_ratios"),
             "hinted_fabric": fabric_type_hint,
+            "source": material_source,
+            "model_version": prediction.get("model_version"),
+            "model_name": prediction.get("model_name"),
+            "num_classes": prediction.get("num_classes"),
+            "current_model_scope": prediction.get("current_model_scope") or (f"{len(model_classes)} CLASS MODEL" if model_classes else None),
+            "supported_classes": prediction.get("supported_classes", []),
+            "model_accuracy": prediction.get("model_accuracy"),
+            "model_test_accuracy": prediction.get("model_test_accuracy"),
+            "model_status": prediction.get("model_status", runtime_model_status),
+            "error": prediction.get("error"),
+            "confidence_note": "Confidence represents the model's classification score among supported classes and is not laboratory-verified fiber composition.",
+            "unknown_or_unsupported": prediction.get("unknown_or_unsupported", False),
+            "low_confidence": prediction.get("low_confidence", False),
         },
         "waste_category": waste_category,
+        "waste_category_source": waste_source,
         "recyclability_assessment": {
             "score": round(recyclability_score, 1),
             "status": assessment_status,
             "recommended_action": recommended_action,
+            "source": "RULE_ENGINE",
         },
-        "processing_notes": [
-            f"Condition {condition} assessed with {waste_category.lower()} handling",
-            f"Predicted material confidence {prediction.get('confidence', 0.0)}%",
-        ],
+        "processing_notes": processing_notes,
     }
 
 
-def map_rgb_to_name(r, g, b) -> str:
-    """Map RGB values to simple color names."""
+def map_rgb_to_name(r, g, b) -> tuple[str, float]:
     if r > 220 and g > 220 and b > 220:
-        return "White"
+        return "White", 0.95
     if r < 40 and g < 40 and b < 40:
-        return "Black"
+        return "Black", 0.95
     if abs(r - g) < 20 and abs(g - b) < 20 and abs(r - b) < 20:
-        return "Grey"
+        return "Grey", 0.9
+    if r > g * 1.5 and b > g * 1.5 and b >= r * 0.9:
+        return "Purple", 0.9
     
-    # Simple color distance matching
     colors = {
         "Red": (200, 30, 30),
         "Blue": (30, 30, 200),
@@ -190,7 +288,7 @@ def map_rgb_to_name(r, g, b) -> str:
         "Purple": (130, 30, 180),
         "Pink": (240, 130, 180),
         "Brown": (120, 80, 40),
-        "Denim Blue": (70, 100, 140)
+        "Navy Blue": (30, 40, 100),
     }
     
     closest_color = "Mixed Color"
@@ -201,11 +299,11 @@ def map_rgb_to_name(r, g, b) -> str:
             min_dist = dist
             closest_color = name
             
-    return closest_color
+    confidence = max(0.0, min(1.0, 1.0 - min_dist / 320.0))
+    return closest_color, round(confidence, 3)
+
 
 def get_composition_and_quality(fabric_type: str, condition: str) -> dict:
-    """Predicts composition blend and estimates material quality."""
-    # Composition blend mapping
     compositions = {
         "Cotton": "100% Organic Cotton",
         "Polyester": "100% Recycled Polyester (rPET)",
@@ -232,8 +330,26 @@ def get_composition_and_quality(fabric_type: str, condition: str) -> dict:
         "quality_estimation": quality_mapping.get(condition, "Grade C Reusable Utility")
     }
 
+
 def get_waste_classification(condition: str, damage: bool, contamination: bool) -> str:
-    """Predicts waste category based on condition parameters."""
+    """Predicts waste category using waste_rules.yaml if available, else standard fallback."""
+    rules_cfg = _load_waste_rules()
+    rules = rules_cfg.get("rules", [])
+
+    for rule in rules:
+        c_match = rule.get("condition_match")
+        d_match = rule.get("damage_match")
+        cont_match = rule.get("contamination_match")
+
+        if cont_match is not None and cont_match != contamination:
+            continue
+        if c_match is not None and c_match != condition:
+            continue
+        if d_match is not None and d_match != damage:
+            continue
+
+        return rule.get("waste_category", "Recyclable")
+
     if contamination:
         return "Hazardous Textile Waste"
     if condition == "Excellent":
@@ -244,10 +360,16 @@ def get_waste_classification(condition: str, damage: bool, contamination: bool) 
         return "Upcyclable" if damage else "Recyclable"
     if condition == "Poor":
         return "Recyclable"
-    return "Compostable"
+    return rules_cfg.get("default_category", "Compostable")
+
 
 def get_recycling_recommendations(fabric_type: str, category: str) -> dict:
-    """Provides specific recycling strategy, upcycling options, and recovery methods."""
+    if fabric_type == "UNKNOWN / UNSUPPORTED":
+        return {
+            "strategy": "Manual material verification",
+            "options": "Hold for textile specialist review before selecting a material-specific pathway.",
+            "confidence": 0.0,
+        }
     strategies = {
         "Reusable": {
             "strategy": "Fabric Reuse & Donation",
@@ -271,7 +393,6 @@ def get_recycling_recommendations(fabric_type: str, category: str) -> dict:
         }
     }
     
-    # For Recyclable: base on material
     if category == "Recyclable":
         if fabric_type in ["Cotton", "Wool", "Linen"]:
             return {
@@ -294,71 +415,67 @@ def get_recycling_recommendations(fabric_type: str, category: str) -> dict:
         "options": "Standard textile shredding, cleaning, and downcycled industrial fiber recovery."
     })
 
+
 def calculate_scores(fabric_type: str, condition: str, category: str, damage: bool, contamination: bool) -> dict:
     """
-    Weighted Scoring Model:
-    Circularity Score =
-      Material Recyclability (35%)
-      Material Condition (20%)
-      Reuse Potential (20%)
-      Environmental Benefit (15%)
-      Processing Feasibility (10%)
+    Weighted Scoring Model using canonical calculate_circularity_score():
+      Material Recyclability: 35%
+      Material Condition / Recovery: 20%
+      Reuse Potential: 20%
+      Environmental Benefit: 15%
+      Processing Feasibility: 10%
     """
     # 1. Material Recyclability (35%)
     recyclability_map = {
         "Cotton": 90, "Polyester": 85, "Wool": 92, "Silk": 80, "Linen": 95,
         "Denim": 88, "Nylon": 85, "Rayon": 75, "Acrylic": 65, "Mixed Fabrics": 45
     }
-    recyclability = recyclability_map.get(fabric_type, 50)
+    recyclability = float(recyclability_map.get(fabric_type, 50))
     if contamination:
         recyclability -= 30
     elif damage:
         recyclability -= 10
-    recyclability = max(0, recyclability)
+    recyclability = max(0.0, recyclability)
 
-    # 2. Material Condition (20%)
+    # 2. Material Condition / Recovery (20%)
     condition_map = {
         "Excellent": 100, "Good": 85, "Fair": 60, "Poor": 35, "Contaminated": 10
     }
-    cond_score = condition_map.get(condition, 50)
+    cond_score = float(condition_map.get(condition, 50))
 
     # 3. Reuse Potential (20%)
     reuse_map = {
         "Reusable": 100, "Repairable": 85, "Upcyclable": 75,
         "Recyclable": 45, "Compostable": 30, "Hazardous Textile Waste": 0
     }
-    reuse = reuse_map.get(category, 40)
+    reuse = float(reuse_map.get(category, 40))
 
     # 4. Environmental Benefit (15%)
-    # Natural fibers are compostable / biodegradable; synthetic fibers prevent oil extraction if recycled.
     env_map = {
         "Cotton": 95, "Wool": 98, "Linen": 95, "Silk": 90,
         "Polyester": 80, "Nylon": 85, "Rayon": 75, "Acrylic": 60, "Mixed Fabrics": 50
     }
-    env = env_map.get(fabric_type, 60)
+    env = float(env_map.get(fabric_type, 60))
     if category == "Hazardous Textile Waste":
-        env = 0
+        env = 0.0
 
     # 5. Processing Feasibility (10%)
-    # Single fiber composition is easy, blends are difficult. Contamination lowers feasibility.
-    feasibility = 95
+    feasibility = 95.0
     if fabric_type == "Mixed Fabrics" or fabric_type == "Denim":
-        feasibility = 60
+        feasibility = 60.0
     if contamination:
-        feasibility = 10
+        feasibility = 10.0
     elif damage:
-        feasibility -= 10
+        feasibility -= 10.0
 
-    # Calculate overall weighted score
-    overall = (
-        0.35 * recyclability +
-        0.20 * cond_score +
-        0.20 * reuse +
-        0.15 * env +
-        0.10 * feasibility
+    overall = calculate_circularity_score(
+        material_recyclability_score=recyclability,
+        material_condition_score=cond_score,
+        reuse_potential_score=reuse,
+        environmental_benefit_score=env,
+        processing_feasibility_score=feasibility,
     )
     
-    # Categorization
     if overall >= 85:
         circularity_cat = "Excellent Recovery Potential"
     elif overall >= 70:
@@ -379,41 +496,24 @@ def calculate_scores(fabric_type: str, condition: str, category: str, damage: bo
         "circularity_category": circularity_cat
     }
 
+
 def calculate_environmental_impact(fabric_type: str, quantity_kg: float, category: str) -> dict:
-    """
-    Estimates environmental impact savings:
-    - CO2 Savings (kg)
-    - Water Savings (Liters)
-    - Landfill Reduction (kg)
-    """
-    if category == "Hazardous Textile Waste":
-        return {
-            "co2_savings": 0.0,
-            "water_savings": 0.0,
-            "landfill_reduction": 0.0
-        }
-        
-    # Carbon savings per kg of textile recycled/reused (kg CO2/kg)
-    co2_factors = {
-        "Cotton": 2.2, "Polyester": 1.9, "Wool": 3.7, "Silk": 4.1, "Linen": 2.4,
-        "Denim": 2.6, "Nylon": 2.0, "Rayon": 1.6, "Acrylic": 1.4, "Mixed Fabrics": 1.5
-    }
-    
-    # Water savings per kg (liters/kg)
-    water_factors = {
-        "Cotton": 2500.0, "Denim": 2900.0, "Wool": 1600.0, "Silk": 2100.0, "Linen": 1800.0,
-        "Polyester": 350.0, "Nylon": 400.0, "Rayon": 600.0, "Acrylic": 300.0, "Mixed Fabrics": 1000.0
-    }
-    
-    co2_factor = co2_factors.get(fabric_type, 1.5)
-    water_factor = water_factors.get(fabric_type, 500)
-    
-    co2_saved = round(co2_factor * quantity_kg, 2)
-    water_saved = round(water_factor * quantity_kg, 2)
-    landfill_saved = round(quantity_kg, 2) # Every kg of recycled fabric is 1kg less in the landfill
-    
+    impact = calculate_configured_impact(fabric_type, quantity_kg, category)
+    co2_saved = impact["co2"]["value"]
+    water_saved = impact["water"]["value"]
+    landfill_saved = 0.0 if category == "Hazardous Textile Waste" else round(quantity_kg, 2)
+    _log(
+        "SUSTAINABILITY",
+        f"material={fabric_type} quantity_kg={quantity_kg} co2_factor={impact['co2'].get('factor')} "
+        f"water_factor={impact['water'].get('factor')} calculated_co2={co2_saved} calculated_water={water_saved}",
+    )
     return {
         "co2_savings": co2_saved,
         "water_savings": water_saved,
-        "landfill_reduction": landfill_saved
+        "landfill_reduction": landfill_saved,
+        "co2_factor": impact["co2"].get("factor"),
+        "water_factor": impact["water"].get("factor"),
+        "factor_status": impact["calculation_status"],
+        "methodology": impact["basis"],
+        "environmental_impact": impact,
     }

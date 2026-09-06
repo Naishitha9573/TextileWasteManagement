@@ -1,0 +1,7 @@
+dataset_name,exists,source_type,image_count_on_disk,duplicate_groups,corrupted_in_sample,issues
+deepfashion,True,image-folder,100893,0,0,
+fabric_dataset,True,image-folder,354,0,0,
+fashion_mnist,True,csv,0,0,0,
+ibug_fabrics,True,image-folder,7885,13,0,13 duplicate hash groups in sample
+sustainable_dataset,True,csv,0,0,0,
+tips,True,archive,0,0,0,no image files found

@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "C:\Users\sama\OneDrive\Desktop\naishtex\Textile\src\class_aware_finetune_320_v1.py", line 250, in main
+    torch.save({"model_state_dict": model.state_dict(), "class_names": CLASS_NAMES, "experiment_name": EXPERIMENT_NAME, "best_validation_macro_f1": validation_macro_f1, "best_validation_accuracy": validation_accuracy, "best_validation_weighted_f1": validation_weighted_f1, "best_epoch": epoch}, CHECKPOINT_PATH)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\serialization.py", line 1002, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\serialization.py", line 864, in _open_zipfile_writer
+    return container(name_or_buffer)  # type: ignore[arg-type]
+  File "C:\Users\sama\AppData\Roaming\Python\Python313\site-packages\torch\serialization.py", line 828, in __init__
+    torch._C.PyTorchFileWriter(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.name, get_crc32_options(), _get_storage_alignment()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: Parent directory C:\Users\sama\OneDrive\Desktop\naishtex\Textile\models\experiments\class_aware_finetune_320_v1 does not exist.
+
+Last completed epoch: 1
+Last validation Macro F1: 0.5891063662532942
+Last validation accuracy: 0.6743243243243243

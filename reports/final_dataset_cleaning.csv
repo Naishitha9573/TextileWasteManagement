@@ -1,0 +1,17 @@
+class_name,original_images,same_class_exact_duplicates,cross_class_conflict_images,near_duplicate_images_flagged,final_usable_images
+Acrylic,48,0,0,0,48
+Chenille,52,0,0,4,52
+Corduroy,96,4,0,0,92
+Cotton,2352,32,0,204,2320
+Crepe,104,0,48,0,56
+Denim,648,4,0,42,644
+Fleece,132,0,0,0,132
+Linen,76,0,0,8,76
+Nylon,228,0,0,4,228
+Polyester,904,12,40,38,852
+Satin,96,0,96,0,0
+Silk,200,0,56,4,144
+Terrycloth,120,0,0,0,120
+Velvet,44,0,0,0,44
+Viscose,148,0,0,20,148
+Wool,360,16,0,4,344

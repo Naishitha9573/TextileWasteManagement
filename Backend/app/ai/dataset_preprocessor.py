@@ -13,7 +13,7 @@ class DatasetPreprocessor:
         with Image.open(image_path) as img:
             img = ImageOps.exif_transpose(img)
             img = img.convert("RGB")
-            img = ImageOps.resize(img, self.target_size, Image.Resampling.BILINEAR)
+            img = img.resize(self.target_size, Image.Resampling.BILINEAR)
             img = ImageOps.autocontrast(img)
             arr = np.array(img, dtype=np.float32) / 255.0
         return arr

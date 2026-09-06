@@ -1,0 +1,71 @@
+{
+  "final_classes": [
+    "Cotton",
+    "Polyester",
+    "Denim",
+    "Wool",
+    "Nylon",
+    "Viscose",
+    "Silk",
+    "Fleece",
+    "Terrycloth"
+  ],
+  "source_dataset": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\dataset\\processed\\fabric_16class\\all",
+  "output_dataset": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\dataset\\processed\\fabric_9class\\all",
+  "total_images": 4932,
+  "count_per_class": {
+    "Cotton": 2320,
+    "Polyester": 852,
+    "Denim": 644,
+    "Wool": 344,
+    "Nylon": 228,
+    "Viscose": 148,
+    "Silk": 144,
+    "Fleece": 132,
+    "Terrycloth": 120
+  },
+  "expected_counts": {
+    "Cotton": 2320,
+    "Polyester": 852,
+    "Denim": 644,
+    "Wool": 344,
+    "Nylon": 228,
+    "Viscose": 148,
+    "Silk": 144,
+    "Fleece": 132,
+    "Terrycloth": 120
+  },
+  "source_counts": {
+    "Cotton": 2320,
+    "Polyester": 852,
+    "Denim": 644,
+    "Wool": 344,
+    "Nylon": 228,
+    "Viscose": 148,
+    "Silk": 144,
+    "Fleece": 132,
+    "Terrycloth": 120
+  },
+  "excluded_classes": [
+    "Acrylic",
+    "Chenille",
+    "Corduroy",
+    "Crepe",
+    "Linen",
+    "Satin",
+    "Velvet"
+  ],
+  "selection_reason": "Focused first experiment using the nine strongest remaining classes by final usable image count; smaller classes were excluded, and Satin has zero usable images after conflict handling.",
+  "count_mismatches": {},
+  "unexpected_output_folders": [],
+  "all_expected_counts_match": true,
+  "verification": {
+    "readability_checked": true,
+    "sha256_source_destination_checked": true
+  },
+  "additional_duplicate_removal": false,
+  "original_dataset_modified": false,
+  "sixteen_class_dataset_modified": false,
+  "splits_created": false,
+  "training_performed": false
+}

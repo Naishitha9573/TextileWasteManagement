@@ -6,6 +6,8 @@ import ManufacturerDashboard from './pages/ManufacturerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Inventory from './pages/Inventory';
 import Datasets from './pages/Datasets';
+import FabricClassification from './pages/FabricClassification';
+import WasteCategorization from './pages/WasteCategorization';
 
 // Components
 import NotificationCenter from './components/NotificationCenter';
@@ -177,6 +179,12 @@ export default function App() {
     if (activeView === 'datasets') {
       return <Datasets />;
     }
+    if (activeView === 'classification') {
+      return <FabricClassification />;
+    }
+    if (activeView === 'waste-classification') {
+      return <WasteCategorization />;
+    }
     return renderDashboard();
   };
 
@@ -333,6 +341,8 @@ export default function App() {
           <button className={`btn ${activeView === 'dashboard' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('dashboard')}>Dashboard</button>
           <button className={`btn ${activeView === 'inventory' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('inventory')}>Inventory</button>
           <button className={`btn ${activeView === 'datasets' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('datasets')}>Datasets</button>
+          <button className={`btn ${activeView === 'classification' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('classification')}>Classify Fabric</button>
+          <button className={`btn ${activeView === 'waste-classification' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('waste-classification')}>Categorize Waste</button>
         </div>
 
         {/* Sandbox Role Switcher Panel */}

@@ -1,6 +1,24 @@
 # Python
 
-Backend/datasets/
+# Dataset content (large files stay local)
+Backend/datasets/*
+!Backend/datasets/dataset_loader.py
+
+dataset
+
+# Processed datasets
+dataset/processed/
+
+dataset/processed/fabric_9class/
+dataset/processed/fabric_16class/
+# Prepared dataset copies (regenerate via prepare CLI)
+Backend/data/processed/
+Backend/data/splits/
+Backend/data/raw/
+
+# Keep manifests and metadata in repo
+!Backend/data/manifests/
+!Backend/data/metadata/
 node_modules/
 .pytest_cache/
 __pycache__/
@@ -47,6 +65,8 @@ Thumbs.db
 .coverage
 htmlcov/
 
-# Cache
-.cache/
+# Model artifacts (regenerate via training)
+Backend/models/*.joblib
+Backend/models/*.keras
+Backend/models/*.h5
 

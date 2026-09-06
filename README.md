@@ -44,6 +44,7 @@
 * [Docker Deployment](#-docker-deployment)
 * [Model Training](#-model-training)
 * [Model Evaluation](#-model-evaluation)
+* [Texture Analysis](#-texture-analysis)
 * [Testing](#-testing)
 * [GitHub Workflow](#-github-workflow)
 * [Project Milestones](#-project-milestones)
@@ -720,6 +721,26 @@ To stop:
 ```bash
 docker compose down
 ```
+
+---
+
+# 🔬 Texture Analysis
+
+The standalone [src/texture_analysis.py](src/texture_analysis.py) module provides handcrafted, interpretable texture descriptors for one fabric image at a time. It is intentionally independent from the EfficientNet classifier: it does not modify training, checkpoints, datasets, transforms, or model weights.
+
+It computes:
+
+* **GLCM** contrast, dissimilarity, homogeneity, energy, correlation, and ASM across four directions.
+* **LBP** local binary-pattern statistics and a normalized histogram.
+* **Gabor** response energy across multiple frequencies and orientations, including the dominant direction.
+
+Run it directly from the project root:
+
+```bash
+python src/texture_analysis.py path/to/fabric-image.jpg --json-out reports/texture-analysis.json --visualize reports/texture-analysis.png
+```
+
+The JSON output is for analysis and comparison only; it is not a fabric-class prediction and is not consumed by the training pipeline.
 
 ---
 

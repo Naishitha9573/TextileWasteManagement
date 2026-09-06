@@ -1,0 +1,309 @@
+file_path,class_name,reason,duplicate_group_id,sample_id
+Corduroy/1233/im_1.png,Corduroy,SAME_CLASS_EXACT_DUPLICATE,EXACT-0018,1233
+Corduroy/1233/im_2.png,Corduroy,SAME_CLASS_EXACT_DUPLICATE,EXACT-0019,1233
+Corduroy/1233/im_3.png,Corduroy,SAME_CLASS_EXACT_DUPLICATE,EXACT-0020,1233
+Corduroy/1233/im_4.png,Corduroy,SAME_CLASS_EXACT_DUPLICATE,EXACT-0021,1233
+Cotton/1225/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0022,1225
+Cotton/1225/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0023,1225
+Cotton/1225/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0024,1225
+Cotton/1225/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0025,1225
+Cotton/1750/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0026,1750
+Cotton/1750/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0027,1750
+Cotton/1750/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0028,1750
+Cotton/1750/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0029,1750
+Cotton/1944/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0030,1944
+Cotton/1944/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0031,1944
+Cotton/1944/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0032,1944
+Cotton/1944/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0033,1944
+Cotton/205/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0034,205
+Cotton/205/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0035,205
+Cotton/205/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0036,205
+Cotton/205/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0037,205
+Cotton/235/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0038,235
+Cotton/235/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0039,235
+Cotton/235/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0040,235
+Cotton/235/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0041,235
+Cotton/249/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0042,249
+Cotton/249/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0043,249
+Cotton/249/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0044,249
+Cotton/249/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0045,249
+Cotton/416/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0046,416
+Cotton/416/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0047,416
+Cotton/416/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0048,416
+Cotton/416/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0049,416
+Cotton/468/im_1.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0050,468
+Cotton/468/im_2.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0051,468
+Cotton/468/im_3.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0052,468
+Cotton/468/im_4.png,Cotton,SAME_CLASS_EXACT_DUPLICATE,EXACT-0053,468
+Crepe/1000/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Crepe/1000/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Crepe/1000/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Crepe/1000/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Crepe/1001/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Crepe/1001/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Crepe/1001/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Crepe/1001/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Crepe/1002/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Crepe/1002/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Crepe/1002/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Crepe/1002/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Crepe/1003/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Crepe/1003/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Crepe/1003/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Crepe/1003/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Crepe/1028/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Crepe/1028/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Crepe/1028/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Crepe/1028/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Crepe/1029/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Crepe/1029/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Crepe/1029/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Crepe/1029/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Crepe/1030/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Crepe/1030/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Crepe/1030/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Crepe/1030/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Crepe/1031/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Crepe/1031/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Crepe/1031/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Crepe/1031/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Crepe/1032/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Crepe/1032/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Crepe/1032/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Crepe/1032/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Crepe/1033/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Crepe/1033/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Crepe/1033/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Crepe/1033/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Crepe/998/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Crepe/998/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Crepe/998/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Crepe/998/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Crepe/999/im_1.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Crepe/999/im_2.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Crepe/999/im_3.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Crepe/999/im_4.png,Crepe,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Denim/151/im_1.png,Denim,SAME_CLASS_EXACT_DUPLICATE,EXACT-0102,151
+Denim/151/im_2.png,Denim,SAME_CLASS_EXACT_DUPLICATE,EXACT-0103,151
+Denim/151/im_3.png,Denim,SAME_CLASS_EXACT_DUPLICATE,EXACT-0104,151
+Denim/151/im_4.png,Denim,SAME_CLASS_EXACT_DUPLICATE,EXACT-0105,151
+Polyester/1000/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Polyester/1000/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Polyester/1000/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Polyester/1000/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1000
+Polyester/1001/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Polyester/1001/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Polyester/1001/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Polyester/1001/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1001
+Polyester/1002/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Polyester/1002/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Polyester/1002/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Polyester/1002/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1002
+Polyester/1003/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Polyester/1003/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Polyester/1003/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Polyester/1003/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1003
+Polyester/1706/im_1.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0110,1706
+Polyester/1706/im_2.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0111,1706
+Polyester/1706/im_3.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0112,1706
+Polyester/1706/im_4.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0113,1706
+Polyester/1712/im_1.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0114,1712
+Polyester/1712/im_2.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0115,1712
+Polyester/1712/im_3.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0116,1712
+Polyester/1712/im_4.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0117,1712
+Polyester/655/im_1.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0118,655
+Polyester/655/im_2.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0119,655
+Polyester/655/im_3.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0120,655
+Polyester/655/im_4.png,Polyester,SAME_CLASS_EXACT_DUPLICATE,EXACT-0121,655
+Polyester/770/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Polyester/770/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Polyester/770/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Polyester/770/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Polyester/771/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Polyester/771/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Polyester/771/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Polyester/771/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Polyester/772/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Polyester/772/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Polyester/772/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Polyester/772/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Polyester/773/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Polyester/773/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Polyester/773/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Polyester/773/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Polyester/998/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Polyester/998/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Polyester/998/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Polyester/998/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,998
+Polyester/999/im_1.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Polyester/999/im_2.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Polyester/999/im_3.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Polyester/999/im_4.png,Polyester,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,999
+Satin/1004/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Satin/1004/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Satin/1004/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Satin/1004/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Satin/1005/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Satin/1005/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Satin/1005/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Satin/1005/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Satin/1006/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Satin/1006/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Satin/1006/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Satin/1006/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Satin/1007/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Satin/1007/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Satin/1007/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Satin/1007/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Satin/1008/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Satin/1008/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Satin/1008/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Satin/1008/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Satin/1009/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Satin/1009/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Satin/1009/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Satin/1009/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Satin/1010/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Satin/1010/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Satin/1010/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Satin/1010/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Satin/1011/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Satin/1011/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Satin/1011/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Satin/1011/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Satin/1012/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Satin/1012/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Satin/1012/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Satin/1012/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Satin/1013/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Satin/1013/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Satin/1013/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Satin/1013/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Satin/1014/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Satin/1014/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Satin/1014/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Satin/1014/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Satin/1015/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Satin/1015/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Satin/1015/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Satin/1015/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Satin/1016/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Satin/1016/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Satin/1016/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Satin/1016/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Satin/1017/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Satin/1017/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Satin/1017/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Satin/1017/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Satin/1028/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Satin/1028/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Satin/1028/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Satin/1028/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1028
+Satin/1029/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Satin/1029/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Satin/1029/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Satin/1029/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1029
+Satin/1030/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Satin/1030/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Satin/1030/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Satin/1030/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1030
+Satin/1031/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Satin/1031/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Satin/1031/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Satin/1031/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1031
+Satin/1032/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Satin/1032/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Satin/1032/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Satin/1032/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1032
+Satin/1033/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Satin/1033/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Satin/1033/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Satin/1033/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1033
+Satin/770/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Satin/770/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Satin/770/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Satin/770/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,770
+Satin/771/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Satin/771/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Satin/771/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Satin/771/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,771
+Satin/772/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Satin/772/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Satin/772/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Satin/772/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,772
+Satin/773/im_1.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Satin/773/im_2.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Satin/773/im_3.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Satin/773/im_4.png,Satin,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,773
+Silk/1004/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Silk/1004/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Silk/1004/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Silk/1004/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1004
+Silk/1005/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Silk/1005/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Silk/1005/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Silk/1005/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1005
+Silk/1006/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Silk/1006/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Silk/1006/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Silk/1006/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1006
+Silk/1007/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Silk/1007/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Silk/1007/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Silk/1007/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1007
+Silk/1008/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Silk/1008/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Silk/1008/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Silk/1008/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1008
+Silk/1009/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Silk/1009/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Silk/1009/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Silk/1009/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1009
+Silk/1010/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Silk/1010/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Silk/1010/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Silk/1010/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1010
+Silk/1011/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Silk/1011/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Silk/1011/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Silk/1011/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1011
+Silk/1012/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Silk/1012/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Silk/1012/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Silk/1012/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1012
+Silk/1013/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Silk/1013/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Silk/1013/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Silk/1013/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1013
+Silk/1014/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Silk/1014/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Silk/1014/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Silk/1014/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1014
+Silk/1015/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Silk/1015/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Silk/1015/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Silk/1015/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1015
+Silk/1016/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Silk/1016/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Silk/1016/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Silk/1016/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1016
+Silk/1017/im_1.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Silk/1017/im_2.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Silk/1017/im_3.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Silk/1017/im_4.png,Silk,CROSS_CLASS_LABEL_CONFLICT,cross-class sample ID policy,1017
+Wool/1408/im_1.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0198,1408
+Wool/1408/im_2.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0199,1408
+Wool/1408/im_3.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0200,1408
+Wool/1408/im_4.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0201,1408
+Wool/1431/im_1.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0202,1431
+Wool/1431/im_2.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0203,1431
+Wool/1431/im_3.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0204,1431
+Wool/1431/im_4.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0205,1431
+Wool/661/im_1.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0206,661
+Wool/661/im_2.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0207,661
+Wool/661/im_3.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0208,661
+Wool/661/im_4.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0209,661
+Wool/982/im_1.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0210,982
+Wool/982/im_2.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0211,982
+Wool/982/im_3.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0212,982
+Wool/982/im_4.png,Wool,SAME_CLASS_EXACT_DUPLICATE,EXACT-0213,982

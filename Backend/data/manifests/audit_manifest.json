@@ -1,0 +1,217 @@
+{
+  "audited_at": "2026-08-13T12:49:09.181271+00:00",
+  "datasets_root": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets",
+  "dataset_count": 6,
+  "datasets": [
+    {
+      "name": "20006389",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\20006389",
+      "exists": true,
+      "audited_at": "2026-08-13T12:47:27.272994+00:00",
+      "source_type": "csv",
+      "catalog_categories": [],
+      "catalog_total_images": 411,
+      "image_count_on_disk": 0,
+      "class_distribution": {},
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 0,
+      "dimension_summary": {},
+      "format_validation_sample_size": 0
+    },
+    {
+      "name": "deepfashion",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\deepfashion",
+      "exists": true,
+      "audited_at": "2026-08-13T12:47:47.659039+00:00",
+      "source_type": "image-folder",
+      "catalog_categories": [
+        "densepose",
+        "images",
+        "keypoints",
+        "labels",
+        "segm"
+      ],
+      "catalog_total_images": 100893,
+      "image_count_on_disk": 100893,
+      "class_distribution": {
+        "densepose": 44096,
+        "images": 44096,
+        "segm": 12701
+      },
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 2000,
+      "dimension_summary": {
+        "count": 500,
+        "min_width": 750,
+        "max_width": 750,
+        "min_height": 915,
+        "max_height": 1101,
+        "avg_width": 750.0,
+        "avg_height": 1100.3
+      },
+      "format_validation_sample_size": 500
+    },
+    {
+      "name": "fabric_dataset",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\fabric_dataset",
+      "exists": true,
+      "audited_at": "2026-08-13T12:48:30.340719+00:00",
+      "source_type": "image-folder",
+      "catalog_categories": [
+        "Defect_images",
+        "Mask_images",
+        "NODefect_images"
+      ],
+      "catalog_total_images": 354,
+      "image_count_on_disk": 354,
+      "class_distribution": {
+        "Defect_images": 106,
+        "Mask_images": 107,
+        "NODefect_images": 141
+      },
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 354,
+      "dimension_summary": {
+        "count": 354,
+        "min_width": 3796,
+        "max_width": 4096,
+        "min_height": 256,
+        "max_height": 256,
+        "avg_width": 4094.3,
+        "avg_height": 256.0
+      },
+      "format_validation_sample_size": 354
+    },
+    {
+      "name": "fashion_mnist",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\fashion_mnist",
+      "exists": true,
+      "audited_at": "2026-08-13T12:49:08.084489+00:00",
+      "source_type": "csv",
+      "catalog_categories": [
+        "Ankle boot",
+        "Bag",
+        "Coat",
+        "Dress",
+        "Pullover",
+        "Sandal",
+        "Shirt",
+        "Sneaker",
+        "T-shirt/top",
+        "Trouser"
+      ],
+      "catalog_total_images": 70000,
+      "image_count_on_disk": 0,
+      "class_distribution": {},
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 0,
+      "dimension_summary": {},
+      "format_validation_sample_size": 0
+    },
+    {
+      "name": "sustainable_dataset",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\sustainable_dataset",
+      "exists": true,
+      "audited_at": "2026-08-13T12:49:08.263772+00:00",
+      "source_type": "csv",
+      "catalog_categories": [
+        "Bamboo Fabric",
+        "Hemp",
+        "Organic Cotton",
+        "Recycled Polyester",
+        "Tencel",
+        "Vegan Leather"
+      ],
+      "catalog_total_images": 5000,
+      "image_count_on_disk": 0,
+      "class_distribution": {},
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 0,
+      "dimension_summary": {},
+      "format_validation_sample_size": 0
+    },
+    {
+      "name": "tips",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\tips",
+      "exists": true,
+      "audited_at": "2026-08-13T12:49:09.180289+00:00",
+      "source_type": "archive",
+      "catalog_categories": [
+        "images",
+        "imdb",
+        "labels"
+      ],
+      "catalog_total_images": 5640,
+      "image_count_on_disk": 0,
+      "class_distribution": {},
+      "issues": [
+        "no image files found"
+      ],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 0,
+      "dimension_summary": {},
+      "format_validation_sample_size": 0
+    }
+  ],
+  "deepfashion_material_analysis": {
+    "available": true,
+    "total_captions": 42544,
+    "mappable_to_material": 37066,
+    "unmapped_captions": 5478,
+    "material_distribution": {
+      "Cotton": 27671,
+      "Mixed Fabrics": 7660,
+      "Denim": 1735
+    },
+    "note": "Derived from caption keyword mapping; not ground-truth fabric labels."
+  },
+  "sustainable_csv_analysis": {
+    "available": true,
+    "rows": 5000,
+    "mapped_material_counts": {
+      "Polyester": 867,
+      "Cotton": 817
+    },
+    "unmapped_material_counts": {
+      "Tencel": 819,
+      "Vegan Leather": 833,
+      "Bamboo Fabric": 820,
+      "Hemp": 844
+    },
+    "has_images": false
+  },
+  "target_material_classes": [
+    "Cotton",
+    "Polyester",
+    "Wool",
+    "Silk",
+    "Linen",
+    "Denim",
+    "Nylon",
+    "Rayon",
+    "Acrylic",
+    "Mixed Fabrics"
+  ],
+  "summary": {
+    "total_images_on_disk": 101247,
+    "datasets_with_images": 2,
+    "datasets_with_issues": 1
+  }
+}

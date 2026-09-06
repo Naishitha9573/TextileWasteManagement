@@ -1,6 +1,32 @@
-from typing import Dict, Any
+from typing import Any, Dict
 
 from app.core.sustainability_constants import CIRCULARITY_WEIGHTS, RECOMMENDATION_THRESHOLDS
+
+
+def calculate_circularity_score(
+    material_recyclability_score: float,
+    material_condition_score: float,
+    reuse_potential_score: float,
+    environmental_benefit_score: float,
+    processing_feasibility_score: float,
+) -> float:
+    """Canonical formula for circular economy score (0 to 100).
+    Weights sum to 1.0 (100%):
+      - Material Recyclability: 35%
+      - Material Condition / Recovery: 20%
+      - Reuse Potential: 20%
+      - Environmental Benefit: 15%
+      - Processing Feasibility: 10%
+    """
+    weights = CIRCULARITY_WEIGHTS
+    raw_score = (
+        material_recyclability_score * weights["material_recyclability"]
+        + material_condition_score * weights["material_condition"]
+        + reuse_potential_score * weights["reuse_potential"]
+        + environmental_benefit_score * weights["environmental_benefit"]
+        + processing_feasibility_score * weights["processing_feasibility"]
+    )
+    return max(0.0, min(100.0, round(raw_score, 1)))
 
 
 class ScoringService:
@@ -16,35 +42,52 @@ class ScoringService:
         damage: bool,
         contamination: bool,
     ) -> Dict[str, Any]:
-        recyclability_score = self._material_recyclability(material, contamination, damage)
-        reuse_score = self._reuse_score(material, condition, damage, contamination)
-        material_recovery_score = self._material_recovery_score(waste_category, contamination)
-        environmental_benefit_score = self._environmental_benefit_score(material, waste_category)
-        processing_feasibility_score = self._processing_feasibility_score(waste_category, damage)
+        """
+        Single authoritative scoring path.
 
-        circular_economy_score = (
-            recyclability_score * self.weights["material_recyclability"]
-            + reuse_score * self.weights["reuse_potential"]
-            + material_recovery_score * self.weights["material_recyclability"]
-            + environmental_benefit_score * self.weights["environmental_benefit"]
-            + processing_feasibility_score * self.weights["processing_feasibility"]
-        )
+        Delegates to algorithms.calculate_scores, which implements the canonical
+        circularity formula (35/20/20/15/10) and the five recovery categories.
+        Returns a key-superset so both legacy consumers and the unified
+        inference response work from one implementation.
+        """
+        import algorithms
+
+        base = algorithms.calculate_scores(material, condition, waste_category, damage, contamination)
+
+        recyclability_score = base["recyclability_score"]
+        reuse_score = base["reuse_score"]
+        environmental_benefit_score = base["sustainability_score"]
+        processing_feasibility_score = base["material_recovery_score"]
+        circular_economy_score = base["overall_circularity_score"]
+        category = base["circularity_category"]
+
+        # Condition component (same derivation rules as the authoritative path).
+        condition_map = {"Excellent": 100, "Good": 85, "Fair": 60, "Poor": 35, "Contaminated": 10}
+        condition_score = float(condition_map.get(condition, 50))
 
         overall_sustainability_score = round(circular_economy_score, 1)
-        rating = self._rating(overall_sustainability_score)
 
         return {
-            "recyclability_score": round(recyclability_score, 1),
-            "reuse_score": round(reuse_score, 1),
-            "material_recovery_score": round(material_recovery_score, 1),
-            "circular_economy_score": round(circular_economy_score, 1),
-            "environmental_benefit_score": round(environmental_benefit_score, 1),
+            # Spec-required keys
+            "recyclability_score": recyclability_score,
+            "condition_score": condition_score,
+            "reuse_score": reuse_score,
+            "environmental_score": environmental_benefit_score,
+            "processing_feasibility_score": processing_feasibility_score,
+            "circularity_score": circular_economy_score,
+            "circularity_category": category,
+            # Legacy keys preserved for backward compatibility
+            "material_recovery_score": processing_feasibility_score,
+            "sustainability_score": environmental_benefit_score,
+            "circular_economy_score": circular_economy_score,
+            "environmental_benefit_score": environmental_benefit_score,
             "overall_sustainability_score": overall_sustainability_score,
-            "sustainability_rating": rating,
+            # Legacy 3-level rating, distinct from the 5-level circularity_category
+            "sustainability_rating": self._rating(overall_sustainability_score),
         }
 
     def _material_recyclability(self, material: str, contamination: bool, damage: bool) -> float:
-        base = {"Cotton": 90, "Polyester": 85, "Wool": 92, "Silk": 80, "Linen": 95, "Denim": 88, "Mixed Fabrics": 60}.get(material, 70)
+        base = {"Cotton": 90, "Polyester": 85, "Wool": 92, "Silk": 80, "Linen": 95, "Denim": 88, "Mixed Fabrics": 60}.get(material, 20)
         if contamination:
             base -= 30
         if damage:
@@ -68,7 +111,7 @@ class ScoringService:
         return max(0, min(100, base))
 
     def _environmental_benefit_score(self, material: str, waste_category: str) -> float:
-        base = {"Cotton": 85, "Polyester": 70, "Denim": 80, "Silk": 75, "Linen": 90, "Wool": 78, "Mixed Fabrics": 65}.get(material, 70)
+        base = {"Cotton": 85, "Polyester": 70, "Denim": 80, "Silk": 75, "Linen": 90, "Wool": 78, "Mixed Fabrics": 65}.get(material, 20)
         if waste_category == "Hazardous Textile Waste":
             base -= 40
         return max(0, min(100, base))

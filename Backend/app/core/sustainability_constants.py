@@ -1,21 +1,36 @@
+"""Project sustainability factors used for transparent mathematical estimates.
+
+These are configuration values, not laboratory measurements. They represent the
+project's current lifecycle-factor assumptions and are returned with calculations
+so callers can distinguish estimates from measured impacts.
+"""
+
+FACTOR_SOURCE = "Project lifecycle-factor configuration; estimates require domain validation before production use."
+
 CARBON_FACTORS = {
-    "Cotton": 2.4,
-    "Polyester": 5.5,
-    "Denim": 3.8,
-    "Silk": 4.2,
-    "Linen": 2.1,
-    "Wool": 4.8,
-    "Mixed Fabrics": 3.2,
+    "Cotton": 2.2,
+    "Polyester": 1.9,
+    "Wool": 3.7,
+    "Silk": 4.1,
+    "Linen": 2.4,
+    "Denim": 2.6,
+    "Nylon": 2.0,
+    "Rayon": 1.6,
+    "Acrylic": 1.4,
+    "Mixed Fabrics": 1.5,
 }
 
 WATER_FACTORS = {
-    "Cotton": 2700,
-    "Polyester": 120,
-    "Denim": 1800,
-    "Silk": 5000,
-    "Linen": 2500,
-    "Wool": 10000,
-    "Mixed Fabrics": 1800,
+    "Cotton": 2500.0,
+    "Polyester": 350.0,
+    "Wool": 1600.0,
+    "Silk": 2100.0,
+    "Linen": 1800.0,
+    "Denim": 2900.0,
+    "Nylon": 400.0,
+    "Rayon": 600.0,
+    "Acrylic": 300.0,
+    "Mixed Fabrics": 1000.0,
 }
 
 ENERGY_FACTORS = {

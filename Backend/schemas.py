@@ -43,8 +43,6 @@ class AnalysisResultResponse(BaseModel):
     fabric_texture: str
     fabric_pattern: str
     fabric_color: str
-    damage_detected: bool
-    contamination_detected: bool
     recyclability_score: float
     reuse_score: float
     sustainability_score: float
@@ -52,12 +50,21 @@ class AnalysisResultResponse(BaseModel):
     overall_circularity_score: float
     circularity_category: str
     recycling_strategy: str
-    co2_savings: float
-    water_savings: float
-    landfill_reduction: float
+    co2_savings: Optional[float] = None
+    water_savings: Optional[float] = None
+    landfill_reduction: Optional[float] = None
     created_at: datetime
     classification_report: Optional[dict] = None
     recycling_options: Optional[str] = None
+    # ML prediction metadata persisted on the analysis record (None on
+    # historical records created before ML integration — the frontend must
+    # show "ML Classification: Not Available" rather than inventing a result).
+    predicted_material: Optional[str] = None
+    material_confidence: Optional[float] = None
+    confidence_status: Optional[str] = None
+    model_version: Optional[str] = None
+    manual_review_required: bool = False
+    prediction_source: Optional[str] = None
 
     class Config:
         from_attributes = True
@@ -190,8 +197,6 @@ class MaterialPredictionRequest(BaseModel):
     quantity: float
     source: Optional[str] = None
     color: Optional[str] = None
-    damage: bool = False
-    contamination: bool = False
 
 # Notification Schemas
 class NotificationBase(BaseModel):
