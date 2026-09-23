@@ -12,3 +12,6 @@ Backend/artifacts
 reports
 *.db
 .env
+*.pth
+*.pt
+*.ckpt

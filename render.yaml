@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: textile-waste-api
+    runtime: docker
+    dockerfilePath: Backend/Dockerfile.render
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: MONGODB_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: FABRIC_MODEL_URL
+        sync: false
+      - key: SEED_DEMO_DATA
+        value: "false"
+
+  - type: static_site
+    name: textile-waste-frontend
+    rootDir: Frontend
+    buildCommand: npm ci && npm run build
+    publishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false

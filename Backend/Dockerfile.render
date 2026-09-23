@@ -1,0 +1,22 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY Backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY Backend/ .
+COPY models/class_names.json /models/class_names.json
+COPY models/waste_classification /models/waste_classification
+
+ENV PYTHONUNBUFFERED=1
+ENV FABRIC_MODEL_PATH=/models/best_efficientnet_b0_class_aware_finetune_v1.pth
+ENV WASTE_MODEL_PATH=/models/waste_classification/stage1_best_waste_model.keras
+
+EXPOSE 10000
+
+CMD ["sh", "-c", "python scripts/ensure_render_models.py && exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
