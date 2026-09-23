@@ -88,3 +88,8 @@ IBUG/
 
 
 .kilo/
+
+*.pth
+*.pt
+*.ckpt
+.kilo/
