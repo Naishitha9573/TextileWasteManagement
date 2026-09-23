@@ -1,5 +1,6 @@
 import os
 import datetime
+from sqlalchemy.engine import make_url
 from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, ForeignKey, DateTime, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -14,14 +15,42 @@ except ImportError:
 
 # Primary database: PostgreSQL (requirement). A SQLite URL may be supplied
 # EXPLICITLY via DATABASE_URL for lightweight development/test usage only.
-DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
-if not DATABASE_URL:
+raw_database_url = os.getenv("DATABASE_URL", "").strip()
+if not raw_database_url:
+    print("[DATABASE] configured=no")
     raise RuntimeError("DATABASE_URL must be supplied through the environment")
 
-if DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = "postgresql+psycopg2://" + DATABASE_URL[len("postgres://"):]
-elif DATABASE_URL.startswith("postgresql://"):
-    DATABASE_URL = "postgresql+psycopg2://" + DATABASE_URL[len("postgresql://"):]
+
+def normalize_database_url(url: str) -> str:
+    if url.startswith("postgres://"):
+        return "postgresql+psycopg2://" + url[len("postgres://"):]
+    if url.startswith("postgresql://"):
+        return "postgresql+psycopg2://" + url[len("postgresql://"):]
+    return url
+
+
+DATABASE_URL = normalize_database_url(raw_database_url)
+
+
+def _database_target(url: str) -> dict[str, str | bool]:
+    parsed = make_url(url)
+    return {
+        "configured": True,
+        "driver": parsed.drivername,
+        "host": parsed.host or "n/a",
+        "port": str(parsed.port or "default"),
+        "database": parsed.database or "n/a",
+        "sslmode": str(parsed.query.get("sslmode", "not_set")),
+    }
+
+
+database_target = _database_target(DATABASE_URL)
+print(
+    "[DATABASE] configured=yes "
+    f"driver={database_target['driver']} host={database_target['host']} "
+    f"port={database_target['port']} database={database_target['database']} "
+    f"sslmode={database_target['sslmode']}"
+)
 MONGODB_URL = os.getenv(
     "MONGODB_URL",
     "mongodb://localhost:27017/textile_intelligence"
@@ -40,6 +69,7 @@ else:
         with engine.connect() as conn:
             pass
     except Exception as exc:
+        print(f"[DATABASE] connection_failed type={type(exc).__name__}")
         raise RuntimeError(
             "Cannot connect to the primary PostgreSQL database "
             "provided by DATABASE_URL. Check that the server is running and that "
