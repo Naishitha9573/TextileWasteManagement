@@ -1,0 +1,33 @@
+{
+  "learning_rate": 5e-05,
+  "output_dir": "artifacts\\finetuning\\cpu\\lr_5e-5",
+  "epochs": 25,
+  "warmup_epochs": 2,
+  "batch_size": 16,
+  "classifier_learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "label_smoothing": 0.05,
+  "patience": 5,
+  "num_workers": 0,
+  "seed": 42,
+  "device": "cpu",
+  "dataset_root": "C:\\Users\\sama\\OneDrive\\Desktop\\TextileWasteManagement-main (1)\\TextileWasteManagement-main\\dataset\\processed\\fabric_9class",
+  "checkpoint_source": "C:\\Users\\sama\\OneDrive\\Desktop\\TextileWasteManagement-main (1)\\TextileWasteManagement-main\\models\\best_efficientnet_b0_class_aware_finetune_v1.pth",
+  "protected_checkpoints": [
+    "C:\\Users\\sama\\OneDrive\\Desktop\\TextileWasteManagement-main (1)\\TextileWasteManagement-main\\models\\best_efficientnet_b0.pth",
+    "C:\\Users\\sama\\OneDrive\\Desktop\\TextileWasteManagement-main (1)\\TextileWasteManagement-main\\models\\best_efficientnet_b0_class_aware_finetune_v1.pth"
+  ],
+  "class_names": [
+    "Cotton",
+    "Denim",
+    "Fleece",
+    "Nylon",
+    "Polyester",
+    "Silk",
+    "Terrycloth",
+    "Viscose",
+    "Wool"
+  ],
+  "test_used": false,
+  "total_elapsed_seconds": 2630.02
+}

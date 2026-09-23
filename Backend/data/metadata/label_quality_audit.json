@@ -1,0 +1,61 @@
+{
+  "audited_at": "2026-08-13T13:19:50.976506+00:00",
+  "dataset": "material_deepfashion",
+  "current_model_scope": "3 CLASS ONLY",
+  "target_application_classes": 10,
+  "trained_classes": [
+    "Cotton",
+    "Denim",
+    "Mixed Fabrics"
+  ],
+  "missing_target_classes": [
+    "Polyester",
+    "Wool",
+    "Silk",
+    "Linen",
+    "Nylon",
+    "Rayon",
+    "Acrylic"
+  ],
+  "total_images": 1500,
+  "images_per_class": {
+    "Cotton": 500,
+    "Denim": 500,
+    "Mixed Fabrics": 500
+  },
+  "label_source": "DeepFashion captions.json",
+  "label_generation_method": "Keyword substring match via class_mapping.yaml deepfashion_caption_keywords",
+  "label_quality_assessment": {
+    "reliable_for_production": false,
+    "reason": "Caption-derived labels are not verified fabric composition; multi-garment captions; keyword ambiguity",
+    "multi_material_captions": 444,
+    "multi_material_rate": 0.296,
+    "label_keyword_mismatch_count": 0,
+    "cross_class_filename_duplicates": 0
+  },
+  "suspected_noisy_samples": [],
+  "duplicate_hash_groups": 0,
+  "corrupted_images_sampled": 0,
+  "corrupted_sample_size": 500,
+  "train_val_test_counts": {
+    "train": 1050,
+    "validation": 225,
+    "test": 225
+  },
+  "class_balance": {
+    "balanced": true,
+    "counts": {
+      "Cotton": 500,
+      "Denim": 500,
+      "Mixed Fabrics": 500
+    }
+  },
+  "known_limitations": [
+    "Only 3 of 10 target material classes present",
+    "Labels inferred from natural-language captions, not lab analysis",
+    "Same garment may mention multiple materials in one caption",
+    "Capped at 500 images per class during prepare (not full DeepFashion distribution)",
+    "Visual similarity between Cotton/Denim/Mixed may cause model confusion"
+  ],
+  "caption_file": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\deepfashion\\captions.json"
+}

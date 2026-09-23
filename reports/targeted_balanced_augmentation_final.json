@@ -1,0 +1,9 @@
+{
+  "experiment": "targeted_balanced_augmentation",
+  "best_epoch": 3,
+  "best_validation_accuracy": 0.7891891891891892,
+  "best_validation_macro_f1": 0.7411496232611152,
+  "best_validation_weighted_f1": 0.7983806360875492,
+  "checkpoint": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\models\\best_efficientnet_b0_targeted_balanced_augmentation.pth",
+  "test_used": false
+}

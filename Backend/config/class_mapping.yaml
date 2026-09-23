@@ -1,0 +1,93 @@
+# Transparent dataset → normalized class mapping
+# Do NOT silently relabel: unmapped labels are preserved under preserved_unmapped.
+
+version: "1.0"
+description: >
+  Maps source dataset labels/keywords to application target classes where defensible.
+  Labels without a mapping remain unmapped and are excluded from supervised material training.
+
+target_material_classes:
+  - Cotton
+  - Polyester
+  - Wool
+  - Silk
+  - Linen
+  - Denim
+  - Nylon
+  - Rayon
+  - Acrylic
+  - Mixed Fabrics
+
+target_waste_classes:
+  - Recyclable
+  - Reusable
+  - Repairable
+  - Upcyclable
+  - Compostable
+  - Hazardous Textile Waste
+
+# Keyword extraction from DeepFashion caption text (case-insensitive substring match).
+# First matching keyword wins unless multiple distinct materials → Mixed Fabrics.
+deepfashion_caption_keywords:
+  cotton: Cotton
+  denim: Denim
+  polyester: Polyester
+  wool: Wool
+  silk: Silk
+  linen: Linen
+  nylon: Nylon
+  polyamide: Nylon
+  rayon: Rayon
+  viscose: Rayon
+  acrylic: Acrylic
+
+# Sustainable fashion CSV Material_Type → target (partial; unmapped kept separate)
+sustainable_csv_materials:
+  "Organic Cotton": Cotton
+  "Recycled Polyester": Polyester
+  "Bamboo Fabric": null  # preserved unmapped
+  Hemp: null
+  Tencel: null
+  "Vegan Leather": null
+
+# 20006389 canonical material groups (text metadata, not image folders)
+jsonl_canonical_materials:
+  cotton: Cotton
+  polyester: Polyester
+  nylon: Nylon
+  wool: Wool
+  silk: Silk
+  linen: Linen
+  denim: Denim
+  rayon: Rayon
+  viscose: Rayon
+  acrylic: Acrylic
+  elastane: null
+  modacrylic: Acrylic
+
+# fabric_dataset: condition/defect labels — NOT material taxonomy
+fabric_dataset:
+  purpose: condition_defect_classification
+  maps_to_target_material_classes: false
+  source_folders:
+    Defect_images: Defective
+    NODefect_images: Non_Defective
+    Mask_images: null  # excluded from training manifests
+
+# Fashion-MNIST: garment-type labels — NOT material classes
+fashion_mnist:
+  purpose: garment_type_classification
+  maps_to_target_material_classes: false
+  note: >
+    Labels are T-shirt/top, Trouser, Pullover, etc. No defensible mapping to the
+    10 material classes without external metadata.
+
+preserved_unmapped:
+  - Bamboo Fabric
+  - Hemp
+  - Tencel
+  - Vegan Leather
+  - elastane
+  - modacrylic
+  - garment_type_labels
+  - defect_only_labels

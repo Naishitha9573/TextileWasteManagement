@@ -1,0 +1,21 @@
+{
+  "test_accuracy": 0.8364864864864865,
+  "macro_precision": 0.7980831363134215,
+  "macro_recall": 0.8207486000589448,
+  "macro_f1": 0.7955373099701624,
+  "weighted_precision": 0.854676099881725,
+  "weighted_recall": 0.8364864864864865,
+  "weighted_f1": 0.8409170693500779,
+  "top_3_accuracy": 0.9743243243243244,
+  "checkpoint_validation_macro_f1": 0.8333007745944201,
+  "leakage_checks": {
+    "duplicate_across_splits": true,
+    "sample_groups_across_splits": true,
+    "test_images_separate": true,
+    "test_labels_not_used_for_training": true,
+    "test_metrics_not_used_for_checkpoint_selection": true,
+    "duplicate_hashes": [],
+    "leaked_sample_groups": {}
+  },
+  "evaluation_count": 1
+}

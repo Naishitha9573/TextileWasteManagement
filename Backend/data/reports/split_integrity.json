@@ -1,0 +1,342 @@
+{
+  "fabric_condition": {
+    "group_aware_split_valid": true,
+    "policy": "not_applicable (independent captures, no multi-view sample grouping)"
+  },
+  "ibug_material_v2": {
+    "total_images": 4164,
+    "unique_sample_groups": 1041,
+    "unparseable_names": 0,
+    "cross_split_group_leakage": {},
+    "leakage_detected": false,
+    "per_split_class_counts": {
+      "train": {
+        "Cotton": 1924,
+        "Denim": 0,
+        "Nylon": 128,
+        "Polyester": 528,
+        "Silk": 100,
+        "Wool": 236
+      },
+      "validation": {
+        "Cotton": 412,
+        "Denim": 0,
+        "Nylon": 28,
+        "Polyester": 116,
+        "Silk": 20,
+        "Wool": 48
+      },
+      "test": {
+        "Cotton": 412,
+        "Denim": 0,
+        "Nylon": 28,
+        "Polyester": 112,
+        "Silk": 20,
+        "Wool": 52
+      }
+    },
+    "group_aware_split_valid": true
+  },
+  "material_deepfashion": {
+    "total_images": 1500,
+    "unique_sample_groups": 1354,
+    "unparseable_names": 0,
+    "cross_split_group_leakage": {
+      "deepfashion:00001571-05": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00001888-01": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00002642-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00003010-01": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00002140-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00002555-03": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00003820-02": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00003822-04": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00004277-03": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00004433-02": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00004491-08": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00004760-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00004897-05": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00004921-02": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00004921-04": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00004977-02": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00005045-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00005105-02": [
+        "test",
+        "train",
+        "validation"
+      ],
+      "deepfashion:00005726-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00005886-03": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00006308-01": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00006927-02": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00007364-01": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00007619-03": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00007749-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00007773-04": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00001150-01": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00000764-01": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00006879-03": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00007536-02": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00005347-01": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00006361-04": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00002038-11": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00002928-04": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00004444-01": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00006567-04": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00001615-06": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00003466-04": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00004095-02": [
+        "test",
+        "train",
+        "validation"
+      ],
+      "deepfashion:00006219-04": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00004231-04": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00005296-01": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00006867-03": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00000906-01": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00003094-01": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00006737-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00001820-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00002867-06": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00003687-18": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00004142-01": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00005040-02": [
+        "train",
+        "validation"
+      ],
+      "deepfashion:00007579-03": [
+        "test",
+        "train"
+      ],
+      "deepfashion:00004773-02": [
+        "test",
+        "validation"
+      ],
+      "deepfashion:00002369-01": [
+        "test",
+        "validation"
+      ],
+      "deepfashion:00002010-04": [
+        "test",
+        "validation"
+      ],
+      "deepfashion:00002906-06": [
+        "test",
+        "validation"
+      ]
+    },
+    "leakage_detected": true,
+    "per_split_class_counts": {
+      "train": {
+        "Cotton": 350,
+        "Denim": 350,
+        "Mixed Fabrics": 350
+      },
+      "validation": {
+        "Cotton": 75,
+        "Denim": 75,
+        "Mixed Fabrics": 75
+      },
+      "test": {
+        "Cotton": 75,
+        "Denim": 75,
+        "Mixed Fabrics": 75
+      }
+    },
+    "group_aware_split_valid": false
+  },
+  "material_deepfashion_verified": {
+    "total_images": 1500,
+    "unique_sample_groups": 1354,
+    "unparseable_names": 0,
+    "cross_split_group_leakage": {},
+    "leakage_detected": false,
+    "per_split_class_counts": {
+      "train": {
+        "Cotton": 336,
+        "Denim": 357,
+        "Mixed Fabrics": 357
+      },
+      "validation": {
+        "Cotton": 85,
+        "Denim": 75,
+        "Mixed Fabrics": 65
+      },
+      "test": {
+        "Cotton": 79,
+        "Denim": 68,
+        "Mixed Fabrics": 78
+      }
+    },
+    "group_aware_split_valid": true
+  },
+  "material_deepfashion_verified_clean": {
+    "total_images": 708,
+    "unique_sample_groups": 674,
+    "unparseable_names": 0,
+    "cross_split_group_leakage": {},
+    "leakage_detected": false,
+    "per_split_class_counts": {
+      "train": {
+        "Cotton": 329,
+        "Denim": 114,
+        "Mixed Fabrics": 53
+      },
+      "validation": {
+        "Cotton": 70,
+        "Denim": 24,
+        "Mixed Fabrics": 12
+      },
+      "test": {
+        "Cotton": 70,
+        "Denim": 25,
+        "Mixed Fabrics": 11
+      }
+    },
+    "group_aware_split_valid": true
+  }
+}

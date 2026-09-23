@@ -1,0 +1,148 @@
+{
+  "processed": {
+    "fabric_condition": {
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\fabric_condition",
+      "images": 247,
+      "classes": {
+        "Defective": 106,
+        "Non_Defective": 141
+      }
+    },
+    "ibug_material_v2": {
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\ibug_material_v2",
+      "images": 4164,
+      "classes": {
+        "Cotton": 2748,
+        "Nylon": 184,
+        "Polyester": 756,
+        "Silk": 140,
+        "Wool": 336
+      }
+    },
+    "material_deepfashion": {
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\material_deepfashion",
+      "images": 1500,
+      "classes": {
+        "Cotton": 500,
+        "Denim": 500,
+        "Mixed Fabrics": 500
+      }
+    },
+    "material_deepfashion_verified": {
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\material_deepfashion_verified",
+      "images": 721,
+      "classes": {
+        "Cotton": 477,
+        "Denim": 168,
+        "Mixed Fabrics": 76
+      }
+    },
+    "material_deepfashion_verified_clean": {
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\data\\processed\\material_deepfashion_verified_clean",
+      "images": 708,
+      "classes": {
+        "Cotton": 469,
+        "Denim": 163,
+        "Mixed Fabrics": 76
+      }
+    }
+  },
+  "splits": {
+    "fabric_condition": {
+      "train": {
+        "Defective": 74,
+        "Non_Defective": 98
+      },
+      "validation": {
+        "Defective": 16,
+        "Non_Defective": 21
+      },
+      "test": {
+        "Defective": 16,
+        "Non_Defective": 22
+      },
+      "total": 247
+    },
+    "ibug_material_v2": {
+      "train": {
+        "Cotton": 1924,
+        "Denim": 0,
+        "Nylon": 128,
+        "Polyester": 528,
+        "Silk": 100,
+        "Wool": 236
+      },
+      "validation": {
+        "Cotton": 412,
+        "Denim": 0,
+        "Nylon": 28,
+        "Polyester": 116,
+        "Silk": 20,
+        "Wool": 48
+      },
+      "test": {
+        "Cotton": 412,
+        "Denim": 0,
+        "Nylon": 28,
+        "Polyester": 112,
+        "Silk": 20,
+        "Wool": 52
+      },
+      "total": 4164
+    },
+    "material_deepfashion": {
+      "train": {
+        "Cotton": 350,
+        "Denim": 350,
+        "Mixed Fabrics": 350
+      },
+      "validation": {
+        "Cotton": 75,
+        "Denim": 75,
+        "Mixed Fabrics": 75
+      },
+      "test": {
+        "Cotton": 75,
+        "Denim": 75,
+        "Mixed Fabrics": 75
+      },
+      "total": 1500
+    },
+    "material_deepfashion_verified": {
+      "train": {
+        "Cotton": 336,
+        "Denim": 357,
+        "Mixed Fabrics": 357
+      },
+      "validation": {
+        "Cotton": 85,
+        "Denim": 75,
+        "Mixed Fabrics": 65
+      },
+      "test": {
+        "Cotton": 79,
+        "Denim": 68,
+        "Mixed Fabrics": 78
+      },
+      "total": 1500
+    },
+    "material_deepfashion_verified_clean": {
+      "train": {
+        "Cotton": 329,
+        "Denim": 114,
+        "Mixed Fabrics": 53
+      },
+      "validation": {
+        "Cotton": 70,
+        "Denim": 24,
+        "Mixed Fabrics": 12
+      },
+      "test": {
+        "Cotton": 70,
+        "Denim": 25,
+        "Mixed Fabrics": 11
+      },
+      "total": 708
+    }
+  }
+}

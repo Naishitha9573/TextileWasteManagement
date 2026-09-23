@@ -1,0 +1,23 @@
+{
+  "total_rows": 10093,
+  "included": 4872,
+  "excluded": 5221,
+  "by_source": {
+    "ibug_fabrics (derived: ibug_material_v2)": {
+      "rows": 4164,
+      "included": 4164
+    },
+    "ibug_fabrics (excluded at review)": {
+      "rows": 3721,
+      "included": 0
+    },
+    "material_deepfashion (verified_clean subset)": {
+      "rows": 708,
+      "included": 708
+    },
+    "material_deepfashion (excluded at review)": {
+      "rows": 1500,
+      "included": 0
+    }
+  }
+}

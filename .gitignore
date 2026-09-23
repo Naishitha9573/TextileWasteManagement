@@ -1,0 +1,88 @@
+# Python
+
+# Dataset content (large files stay local)
+Backend/datasets/*
+!Backend/datasets/dataset_loader.py
+
+dataset
+
+# Processed datasets
+dataset/processed/
+
+dataset/processed/fabric_9class/
+dataset/processed/fabric_16class/
+# Prepared dataset copies (regenerate via prepare CLI)
+Backend/data/processed/
+Backend/data/splits/
+Backend/data/raw/
+
+# Keep manifests and metadata in repo
+!Backend/data/manifests/
+!Backend/data/metadata/
+node_modules/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.pyc
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Build files
+dist/
+build/
+
+# Node modules
+node_modules/
+
+# React/Vite
+.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage
+.coverage
+htmlcov/
+
+# Model artifacts (regenerate via training)
+Backend/models/*.joblib
+Backend/models/*.keras
+Backend/models/*.h5
+
+
+# DeepFashion training checkpoints
+Backend/models/deepfashion/*.pth
+Backend/models/deepfashion/*.pt
+Backend/models/deepfashion/*.ckpt
+
+# Training outputs
+checkpoints/
+training_outputs/
+runs/
+
+# Datasets
+datasets/
+DeepFashion/
+IBUG/
+

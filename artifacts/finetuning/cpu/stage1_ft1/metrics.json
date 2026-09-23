@@ -1,0 +1,19 @@
+{
+  "experiment": "LR-3e-05",
+  "learning_rate": 3e-05,
+  "best_epoch": 3,
+  "validation_accuracy": 0.8824324324324324,
+  "validation_macro_f1": 0.8585731558445147,
+  "validation_weighted_f1": 0.8844730223326274,
+  "baseline_validation_accuracy": 0.8851351351351351,
+  "baseline_validation_macro_f1": 0.8667165937848992,
+  "baseline_validation_weighted_f1": 0.8877556310140541,
+  "improvement_accuracy_percentage_points": -0.2702702702702675,
+  "improvement_macro_f1_percentage_points": -0.8143437940384524,
+  "improvement_weighted_f1_percentage_points": -0.3282608681426713,
+  "device": "cpu",
+  "dataset_root": "C:\\Users\\sama\\OneDrive\\Desktop\\TextileWasteManagement-main (1)\\TextileWasteManagement-main\\dataset\\processed\\fabric_9class",
+  "checkpoint_source": "C:\\Users\\sama\\OneDrive\\Desktop\\TextileWasteManagement-main (1)\\TextileWasteManagement-main\\models\\best_efficientnet_b0_class_aware_finetune_v1.pth",
+  "test_used": false,
+  "elapsed_seconds": 4064.34
+}

@@ -1,0 +1,69 @@
+{
+  "Cotton": {
+    "precision": 0.6990740740740741,
+    "recall": 0.867816091954023,
+    "f1-score": 0.7743589743589744,
+    "support": 348.0
+  },
+  "Denim": {
+    "precision": 0.7941176470588235,
+    "recall": 0.84375,
+    "f1-score": 0.8181818181818182,
+    "support": 96.0
+  },
+  "Fleece": {
+    "precision": 0.6190476190476191,
+    "recall": 0.65,
+    "f1-score": 0.6341463414634146,
+    "support": 20.0
+  },
+  "Nylon": {
+    "precision": 0.45,
+    "recall": 0.5625,
+    "f1-score": 0.5,
+    "support": 32.0
+  },
+  "Polyester": {
+    "precision": 0.7204301075268817,
+    "recall": 0.5234375,
+    "f1-score": 0.6063348416289592,
+    "support": 128.0
+  },
+  "Silk": {
+    "precision": 0.2,
+    "recall": 0.125,
+    "f1-score": 0.15384615384615385,
+    "support": 24.0
+  },
+  "Terrycloth": {
+    "precision": 0.5,
+    "recall": 0.3,
+    "f1-score": 0.375,
+    "support": 20.0
+  },
+  "Viscose": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 20.0
+  },
+  "Wool": {
+    "precision": 0.7391304347826086,
+    "recall": 0.3269230769230769,
+    "f1-score": 0.4533333333333333,
+    "support": 52.0
+  },
+  "accuracy": 0.6851351351351351,
+  "macro avg": {
+    "precision": 0.5246444313877786,
+    "recall": 0.4666029632085666,
+    "f1-score": 0.479466829201406,
+    "support": 740.0
+  },
+  "weighted avg": {
+    "precision": 0.6645187306060996,
+    "recall": 0.6851351351351351,
+    "f1-score": 0.6609213583862077,
+    "support": 740.0
+  }
+}

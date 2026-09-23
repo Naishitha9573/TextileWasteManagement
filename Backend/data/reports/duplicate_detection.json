@@ -1,0 +1,272 @@
+{
+  "ibug_material_v2": {
+    "processed_images": 4164,
+    "unreadable": 0,
+    "exact_duplicate_groups": [],
+    "exact_duplicate_extra_images": 0,
+    "distinct_dhash_values": 4110,
+    "pairs_hamming_1_8_cross_sample": 67030,
+    "cross_sample_pairs_hamming_le_4": 6026,
+    "cross_sample_suspects_top20": [
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Cotton-688-im_3.png",
+        "b": "sample-Polyester-1914-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Cotton-342-im_1.png",
+        "b": "sample-Cotton-690-im_1.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Polyester-1912-im_4.png",
+        "b": "sample-Nylon-1896-im_4.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Polyester-1912-im_4.png",
+        "b": "sample-Polyester-401-im_1.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Polyester-1912-im_4.png",
+        "b": "sample-Polyester-1691-im_4.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Wool-359-im_1.png",
+        "b": "sample-Cotton-1715-im_1.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Corduroy-1792-im_1.png",
+        "b": "sample-Cotton-321-im_1.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Silk-823-im_3.png",
+        "b": "sample-Nylon-1214-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Silk-823-im_3.png",
+        "b": "sample-Nylon-1443-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Silk-823-im_3.png",
+        "b": "sample-Silk-824-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Wool-526-im_1.png",
+        "b": "sample-Polyester-1857-im_1.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Wool-526-im_1.png",
+        "b": "sample-Cotton-1716-im_1.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Wool-526-im_1.png",
+        "b": "sample-Silk-1023-im_1.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Nylon-1441-im_4.png",
+        "b": "sample-Polyester-103-im_4.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Nylon-1441-im_4.png",
+        "b": "sample-Nylon-1902-im_2.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Nylon-1214-im_3.png",
+        "b": "sample-Cotton-1556-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Nylon-1214-im_3.png",
+        "b": "sample-Silk-1018-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Nylon-1214-im_3.png",
+        "b": "sample-Polyester-449-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Nylon-1214-im_3.png",
+        "b": "sample-Silk-776-im_3.png"
+      },
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "sample-Nylon-1214-im_3.png",
+        "b": "sample-Cotton-1461-im_3.png"
+      }
+    ],
+    "cross_sample_pairs_5_8_count": 61004,
+    "same_sample_view_pairs_benign": 567,
+    "cross_split_exact_duplicate_content_items": 0,
+    "cross_split_examples": []
+  },
+  "material_deepfashion_verified_clean": {
+    "processed_images": 708,
+    "unreadable": 0,
+    "exact_duplicate_groups": [],
+    "exact_duplicate_extra_images": 0,
+    "distinct_dhash_values": 707,
+    "pairs_hamming_1_8_cross_sample": 493,
+    "cross_sample_pairs_hamming_le_4": 25,
+    "cross_sample_suspects_top20": [
+      {
+        "distance": 1,
+        "same_sample": false,
+        "a": "WOMEN-Tees_Tanks-id_00005702-06_4_full.jpg",
+        "b": "WOMEN-Rompers_Jumpsuits-id_00001548-06_4_full.jpg"
+      },
+      {
+        "distance": 3,
+        "same_sample": false,
+        "a": "WOMEN-Jackets_Coats-id_00007536-02_1_front.jpg",
+        "b": "WOMEN-Blouses_Shirts-id_00004363-03_4_full.jpg"
+      },
+      {
+        "distance": 3,
+        "same_sample": false,
+        "a": "WOMEN-Blouses_Shirts-id_00001583-02_4_full.jpg",
+        "b": "WOMEN-Rompers_Jumpsuits-id_00001548-06_4_full.jpg"
+      },
+      {
+        "distance": 3,
+        "same_sample": false,
+        "a": "WOMEN-Tees_Tanks-id_00003371-08_4_full.jpg",
+        "b": "WOMEN-Tees_Tanks-id_00005033-03_4_full.jpg"
+      },
+      {
+        "distance": 3,
+        "same_sample": false,
+        "a": "WOMEN-Tees_Tanks-id_00001634-09_7_additional.jpg",
+        "b": "WOMEN-Dresses-id_00005768-05_7_additional.jpg"
+      },
+      {
+        "distance": 3,
+        "same_sample": false,
+        "a": "WOMEN-Rompers_Jumpsuits-id_00001548-06_4_full.jpg",
+        "b": "WOMEN-Tees_Tanks-id_00005033-03_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Tees_Tanks-id_00005702-06_4_full.jpg",
+        "b": "WOMEN-Blouses_Shirts-id_00001583-02_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Tees_Tanks-id_00005702-06_4_full.jpg",
+        "b": "WOMEN-Tees_Tanks-id_00005033-03_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Jackets_Coats-id_00000627-02_3_back.jpg",
+        "b": "WOMEN-Tees_Tanks-id_00003371-08_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Jackets_Coats-id_00000627-02_3_back.jpg",
+        "b": "WOMEN-Rompers_Jumpsuits-id_00001548-06_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Jackets_Coats-id_00000627-02_3_back.jpg",
+        "b": "WOMEN-Tees_Tanks-id_00002259-08_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "MEN-Shorts-id_00006829-01_7_additional.jpg",
+        "b": "WOMEN-Dresses-id_00000852-04_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Tees_Tanks-id_00000079-09_4_full.jpg",
+        "b": "WOMEN-Blouses_Shirts-id_00000015-02_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Blouses_Shirts-id_00000634-02_3_back.jpg",
+        "b": "WOMEN-Blouses_Shirts-id_00006016-02_2_side.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Shorts-id_00003293-04_1_front.jpg",
+        "b": "WOMEN-Tees_Tanks-id_00007721-33_1_front.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Shorts-id_00002279-03_4_full.jpg",
+        "b": "WOMEN-Rompers_Jumpsuits-id_00001548-06_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Tees_Tanks-id_00003371-08_4_full.jpg",
+        "b": "WOMEN-Rompers_Jumpsuits-id_00001548-06_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Blouses_Shirts-id_00006577-03_2_side.jpg",
+        "b": "WOMEN-Tees_Tanks-id_00006687-07_4_full.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "WOMEN-Sweaters-id_00002184-03_3_back.jpg",
+        "b": "WOMEN-Rompers_Jumpsuits-id_00007945-04_1_front.jpg"
+      },
+      {
+        "distance": 4,
+        "same_sample": false,
+        "a": "MEN-Sweatshirts_Hoodies-id_00004649-05_4_full.jpg",
+        "b": "WOMEN-Dresses-id_00000852-04_4_full.jpg"
+      }
+    ],
+    "cross_sample_pairs_5_8_count": 468,
+    "same_sample_view_pairs_benign": 0,
+    "cross_split_exact_duplicate_content_items": 0,
+    "cross_split_examples": []
+  }
+}

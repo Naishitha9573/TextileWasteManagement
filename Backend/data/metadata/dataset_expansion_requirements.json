@@ -1,0 +1,17 @@
+{
+  "Cotton": {
+    "current": 469,
+    "target": 300,
+    "additional_required": 0
+  },
+  "Denim": {
+    "current": 163,
+    "target": 300,
+    "additional_required": 137
+  },
+  "Mixed Fabrics": {
+    "current": 76,
+    "target": 300,
+    "additional_required": 224
+  }
+}

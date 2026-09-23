@@ -1,0 +1,264 @@
+{
+  "audited_at": "2026-08-23T05:05:33.811350+00:00",
+  "datasets_root": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets",
+  "dataset_count": 6,
+  "datasets": [
+    {
+      "name": "deepfashion",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\deepfashion",
+      "exists": true,
+      "audited_at": "2026-08-23T05:04:59.183605+00:00",
+      "source_type": "image-folder",
+      "catalog_categories": [
+        "densepose",
+        "images",
+        "keypoints",
+        "labels",
+        "segm"
+      ],
+      "catalog_total_images": 100893,
+      "image_count_on_disk": 100893,
+      "class_distribution": {
+        "densepose": 44096,
+        "images": 44096,
+        "segm": 12701
+      },
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 1000,
+      "dimension_summary": {
+        "count": 300,
+        "min_width": 750,
+        "max_width": 750,
+        "min_height": 915,
+        "max_height": 1101,
+        "avg_width": 750.0,
+        "avg_height": 1100.4
+      },
+      "format_validation_sample_size": 300
+    },
+    {
+      "name": "fabric_dataset",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\fabric_dataset",
+      "exists": true,
+      "audited_at": "2026-08-23T05:05:08.472857+00:00",
+      "source_type": "image-folder",
+      "catalog_categories": [
+        "Defect_images",
+        "Mask_images",
+        "NODefect_images"
+      ],
+      "catalog_total_images": 354,
+      "image_count_on_disk": 354,
+      "class_distribution": {
+        "Defect_images": 106,
+        "Mask_images": 107,
+        "NODefect_images": 141
+      },
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 354,
+      "dimension_summary": {
+        "count": 300,
+        "min_width": 3796,
+        "max_width": 4096,
+        "min_height": 256,
+        "max_height": 256,
+        "avg_width": 4094.0,
+        "avg_height": 256.0
+      },
+      "format_validation_sample_size": 300
+    },
+    {
+      "name": "fashion_mnist",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\fashion_mnist",
+      "exists": true,
+      "audited_at": "2026-08-23T05:05:26.552811+00:00",
+      "source_type": "csv",
+      "catalog_categories": [
+        "Ankle boot",
+        "Bag",
+        "Coat",
+        "Dress",
+        "Pullover",
+        "Sandal",
+        "Shirt",
+        "Sneaker",
+        "T-shirt/top",
+        "Trouser"
+      ],
+      "catalog_total_images": 70000,
+      "image_count_on_disk": 0,
+      "class_distribution": {},
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 0,
+      "dimension_summary": {},
+      "format_validation_sample_size": 0
+    },
+    {
+      "name": "ibug_fabrics",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\ibug_fabrics",
+      "exists": true,
+      "audited_at": "2026-08-23T05:05:28.631530+00:00",
+      "source_type": "image-folder",
+      "catalog_categories": [
+        "Acrylic",
+        "Artificial_fur",
+        "Artificial_leather",
+        "Blended",
+        "Chenille",
+        "Corduroy",
+        "Cotton",
+        "Crepe",
+        "Denim",
+        "Felt",
+        "Fleece",
+        "Leather",
+        "Linen",
+        "Lut",
+        "Nylon",
+        "Polyester",
+        "Satin",
+        "Silk",
+        "Suede",
+        "Terrycloth",
+        "Unclassified",
+        "Utilities",
+        "Velvet",
+        "Viscose",
+        "Wool"
+      ],
+      "catalog_total_images": 7885,
+      "image_count_on_disk": 7885,
+      "class_distribution": {
+        "Acrylic": 48,
+        "Artificial_fur": 4,
+        "Artificial_leather": 12,
+        "Blended": 1645,
+        "Chenille": 52,
+        "Corduroy": 96,
+        "Cotton": 2352,
+        "Crepe": 104,
+        "Denim": 648,
+        "Felt": 16,
+        "Fleece": 132,
+        "Leather": 64,
+        "Linen": 76,
+        "Lut": 16,
+        "Nylon": 228,
+        "Polyester": 904,
+        "Satin": 96,
+        "Silk": 200,
+        "Suede": 20,
+        "Terrycloth": 120,
+        "Unclassified": 492,
+        "Utilities": 8,
+        "Velvet": 44,
+        "Viscose": 148,
+        "Wool": 360
+      },
+      "issues": [
+        "13 duplicate hash groups in sample"
+      ],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 13,
+      "duplicate_sample_size": 1000,
+      "dimension_summary": {
+        "count": 300,
+        "min_width": 400,
+        "max_width": 400,
+        "min_height": 400,
+        "max_height": 400,
+        "avg_width": 400.0,
+        "avg_height": 400.0
+      },
+      "format_validation_sample_size": 300
+    },
+    {
+      "name": "sustainable_dataset",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\sustainable_dataset",
+      "exists": true,
+      "audited_at": "2026-08-23T05:05:32.907112+00:00",
+      "source_type": "csv",
+      "catalog_categories": [
+        "Bamboo Fabric",
+        "Hemp",
+        "Organic Cotton",
+        "Recycled Polyester",
+        "Tencel",
+        "Vegan Leather"
+      ],
+      "catalog_total_images": 5000,
+      "image_count_on_disk": 0,
+      "class_distribution": {},
+      "issues": [],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 0,
+      "dimension_summary": {},
+      "format_validation_sample_size": 0
+    },
+    {
+      "name": "tips",
+      "path": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\Backend\\datasets\\tips",
+      "exists": true,
+      "audited_at": "2026-08-23T05:05:33.810384+00:00",
+      "source_type": "archive",
+      "catalog_categories": [
+        "images",
+        "imdb",
+        "labels"
+      ],
+      "catalog_total_images": 5640,
+      "image_count_on_disk": 0,
+      "class_distribution": {},
+      "issues": [
+        "no image files found"
+      ],
+      "missing_labels": [],
+      "corrupted_images": [],
+      "duplicate_groups": 0,
+      "duplicate_sample_size": 0,
+      "dimension_summary": {},
+      "format_validation_sample_size": 0
+    }
+  ],
+  "deepfashion_material_analysis": {
+    "available": true,
+    "total_captions": 42544,
+    "mappable_to_material": 37066,
+    "unmapped_captions": 5478,
+    "material_distribution": {
+      "Cotton": 27671,
+      "Mixed Fabrics": 7660,
+      "Denim": 1735
+    },
+    "note": "Derived from caption keyword mapping; not ground-truth fabric labels."
+  },
+  "target_material_classes": [
+    "Cotton",
+    "Polyester",
+    "Wool",
+    "Silk",
+    "Linen",
+    "Denim",
+    "Nylon",
+    "Rayon",
+    "Acrylic",
+    "Mixed Fabrics"
+  ],
+  "summary": {
+    "total_images_on_disk": 109132,
+    "datasets_with_images": 3,
+    "datasets_with_issues": 2
+  }
+}

@@ -1,0 +1,4 @@
+experiment_id,loss_function,class_weight_strategy,best_validation_accuracy,best_validation_macro_f1,best_validation_weighted_f1,best_epoch,training_time
+A,CrossEntropyLoss,inverse_frequency,0.7486486486486487,0.7135916412047166,0.7625394340917008,5,2690.52
+B,CrossEntropyLoss,none,0.8445945945945946,0.7917513053265888,0.8462838194553696,5,2368.48
+C,CrossEntropyLoss,sqrt_inverse_frequency,0.8256756756756757,0.787341731021504,0.8317594937389104,5,2312.34

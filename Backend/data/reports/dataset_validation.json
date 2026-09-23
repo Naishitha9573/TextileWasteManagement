@@ -1,0 +1,76 @@
+{
+  "ibug_material_v2": {
+    "label_source": "manufacturer tag.txt composition metadata (iBUG)",
+    "processed_images": 4164,
+    "unreadable_processed_images": 0,
+    "processed_exact_duplicate_groups": {},
+    "splits": {
+      "split_image_counts": {
+        "train": 2916,
+        "validation": 624,
+        "test": 624
+      },
+      "cross_split_duplicate_hashes": 0,
+      "leak_examples": [],
+      "unreadable_images": 0,
+      "leakage_detected": false
+    },
+    "classes_per_split": {
+      "train": [
+        "Cotton",
+        "Nylon",
+        "Polyester",
+        "Silk",
+        "Wool"
+      ],
+      "validation": [
+        "Cotton",
+        "Nylon",
+        "Polyester",
+        "Silk",
+        "Wool"
+      ],
+      "test": [
+        "Cotton",
+        "Nylon",
+        "Polyester",
+        "Silk",
+        "Wool"
+      ]
+    }
+  },
+  "material_deepfashion_verified_clean": {
+    "label_source": "DeepFashion caption keyword mapping",
+    "processed_images": 708,
+    "unreadable_processed_images": 0,
+    "processed_exact_duplicate_groups": {},
+    "splits": {
+      "split_image_counts": {
+        "train": 496,
+        "validation": 106,
+        "test": 106
+      },
+      "cross_split_duplicate_hashes": 0,
+      "leak_examples": [],
+      "unreadable_images": 0,
+      "leakage_detected": false
+    },
+    "classes_per_split": {
+      "train": [
+        "Cotton",
+        "Denim",
+        "Mixed Fabrics"
+      ],
+      "validation": [
+        "Cotton",
+        "Denim",
+        "Mixed Fabrics"
+      ],
+      "test": [
+        "Cotton",
+        "Denim",
+        "Mixed Fabrics"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "experiment": "targeted_augmentation_v2",
+  "best_epoch": 19,
+  "best_validation_accuracy": 0.8783783783783784,
+  "best_validation_macro_f1": 0.8495129008527011,
+  "best_validation_weighted_f1": 0.8796967272684807,
+  "baseline_validation_accuracy": 0.8541,
+  "baseline_validation_macro_f1": 0.8333,
+  "test_used": false,
+  "dataset_modified": false,
+  "baseline_checkpoint_modified": false,
+  "checkpoint": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\models\\best_efficientnet_b0_targeted_augmentation_v2.pth"
+}

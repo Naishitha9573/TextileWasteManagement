@@ -1,0 +1,72 @@
+{
+  "random_seed": 42,
+  "grouping_method": "global sample_id; all views remain together",
+  "split_ratios": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "source_dataset": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\dataset\\processed\\fabric_9class\\all",
+  "output_dataset": "C:\\Users\\sama\\OneDrive\\Desktop\\naishtex\\Textile\\dataset\\processed\\fabric_9class",
+  "total_images": 4932,
+  "total_train_images": 3452,
+  "total_validation_images": 740,
+  "total_test_images": 740,
+  "per_class_counts": {
+    "Cotton": {
+      "train": 1624,
+      "validation": 348,
+      "test": 348
+    },
+    "Polyester": {
+      "train": 596,
+      "validation": 128,
+      "test": 128
+    },
+    "Denim": {
+      "train": 452,
+      "validation": 96,
+      "test": 96
+    },
+    "Wool": {
+      "train": 240,
+      "validation": 52,
+      "test": 52
+    },
+    "Nylon": {
+      "train": 160,
+      "validation": 32,
+      "test": 36
+    },
+    "Viscose": {
+      "train": 104,
+      "validation": 20,
+      "test": 24
+    },
+    "Silk": {
+      "train": 100,
+      "validation": 24,
+      "test": 20
+    },
+    "Fleece": {
+      "train": 92,
+      "validation": 20,
+      "test": 20
+    },
+    "Terrycloth": {
+      "train": 84,
+      "validation": 20,
+      "test": 16
+    }
+  },
+  "excluded_conflicting_samples": [],
+  "detected_cross_class_sample_conflicts": [],
+  "leakage_checks": {
+    "duplicate_across_splits": true,
+    "sample_groups_across_splits": true,
+    "missing_classes": true,
+    "total_accounted_for": true,
+    "image_verification": true,
+    "cross_class_conflicts_not_split": true
+  }
+}

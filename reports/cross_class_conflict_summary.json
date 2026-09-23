@@ -1,0 +1,89 @@
+{
+  "total_cross_class_exact_groups": 120,
+  "total_cross_class_near_groups": 0,
+  "affected_images": 240,
+  "class_pair_counts": {
+    "Crepe \u2194 Polyester": 24,
+    "Crepe \u2194 Satin": 24,
+    "Polyester \u2194 Satin": 16,
+    "Satin \u2194 Silk": 56
+  },
+  "affected_classes": [
+    "Crepe",
+    "Polyester",
+    "Satin",
+    "Silk"
+  ],
+  "status_counts": {
+    "SAME_SAMPLE_DIFFERENT_LABEL": 120
+  },
+  "examples_of_each_conflict": {
+    "LABEL_CONFLICT_REQUIRES_REVIEW": [],
+    "POSSIBLE_DUPLICATE_LABEL": [],
+    "SAME_SAMPLE_DIFFERENT_LABEL": [
+      {
+        "duplicate_group_id": "EXACT-0054",
+        "duplicate_type": "exact",
+        "classes": [
+          "Crepe",
+          "Polyester"
+        ],
+        "file_paths": [
+          "Crepe/1000/im_1.png",
+          "Polyester/1000/im_1.png"
+        ]
+      },
+      {
+        "duplicate_group_id": "EXACT-0055",
+        "duplicate_type": "exact",
+        "classes": [
+          "Crepe",
+          "Polyester"
+        ],
+        "file_paths": [
+          "Crepe/1000/im_2.png",
+          "Polyester/1000/im_2.png"
+        ]
+      },
+      {
+        "duplicate_group_id": "EXACT-0056",
+        "duplicate_type": "exact",
+        "classes": [
+          "Crepe",
+          "Polyester"
+        ],
+        "file_paths": [
+          "Crepe/1000/im_3.png",
+          "Polyester/1000/im_3.png"
+        ]
+      },
+      {
+        "duplicate_group_id": "EXACT-0057",
+        "duplicate_type": "exact",
+        "classes": [
+          "Crepe",
+          "Polyester"
+        ],
+        "file_paths": [
+          "Crepe/1000/im_4.png",
+          "Polyester/1000/im_4.png"
+        ]
+      },
+      {
+        "duplicate_group_id": "EXACT-0058",
+        "duplicate_type": "exact",
+        "classes": [
+          "Crepe",
+          "Polyester"
+        ],
+        "file_paths": [
+          "Crepe/1001/im_1.png",
+          "Polyester/1001/im_1.png"
+        ]
+      }
+    ],
+    "UNKNOWN": []
+  },
+  "sample_id_extraction": "Second path component, e.g. Class/1000/im_1.png -> 1000, when present.",
+  "read_only": true
+}
