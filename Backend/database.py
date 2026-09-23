@@ -14,8 +14,14 @@ except ImportError:
 
 # Primary database: PostgreSQL (requirement). A SQLite URL may be supplied
 # EXPLICITLY via DATABASE_URL for lightweight development/test usage only.
-DEFAULT_DATABASE_URL = "postgresql://postgres:Naishitha9573@db.ruadvpnvsttzddlffqkk.supabase.co:5432/postgres"
-DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL)
+DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL must be supplied through the environment")
+
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = "postgresql+psycopg2://" + DATABASE_URL[len("postgres://"):]
+elif DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = "postgresql+psycopg2://" + DATABASE_URL[len("postgresql://"):]
 MONGODB_URL = os.getenv(
     "MONGODB_URL",
     "mongodb://localhost:27017/textile_intelligence"
@@ -36,7 +42,7 @@ else:
     except Exception as exc:
         raise RuntimeError(
             "Cannot connect to the primary PostgreSQL database "
-            f"({DATABASE_URL}). Check that the server is running and that "
+            "provided by DATABASE_URL. Check that the server is running and that "
             "DATABASE_URL is correct. The application intentionally does NOT "
             "fall back to SQLite silently. To use SQLite explicitly (dev/test "
             "only), set DATABASE_URL=sqlite:///./textile_waste.db"
