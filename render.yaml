@@ -15,7 +15,7 @@ services:
       - key: CORS_ORIGINS
         sync: false
       - key: FABRIC_MODEL_URL
-        sync: false
+        value: https://huggingface.co/Naishitha12/best_efficientnet_b0_class_aware_finetune_v1/resolve/main/best_efficientnet_b0_class_aware_finetune_v1.pth
       - key: SEED_DEMO_DATA
         value: "false"
 
