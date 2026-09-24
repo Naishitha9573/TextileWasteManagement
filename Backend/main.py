@@ -49,18 +49,25 @@ from database import init_db
 
 @app.on_event("startup")
 def startup():
+    print("[STARTUP] Starting database initialization...", flush=True)
     init_db()
+    print("[STARTUP] Database initialization completed.", flush=True)
 
+    print("[STARTUP] Loading fabric classifier...", flush=True)
     fabric_classifier = get_fabric_classifier()
+    print("[STARTUP] Fabric classifier loaded.", flush=True)
     print(f"[FABRIC MODEL] {fabric_classifier.health()}")
 
     # Initialize MongoDB connection as secondary database
+    print("[STARTUP] Initializing MongoDB...", flush=True)
     try:
         mongo.init_mongo()
+        print("[STARTUP] MongoDB initialization completed.", flush=True)
     except Exception as e:
         print(f"MongoDB startup connection failed: {e}")
 
     # Seed default users if they do not exist
+    print("[STARTUP] Starting database user initialization/seeding...", flush=True)
     db = next(get_db())
     try:
         users_count = db.query(User).count()
@@ -89,6 +96,8 @@ def startup():
         print(f"Error seeding database: {e}")
     finally:
         db.close()
+        print("[STARTUP] Database user initialization/seeding completed.", flush=True)
+    print("[STARTUP] Startup completed successfully.", flush=True)
 def seed_batches(db: Session):
     # Fetch recycler user to associate batches
     recycler = db.query(User).filter(User.username == "recycler").first()
