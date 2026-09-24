@@ -11,11 +11,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY Backend/ .
 COPY models/class_names.json /models/class_names.json
-COPY models/waste_classification /models/waste_classification
+
 
 ENV PYTHONUNBUFFERED=1
 ENV FABRIC_MODEL_PATH=/models/best_efficientnet_b0_class_aware_finetune_v1.pth
-ENV WASTE_MODEL_PATH=/models/waste_classification/stage1_best_waste_model.keras
+
 
 EXPOSE 10000
 
