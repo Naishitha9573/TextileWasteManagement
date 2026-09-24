@@ -1,20 +1,30 @@
 """Real EfficientNet-B0 fabric classification service."""
 from __future__ import annotations
 
+print("[FABRIC] module import started", flush=True)
+
 import json
 import os
 from pathlib import Path
 from typing import Any
 
+print("[FABRIC] importing torch...", flush=True)
 import torch
+print("[FABRIC] torch imported", flush=True)
 from PIL import Image, ImageOps
+print("[FABRIC] importing torchvision...", flush=True)
 from torchvision import models, transforms
+print("[FABRIC] torchvision imported", flush=True)
 
 try:
+    print("[FABRIC] importing python-dotenv...", flush=True)
     from dotenv import load_dotenv
 
+    print("[FABRIC] loading local environment file...", flush=True)
     load_dotenv(Path(__file__).resolve().parents[3] / ".env")
+    print("[FABRIC] local environment file loaded", flush=True)
 except ImportError:
+    print("[FABRIC] python-dotenv unavailable; continuing", flush=True)
     pass
 
 
@@ -23,28 +33,39 @@ class ModelNotReadyError(RuntimeError):
 
 
 MODEL_VERSION = "class_aware_finetune_v1"
+print("[FABRIC] module imports completed", flush=True)
 
 
 class FabricClassifier:
     """Loads the configured classifier once and performs deterministic inference."""
 
     def __init__(self) -> None:
+        print("[FABRIC] initializing classifier...", flush=True)
+        print("[FABRIC] selecting device...", flush=True)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print(f"[FABRIC] device selected: {self.device}", flush=True)
         self.model: torch.nn.Module | None = None
         self.class_names: list[str] = []
         self.checkpoint_path = os.getenv("FABRIC_MODEL_PATH", "").strip()
+        print(f"[FABRIC] checkpoint path configured: {bool(self.checkpoint_path)}", flush=True)
         self.load_error: str | None = None
+        print("[FABRIC] creating preprocessing transform...", flush=True)
         self.transform = transforms.Compose([
             transforms.Resize(round(224 * 256 / 224)),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
         ])
+        print("[FABRIC] preprocessing transform created", flush=True)
+        print("[FABRIC] starting classifier load...", flush=True)
         self._load()
+        print(f"[FABRIC] classifier load completed; ready={self.is_ready}", flush=True)
 
     def _load(self) -> None:
+        print("[FABRIC] resolving checkpoint path...", flush=True)
         if not self.checkpoint_path:
             self.load_error = "FABRIC_MODEL_PATH is not configured"
+            print("[FABRIC] checkpoint path is not configured", flush=True)
             return
         checkpoint_path = Path(self.checkpoint_path)
         if not checkpoint_path.is_absolute():
@@ -54,18 +75,26 @@ class FabricClassifier:
                 Path(__file__).resolve().parents[2] / checkpoint_path,
             )
             checkpoint_path = next((path for path in candidates if path.is_file()), candidates[0])
+        print(f"[FABRIC] checkpoint path resolved; exists={checkpoint_path.is_file()}", flush=True)
         if not checkpoint_path.is_file():
             self.load_error = "Configured fabric model checkpoint was not found"
+            print("[FABRIC] checkpoint file not found", flush=True)
             return
 
         class_names_path = checkpoint_path.parent / "class_names.json"
+        print(f"[FABRIC] checking class mapping; exists={class_names_path.is_file()}", flush=True)
         if not class_names_path.is_file():
             self.load_error = "Fabric model class mapping was not found"
+            print("[FABRIC] class mapping file not found", flush=True)
             return
         try:
+            print("[FABRIC] loading class mapping...", flush=True)
             with class_names_path.open(encoding="utf-8") as handle:
                 mapping: dict[str, str] = json.load(handle)
+            print("[FABRIC] class mapping loaded", flush=True)
+            print("[FABRIC] loading checkpoint with torch.load...", flush=True)
             checkpoint = torch.load(checkpoint_path, map_location=self.device, weights_only=False)
+            print("[FABRIC] checkpoint loaded", flush=True)
             checkpoint_classes = checkpoint.get("class_names") if isinstance(checkpoint, dict) else None
             mapped_classes = [mapping[str(index)] for index in range(len(mapping))]
             if len(mapped_classes) != 9:
@@ -74,17 +103,25 @@ class FabricClassifier:
                 raise ValueError("Checkpoint and class mapping differ")
             self.class_names = [str(name) for name in (checkpoint_classes or mapped_classes)]
             state_dict = checkpoint.get("model_state_dict", checkpoint) if isinstance(checkpoint, dict) else checkpoint
+            print("[FABRIC] creating EfficientNet-B0...", flush=True)
             model = models.efficientnet_b0(weights=None)
+            print("[FABRIC] EfficientNet-B0 created", flush=True)
             input_features = model.classifier[1].in_features
             model.classifier[1] = torch.nn.Linear(input_features, len(self.class_names))
+            print("[FABRIC] loading checkpoint state dict...", flush=True)
             model.load_state_dict(state_dict)
+            print("[FABRIC] checkpoint state dict loaded", flush=True)
+            print("[FABRIC] moving model to device...", flush=True)
             self.model = model.to(self.device)
+            print("[FABRIC] model moved to device", flush=True)
             self.model.eval()
+            print("[FABRIC] model set to evaluation mode", flush=True)
             print(f"[FABRIC MODEL] architecture=EfficientNet-B0 checkpoint={checkpoint_path.resolve()} exists=True device={self.device} output_classes={len(self.class_names)} mapping={list(enumerate(self.class_names))}")
-        except Exception:
+        except Exception as exc:
             self.model = None
             self.class_names = []
             self.load_error = "Fabric model checkpoint could not be loaded"
+            print(f"[FABRIC] classifier load failed: {type(exc).__name__}", flush=True)
 
     @property
     def is_ready(self) -> bool:
@@ -139,12 +176,20 @@ _classifier: FabricClassifier | None = None
 
 def get_fabric_classifier() -> FabricClassifier:
     global _classifier
+    print(f"[FABRIC] get_fabric_classifier called; singleton_exists={_classifier is not None}", flush=True)
     if _classifier is None:
+        print("[FABRIC] creating singleton classifier...", flush=True)
         _classifier = FabricClassifier()
+        print("[FABRIC] singleton classifier created", flush=True)
     elif not _classifier.is_ready and _classifier.checkpoint_path:
         checkpoint_path = Path(_classifier.checkpoint_path)
         if not checkpoint_path.is_absolute():
             checkpoint_path = Path.cwd() / checkpoint_path
         if checkpoint_path.is_file():
+            print("[FABRIC] retrying singleton classifier load...", flush=True)
             _classifier = FabricClassifier()
+        print(f"[FABRIC] get_fabric_classifier completed; ready={_classifier.is_ready}", flush=True)
     return _classifier
+
+
+print("[FABRIC] module import completed", flush=True)
