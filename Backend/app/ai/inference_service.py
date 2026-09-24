@@ -20,25 +20,47 @@ from typing import Any, Dict, Optional
 
 import numpy as np
 
+print("[INFERENCE] importing DatasetPreprocessor...", flush=True)
 from app.ai.dataset_preprocessor import DatasetPreprocessor
+print("[INFERENCE] DatasetPreprocessor imported", flush=True)
+print("[INFERENCE] importing feature extractor...", flush=True)
 from app.ai.feature_extractor import extract_features_from_bytes, extract_features_from_path
+print("[INFERENCE] feature extractor imported", flush=True)
+print("[INFERENCE] importing ModelRegistry...", flush=True)
 from app.ai.model_registry import ModelRegistry
+print("[INFERENCE] ModelRegistry imported", flush=True)
+print("[INFERENCE] importing InferenceConfig...", flush=True)
 from app.ai.training_config import InferenceConfig
+print("[INFERENCE] InferenceConfig imported", flush=True)
+print("[INFERENCE] importing confidence helpers...", flush=True)
 from app.ai.confidence import build_confidence_fields
+print("[INFERENCE] confidence helpers imported", flush=True)
+print("[INFERENCE] importing model classes...", flush=True)
 from material_classes import MODEL_CLASSES
+print("[INFERENCE] model classes imported", flush=True)
+print("[INFERENCE] importing scoring service...", flush=True)
 from app.services.scoring_service import ScoringService
+print("[INFERENCE] scoring service imported", flush=True)
+print("[INFERENCE] importing recommendation engine...", flush=True)
 from app.services.recommendation_engine import RecommendationEngine
+print("[INFERENCE] recommendation engine imported", flush=True)
 
 try:
+    print("[INFERENCE] importing joblib...", flush=True)
     import joblib
+    print("[INFERENCE] joblib imported", flush=True)
     JOBLIB_AVAILABLE = True
 except ImportError:
     JOBLIB_AVAILABLE = False
 
+print("[INFERENCE] importing Keras model loader...", flush=True)
 from app.ai.model_loader import load_keras_material_model
+print("[INFERENCE] Keras model loader imported", flush=True)
 
 try:
+    print("[INFERENCE] importing TensorFlow...", flush=True)
     import tensorflow  # noqa: F401
+    print("[INFERENCE] TensorFlow imported", flush=True)
     TENSORFLOW_AVAILABLE = True
 except ImportError:
     TENSORFLOW_AVAILABLE = False

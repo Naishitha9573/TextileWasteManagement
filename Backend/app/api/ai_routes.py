@@ -7,17 +7,36 @@ import os
 import tempfile
 from PIL import Image
 
+print("[AI ROUTES] importing database dependencies...", flush=True)
 from database import get_db, User
+print("[AI ROUTES] database dependencies imported", flush=True)
+print("[AI ROUTES] importing auth dependency...", flush=True)
 from auth import get_current_user
+print("[AI ROUTES] auth dependency imported", flush=True)
+print("[AI ROUTES] importing TrainingPipeline from app.ai.train...", flush=True)
 from app.ai.train import TrainingPipeline
+print("[AI ROUTES] TrainingPipeline imported", flush=True)
+print("[AI ROUTES] importing ModelRegistry...", flush=True)
 from app.ai.model_registry import ModelRegistry
+print("[AI ROUTES] ModelRegistry imported", flush=True)
+print("[AI ROUTES] importing DatasetManager...", flush=True)
 from app.ai.dataset_manager import DatasetManager
+print("[AI ROUTES] DatasetManager imported", flush=True)
+print("[AI ROUTES] importing fabric classifier...", flush=True)
 from app.services.fabric_classifier import ModelNotReadyError, get_fabric_classifier
+print("[AI ROUTES] fabric classifier imported", flush=True)
+print("[AI ROUTES] importing color analysis...", flush=True)
 from app.services.color_analysis import analyze_image_color_bytes
+print("[AI ROUTES] color analysis imported", flush=True)
+print("[AI ROUTES] importing upload validator...", flush=True)
 from app.core.upload_validator import validate_uploaded_image
+print("[AI ROUTES] upload validator imported", flush=True)
+print("[AI ROUTES] importing textile_analysis_service...", flush=True)
 from textile_analysis_service import analyze_texture_features
+print("[AI ROUTES] textile_analysis_service imported", flush=True)
 
 router = APIRouter(prefix="/api", tags=["ai"])
+print("[AI ROUTES] APIRouter created", flush=True)
 
 MODELS_DIR = Path(__file__).resolve().parent.parent.parent / "models"
 

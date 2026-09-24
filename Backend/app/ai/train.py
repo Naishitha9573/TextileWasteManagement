@@ -13,17 +13,32 @@ from typing import Dict, List, Optional, Tuple
 from datetime import datetime, timezone
 import numpy as np
 
+print("[AI TRAIN] importing DatasetManager...", flush=True)
 from app.ai.dataset_manager import DatasetManager
+print("[AI TRAIN] DatasetManager imported", flush=True)
+print("[AI TRAIN] importing DatasetPreprocessor...", flush=True)
 from app.ai.dataset_preprocessor import DatasetPreprocessor
+print("[AI TRAIN] DatasetPreprocessor imported", flush=True)
+print("[AI TRAIN] importing TrainingConfig...", flush=True)
 from app.ai.training_config import TrainingConfig
+print("[AI TRAIN] TrainingConfig imported", flush=True)
+print("[AI TRAIN] importing ModelRegistry...", flush=True)
 from app.ai.model_registry import ModelRegistry
+print("[AI TRAIN] ModelRegistry imported", flush=True)
+print("[AI TRAIN] importing Evaluator...", flush=True)
 from app.ai.evaluate import Evaluator
+print("[AI TRAIN] Evaluator imported", flush=True)
 
 try:
+    print("[AI TRAIN] importing TensorFlow...", flush=True)
     import tensorflow as tf
+    print("[AI TRAIN] TensorFlow imported", flush=True)
     from tensorflow import keras
+    print("[AI TRAIN] tensorflow.keras imported", flush=True)
     from tensorflow.keras import layers
+    print("[AI TRAIN] tensorflow.keras.layers imported", flush=True)
     from app.ai.mobilenet_preprocess import mobilenet_v3_preprocess
+    print("[AI TRAIN] mobilenet preprocessing imported", flush=True)
     TENSORFLOW_AVAILABLE = True
 except ImportError:
     TENSORFLOW_AVAILABLE = False

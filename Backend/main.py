@@ -8,24 +8,50 @@ from fastapi.responses import StreamingResponse, JSONResponse
 from sqlalchemy.orm import Session
 from sqlalchemy import func, text
 # Local imports
+print("[BOOT] importing database...", flush=True)
 import database
+print("[BOOT] database imported", flush=True)
+print("[BOOT] importing schemas...", flush=True)
 import schemas
+print("[BOOT] schemas imported", flush=True)
+print("[BOOT] importing auth...", flush=True)
 import auth
+print("[BOOT] auth imported", flush=True)
+print("[BOOT] importing algorithms...", flush=True)
 import algorithms
+print("[BOOT] algorithms imported", flush=True)
+print("[BOOT] importing reports...", flush=True)
 import reports
+print("[BOOT] reports imported", flush=True)
+print("[BOOT] importing mongo...", flush=True)
 import mongo
+print("[BOOT] mongo imported", flush=True)
 from database import get_db, init_db, User, WasteBatch, AnalysisResult, Notification
 from auth import get_current_user, RoleChecker, get_password_hash, verify_password, create_access_token
+print("[BOOT] importing inventory...", flush=True)
 import inventory
+print("[BOOT] inventory imported", flush=True)
+print("[BOOT] importing SustainabilityService...", flush=True)
 from app.services.sustainability_service import SustainabilityService
+print("[BOOT] SustainabilityService imported", flush=True)
+print("[BOOT] importing ai_router...", flush=True)
 from app.api.ai_routes import router as ai_router
+print("[BOOT] ai_router imported", flush=True)
 
 from app.core.upload_validator import validate_uploaded_image
+print("[BOOT] importing run_unified_analysis...", flush=True)
 from app.ai.inference_service import run_unified_analysis
+print("[BOOT] run_unified_analysis imported", flush=True)
+print("[BOOT] importing get_fabric_classifier...", flush=True)
 from app.services.fabric_classifier import get_fabric_classifier
+print("[BOOT] get_fabric_classifier imported", flush=True)
+print("[BOOT] importing get_waste_classifier...", flush=True)
 from app.services.waste_classifier import WasteModelNotReadyError, get_waste_classifier
+print("[BOOT] get_waste_classifier imported", flush=True)
 
+print("[BOOT] creating FastAPI app...", flush=True)
 app = FastAPI(title="Textile Waste Intelligence Platform API")
+print("[BOOT] FastAPI app created", flush=True)
 sustainability_service = SustainabilityService()
 
 cors_origins_env = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000")
@@ -49,6 +75,7 @@ from database import init_db
 
 @app.on_event("startup")
 def startup():
+    print("[STARTUP] beginning startup...", flush=True)
     print("[STARTUP] Starting database initialization...", flush=True)
     init_db()
     print("[STARTUP] Database initialization completed.", flush=True)
