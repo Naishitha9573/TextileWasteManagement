@@ -1,4 +1,4 @@
-﻿import os
+import os
 import datetime 
 from typing import List, Optional
 from types import SimpleNamespace
