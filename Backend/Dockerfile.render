@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY Backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
 
 COPY Backend/ .
 COPY models/class_names.json /models/class_names.json
@@ -19,4 +20,4 @@ ENV FABRIC_MODEL_PATH=/models/best_efficientnet_b0_class_aware_finetune_v1.pth
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "python scripts/ensure_render_models.py && exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
+CMD ["sh", "-c", "python -c \"import torch; print(torch.__version__); print(torch.cuda.is_available())\" && python scripts/ensure_render_models.py && exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
