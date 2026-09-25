@@ -55,13 +55,21 @@ app = FastAPI(title="Textile Waste Intelligence Platform API")
 print("[BOOT] FastAPI app created", flush=True)
 sustainability_service = SustainabilityService()
 
-cors_origins_env = os.getenv("CORS_ORIGINS", "https://textile-waste-psi.vercel.app,http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000")
-origins = [origin.strip() for origin in cors_origins_env.split(",") if origin.strip()]
+cors_origins_env = os.getenv("CORS_ORIGINS", "")
+default_cors_origins = [
+    "https://textile-waste-psi.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:3000",
+]
+configured_cors_origins = [origin.strip() for origin in cors_origins_env.split(",") if origin.strip()]
+origins = list(dict.fromkeys(default_cors_origins + configured_cors_origins))
 
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins else ["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
