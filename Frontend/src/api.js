@@ -5,7 +5,7 @@ export function configureApiBaseUrl() {
 
   const nativeFetch = window.fetch.bind(window);
   window.fetch = (input, init) => {
-    if (typeof input === 'string' && input.startsWith('/api/')) {
+    if (typeof input === 'string' && (input === '/health' || input.startsWith('/api/'))) {
       return nativeFetch(`${apiBaseUrl}${input}`, init);
     }
     return nativeFetch(input, init);
