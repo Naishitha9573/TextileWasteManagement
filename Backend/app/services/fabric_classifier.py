@@ -5,6 +5,7 @@ print("[FABRIC] module import started", flush=True)
 
 import json
 import os
+import traceback
 from pathlib import Path
 from typing import Any
 
@@ -133,8 +134,9 @@ class FabricClassifier:
         except Exception as exc:
             self.model = None
             self.class_names = []
-            self.load_error = "Fabric model checkpoint could not be loaded"
-            print(f"[FABRIC] classifier load failed: {type(exc).__name__}", flush=True)
+            self.load_error = f"{type(exc).__name__}: {exc}"
+            print(f"[FABRIC] MODEL LOAD FAILED: {self.load_error}", flush=True)
+            traceback.print_exc()
 
     @property
     def is_ready(self) -> bool:
@@ -147,6 +149,7 @@ class FabricClassifier:
             "model_name": "EfficientNet-B0",
             "device": str(self.device),
             "num_classes": len(self.class_names) if self.is_ready else None,
+            "error": self.load_error if not self.is_ready else None,
         }
 
     def predict(self, image: Image.Image) -> dict[str, Any]:
@@ -193,8 +196,7 @@ def get_fabric_classifier() -> FabricClassifier:
     print(f"[FABRIC] get_fabric_classifier called; singleton_exists={_classifier is not None}", flush=True)
     if _classifier is None:
         print("[FABRIC] creating singleton classifier...", flush=True)
-        # Keep the singleton lightweight during FastAPI startup on Render Free.
-        _classifier = FabricClassifier(load_model=False)
+        _classifier = FabricClassifier(load_model=True)
         print("[FABRIC] singleton classifier created", flush=True)
     print(f"[FABRIC] get_fabric_classifier completed; ready={_classifier.is_ready}", flush=True)
     return _classifier
