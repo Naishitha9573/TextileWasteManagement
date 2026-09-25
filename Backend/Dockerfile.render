@@ -14,7 +14,7 @@ COPY Backend/ .
 # texture_analysis.py lives in the repository-level src/ package.
 COPY src/ /app/src/
 COPY models/class_names.json /models/class_names.json
-
+COPY src/ /app/src/
 
 ENV PYTHONUNBUFFERED=1
 ENV FABRIC_MODEL_PATH=/models/best_efficientnet_b0_class_aware_finetune_v1.pth
