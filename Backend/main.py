@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from sqlalchemy.orm import Session
 from sqlalchemy import func, text
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 # Local imports
 print("[BOOT] importing database...", flush=True)
 import database
@@ -222,9 +223,18 @@ def register(user_in: schemas.UserCreate, db: Session = Depends(get_db)):
         hashed_password=hashed,
         role=user_in.role
     )
-    db.add(user)
-    db.commit()
-    db.refresh(user)
+    try:
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+    except IntegrityError as exc:
+        db.rollback()
+        print(f"[AUTH] registration integrity error: {exc}", flush=True)
+        raise HTTPException(status_code=409, detail="Username or email is already registered") from exc
+    except SQLAlchemyError as exc:
+        db.rollback()
+        print(f"[AUTH] registration database error: {type(exc).__name__}: {exc}", flush=True)
+        raise HTTPException(status_code=503, detail="Unable to create account right now") from exc
     return user
 @app.post("/api/auth/token", response_model=schemas.Token)
 def login(form_data: schemas.UserLogin, db: Session = Depends(get_db)):
