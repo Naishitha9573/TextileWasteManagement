@@ -419,7 +419,7 @@ def run_unified_analysis(
 
     service = get_fabric_classifier()
     mat_pred: Dict[str, Any] = {}
-    if image_bytes and service.is_ready:
+    if image_bytes:
         try:
             raw_pred = service.predict(Image.open(BytesIO(image_bytes)))
             prediction = raw_pred["prediction"]

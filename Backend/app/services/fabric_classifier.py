@@ -8,13 +8,7 @@ import os
 from pathlib import Path
 from typing import Any
 
-print("[FABRIC] importing torch...", flush=True)
-import torch
-print("[FABRIC] torch imported", flush=True)
 from PIL import Image, ImageOps
-print("[FABRIC] importing torchvision...", flush=True)
-from torchvision import models, transforms
-print("[FABRIC] torchvision imported", flush=True)
 
 try:
     print("[FABRIC] importing python-dotenv...", flush=True)
@@ -39,25 +33,44 @@ print("[FABRIC] module imports completed", flush=True)
 class FabricClassifier:
     """Loads the configured classifier once and performs deterministic inference."""
 
-    def __init__(self) -> None:
+    def __init__(self, load_model: bool = True) -> None:
         print("[FABRIC] initializing classifier...", flush=True)
-        print("[FABRIC] selecting device...", flush=True)
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        print(f"[FABRIC] device selected: {self.device}", flush=True)
-        self.model: torch.nn.Module | None = None
+        self._torch: Any | None = None
+        self._models: Any | None = None
+        self._transforms: Any | None = None
+        self.device: Any = "unloaded"
+        self.model: Any | None = None
         self.class_names: list[str] = []
         self.checkpoint_path = os.getenv("FABRIC_MODEL_PATH", "").strip()
         print(f"[FABRIC] checkpoint path configured: {bool(self.checkpoint_path)}", flush=True)
         self.load_error: str | None = None
-        print("[FABRIC] creating preprocessing transform...", flush=True)
+        self.transform: Any | None = None
+        if load_model:
+            self._load_runtime()
+
+    def _load_runtime(self) -> None:
+        """Import ML dependencies and load the model only when inference requires it.
+
+        Render Free has only 512 MB RAM, so importing PyTorch or constructing the
+        EfficientNet model during FastAPI startup can terminate the service.
+        """
+        if self._torch is not None:
+            return
+        print("[FABRIC] importing torch for inference...", flush=True)
+        import torch
+        from torchvision import models, transforms
+
+        self._torch = torch
+        self._models = models
+        self._transforms = transforms
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print(f"[FABRIC] device selected: {self.device}", flush=True)
         self.transform = transforms.Compose([
             transforms.Resize(round(224 * 256 / 224)),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
         ])
-        print("[FABRIC] preprocessing transform created", flush=True)
-        print("[FABRIC] starting classifier load...", flush=True)
         self._load()
         print(f"[FABRIC] classifier load completed; ready={self.is_ready}", flush=True)
 
@@ -93,7 +106,7 @@ class FabricClassifier:
                 mapping: dict[str, str] = json.load(handle)
             print("[FABRIC] class mapping loaded", flush=True)
             print("[FABRIC] loading checkpoint with torch.load...", flush=True)
-            checkpoint = torch.load(checkpoint_path, map_location=self.device, weights_only=False)
+            checkpoint = self._torch.load(checkpoint_path, map_location=self.device, weights_only=False)
             print("[FABRIC] checkpoint loaded", flush=True)
             checkpoint_classes = checkpoint.get("class_names") if isinstance(checkpoint, dict) else None
             mapped_classes = [mapping[str(index)] for index in range(len(mapping))]
@@ -104,10 +117,10 @@ class FabricClassifier:
             self.class_names = [str(name) for name in (checkpoint_classes or mapped_classes)]
             state_dict = checkpoint.get("model_state_dict", checkpoint) if isinstance(checkpoint, dict) else checkpoint
             print("[FABRIC] creating EfficientNet-B0...", flush=True)
-            model = models.efficientnet_b0(weights=None)
+            model = self._models.efficientnet_b0(weights=None)
             print("[FABRIC] EfficientNet-B0 created", flush=True)
             input_features = model.classifier[1].in_features
-            model.classifier[1] = torch.nn.Linear(input_features, len(self.class_names))
+            model.classifier[1] = self._torch.nn.Linear(input_features, len(self.class_names))
             print("[FABRIC] loading checkpoint state dict...", flush=True)
             model.load_state_dict(state_dict)
             print("[FABRIC] checkpoint state dict loaded", flush=True)
@@ -137,14 +150,15 @@ class FabricClassifier:
         }
 
     def predict(self, image: Image.Image) -> dict[str, Any]:
+        self._load_runtime()
         if not self.is_ready:
             raise ModelNotReadyError(self.load_error or "Fabric classification model is not available yet.")
         image = ImageOps.exif_transpose(image).convert("RGB")
         tensor = self.transform(image).unsqueeze(0).to(self.device)
-        with torch.inference_mode():
+        with self._torch.inference_mode():
             logits = self.model(tensor)[0]
-            probabilities = torch.softmax(logits, dim=0)
-            values, indices = torch.topk(probabilities, k=min(3, len(self.class_names)))
+            probabilities = self._torch.softmax(logits, dim=0)
+            values, indices = self._torch.topk(probabilities, k=min(3, len(self.class_names)))
         top_predictions = [
             {"class_name": self.class_names[int(index)], "confidence": float(value)}
             for value, index in zip(values.cpu(), indices.cpu())
@@ -179,16 +193,10 @@ def get_fabric_classifier() -> FabricClassifier:
     print(f"[FABRIC] get_fabric_classifier called; singleton_exists={_classifier is not None}", flush=True)
     if _classifier is None:
         print("[FABRIC] creating singleton classifier...", flush=True)
-        _classifier = FabricClassifier()
+        # Keep the singleton lightweight during FastAPI startup on Render Free.
+        _classifier = FabricClassifier(load_model=False)
         print("[FABRIC] singleton classifier created", flush=True)
-    elif not _classifier.is_ready and _classifier.checkpoint_path:
-        checkpoint_path = Path(_classifier.checkpoint_path)
-        if not checkpoint_path.is_absolute():
-            checkpoint_path = Path.cwd() / checkpoint_path
-        if checkpoint_path.is_file():
-            print("[FABRIC] retrying singleton classifier load...", flush=True)
-            _classifier = FabricClassifier()
-        print(f"[FABRIC] get_fabric_classifier completed; ready={_classifier.is_ready}", flush=True)
+    print(f"[FABRIC] get_fabric_classifier completed; ready={_classifier.is_ready}", flush=True)
     return _classifier
 
 

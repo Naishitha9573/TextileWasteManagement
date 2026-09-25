@@ -80,10 +80,8 @@ def startup():
     init_db()
     print("[STARTUP] Database initialization completed.", flush=True)
 
-    print("[STARTUP] Loading fabric classifier...", flush=True)
-    fabric_classifier = get_fabric_classifier()
-    print("[STARTUP] Fabric classifier loaded.", flush=True)
-    print(f"[FABRIC MODEL] {fabric_classifier.health()}")
+    # Render Free has only 512 MB RAM; load EfficientNet lazily on inference.
+    print("[STARTUP] Fabric classifier deferred until an inference request.", flush=True)
 
     # Initialize MongoDB connection as secondary database
     print("[STARTUP] Initializing MongoDB...", flush=True)
