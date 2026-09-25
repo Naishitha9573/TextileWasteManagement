@@ -6,7 +6,7 @@ from fastapi import FastAPI, Depends, HTTPException, status, File, UploadFile, F
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from sqlalchemy.orm import Session
-from sqlalchemy import func, text
+from sqlalchemy import func, inspect as sqlalchemy_inspect, text
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 # Local imports
 print("[BOOT] importing database...", flush=True)
@@ -55,7 +55,7 @@ app = FastAPI(title="Textile Waste Intelligence Platform API")
 print("[BOOT] FastAPI app created", flush=True)
 sustainability_service = SustainabilityService()
 
-cors_origins_env = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000")
+cors_origins_env = os.getenv("CORS_ORIGINS", "https://textile-waste-psi.vercel.app,http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000")
 origins = [origin.strip() for origin in cors_origins_env.split(",") if origin.strip()]
 
 # Configure CORS
@@ -208,32 +208,47 @@ def seed_notifications(db: Session):
 # --- AUTHENTICATION ENDPOINTS ---
 @app.post("/api/auth/register", response_model=schemas.UserResponse)
 def register(user_in: schemas.UserCreate, db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.username == user_in.username).first()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
-    
-    db_email = db.query(User).filter(User.email == user_in.email).first()
-    if db_email:
-        raise HTTPException(status_code=400, detail="Email already registered")
-        
-    hashed = get_password_hash(user_in.password)
-    user = User(
-        username=user_in.username,
-        email=user_in.email,
-        hashed_password=hashed,
-        role=user_in.role
-    )
+    dialect = getattr(getattr(getattr(db, "bind", None), "dialect", None), "name", "unknown")
+    print(f"[AUTH] registration started dialect={dialect}", flush=True)
     try:
+        try:
+            columns = [column["name"] for column in sqlalchemy_inspect(db.bind).get_columns("users")]
+            print(f"[AUTH] users table columns={columns}", flush=True)
+        except SQLAlchemyError as exc:
+            print(f"[AUTH] users schema inspection failed type={type(exc).__name__}", flush=True)
+
+        db_user = db.query(User).filter(User.username == user_in.username).first()
+        print(f"[AUTH] username existence check result={db_user is not None}", flush=True)
+        if db_user:
+            raise HTTPException(status_code=400, detail="Username already registered")
+
+        db_email = db.query(User).filter(User.email == user_in.email).first()
+        print(f"[AUTH] email existence check result={db_email is not None}", flush=True)
+        if db_email:
+            raise HTTPException(status_code=400, detail="Email already registered")
+
+        hashed = get_password_hash(user_in.password)
+        user = User(
+            username=user_in.username,
+            email=user_in.email,
+            hashed_password=hashed,
+            role=user_in.role
+        )
         db.add(user)
         db.commit()
         db.refresh(user)
+        print("[AUTH] registration commit succeeded", flush=True)
     except IntegrityError as exc:
         db.rollback()
-        print(f"[AUTH] registration integrity error: {exc}", flush=True)
-        raise HTTPException(status_code=409, detail="Username or email is already registered") from exc
+        message = str(exc).splitlines()[0][:240]
+        print(f"[AUTH] registration integrity error type={type(exc).__name__} message={message}", flush=True)
+        if "unique" in message.lower() or "duplicate" in message.lower():
+            raise HTTPException(status_code=409, detail="Username or email is already registered") from exc
+        raise HTTPException(status_code=400, detail="Registration data violates a database constraint") from exc
     except SQLAlchemyError as exc:
         db.rollback()
-        print(f"[AUTH] registration database error: {type(exc).__name__}: {exc}", flush=True)
+        message = str(exc).splitlines()[0][:240]
+        print(f"[AUTH] registration database error type={type(exc).__name__} message={message}", flush=True)
         raise HTTPException(status_code=503, detail="Unable to create account right now") from exc
     return user
 @app.post("/api/auth/token", response_model=schemas.Token)
