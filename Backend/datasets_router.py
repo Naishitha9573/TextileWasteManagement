@@ -3,7 +3,7 @@ from typing import List
 import os
 from database import get_db
 import schemas
-from datasets.dataset_loader import dataset_dirs, load_dataset_catalog, load_dataset_info, preview_image
+from app_datasets.dataset_loader import dataset_dirs, load_dataset_catalog, load_dataset_info, preview_image
 import auth
 from auth import get_current_user
 

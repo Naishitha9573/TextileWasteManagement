@@ -11,7 +11,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from main import app
 from database import init_db
 import algorithms
-from datasets.dataset_loader import load_dataset_info, load_dataset_catalog
+from app_datasets.dataset_loader import load_dataset_info, load_dataset_catalog
 
 client = TestClient(app)
 

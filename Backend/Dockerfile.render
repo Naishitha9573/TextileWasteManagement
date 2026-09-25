@@ -11,6 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
 
 COPY Backend/ .
+# texture_analysis.py lives in the repository-level src/ package.
+COPY src/ /app/src/
 COPY models/class_names.json /models/class_names.json
 
 
