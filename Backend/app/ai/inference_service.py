@@ -1,4 +1,4 @@
-﻿"""[DEPRECATED] Unified inference service — Keras or sklearn backend + end-to-end pipeline.
+"""[DEPRECATED] Unified inference service — Keras or sklearn backend + end-to-end pipeline.
 
 DEPRECATION STATUS: This module is kept for backward compatibility with algorithms.py and 
 textile_analysis_service.py. The active inference path is EfficientNet-B0.
@@ -57,13 +57,18 @@ print("[INFERENCE] importing Keras model loader...", flush=True)
 from app.ai.model_loader import load_keras_material_model
 print("[INFERENCE] Keras model loader imported", flush=True)
 
-try:
-    print("[INFERENCE] importing TensorFlow...", flush=True)
-    import tensorflow  # noqa: F401
-    print("[INFERENCE] TensorFlow imported", flush=True)
-    TENSORFLOW_AVAILABLE = True
-except ImportError:
-    TENSORFLOW_AVAILABLE = False
+TENSORFLOW_AVAILABLE: bool | None = None
+
+def _check_tensorflow() -> bool:
+    global TENSORFLOW_AVAILABLE
+    if TENSORFLOW_AVAILABLE is not None:
+        return TENSORFLOW_AVAILABLE
+    try:
+        import tensorflow  # noqa: F401
+        TENSORFLOW_AVAILABLE = True
+    except ImportError:
+        TENSORFLOW_AVAILABLE = False
+    return TENSORFLOW_AVAILABLE
 
 
 def _log(scope: str, message: str) -> None:

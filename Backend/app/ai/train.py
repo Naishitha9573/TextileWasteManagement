@@ -9,7 +9,7 @@ import argparse
 import json
 import os
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from datetime import datetime, timezone
 import numpy as np
 
@@ -29,20 +29,21 @@ print("[AI TRAIN] importing Evaluator...", flush=True)
 from app.ai.evaluate import Evaluator
 print("[AI TRAIN] Evaluator imported", flush=True)
 
-try:
-    print("[AI TRAIN] importing TensorFlow...", flush=True)
-    import tensorflow as tf
-    print("[AI TRAIN] TensorFlow imported", flush=True)
-    from tensorflow import keras
-    print("[AI TRAIN] tensorflow.keras imported", flush=True)
-    from tensorflow.keras import layers
-    print("[AI TRAIN] tensorflow.keras.layers imported", flush=True)
-    from app.ai.mobilenet_preprocess import mobilenet_v3_preprocess
-    print("[AI TRAIN] mobilenet preprocessing imported", flush=True)
-    TENSORFLOW_AVAILABLE = True
-except ImportError:
-    TENSORFLOW_AVAILABLE = False
-    tf = None
+TENSORFLOW_AVAILABLE: bool | None = None
+tf: Any | None = None
+
+def _ensure_tf() -> bool:
+    global TENSORFLOW_AVAILABLE, tf
+    if TENSORFLOW_AVAILABLE is not None:
+        return TENSORFLOW_AVAILABLE
+    try:
+        import tensorflow as _tf
+        tf = _tf
+        TENSORFLOW_AVAILABLE = True
+    except ImportError:
+        tf = None
+        TENSORFLOW_AVAILABLE = False
+    return TENSORFLOW_AVAILABLE
 
 from material_classes import MODEL_CLASSES
 

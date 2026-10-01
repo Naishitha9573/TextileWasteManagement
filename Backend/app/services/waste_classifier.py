@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-import tensorflow as tf
 from PIL import Image, ImageOps
 
 
@@ -19,7 +18,7 @@ class WasteClassifier:
     def __init__(self) -> None:
         default_root = Path(__file__).resolve().parents[3] / "models" / "waste_classification"
         self.model_path = Path(os.getenv("WASTE_MODEL_PATH", str(default_root)))
-        self.model: tf.keras.Model | None = None
+        self.model: Any | None = None
         self.class_names: list[str] = []
         self.load_error: str | None = None
         self._load()
@@ -31,6 +30,7 @@ class WasteClassifier:
             self.load_error = "Waste model artifacts are not available; train the verified dataset first."
             return
         try:
+            import tensorflow as tf
             self.class_names = [str(name) for name in json.loads(class_path.read_text(encoding="utf-8"))]
             self.model = tf.keras.models.load_model(model_path)
             if self.model.output_shape[-1] != len(self.class_names):

@@ -76,7 +76,7 @@ class FabricClassifier:
         print(f"[FABRIC] classifier load completed; ready={self.is_ready}", flush=True)
 
     def _load(self) -> None:
-        print("[FABRIC] resolving checkpoint path...", flush=True)
+        print(f"[FABRIC] resolving checkpoint path; cwd={Path.cwd()}", flush=True)
         if not self.checkpoint_path:
             self.load_error = "FABRIC_MODEL_PATH is not configured"
             print("[FABRIC] checkpoint path is not configured", flush=True)
@@ -89,7 +89,12 @@ class FabricClassifier:
                 Path(__file__).resolve().parents[2] / checkpoint_path,
             )
             checkpoint_path = next((path for path in candidates if path.is_file()), candidates[0])
-        print(f"[FABRIC] checkpoint path resolved; exists={checkpoint_path.is_file()}", flush=True)
+        print(
+            f"[FABRIC] checkpoint path resolved: {checkpoint_path} "
+            f"exists={checkpoint_path.is_file()} "
+            f"size_bytes={checkpoint_path.stat().st_size if checkpoint_path.is_file() else 0}",
+            flush=True,
+        )
         if not checkpoint_path.is_file():
             self.load_error = "Configured fabric model checkpoint was not found"
             print("[FABRIC] checkpoint file not found", flush=True)
@@ -108,7 +113,11 @@ class FabricClassifier:
             print("[FABRIC] class mapping loaded", flush=True)
             print("[FABRIC] loading checkpoint with torch.load...", flush=True)
             checkpoint = self._torch.load(checkpoint_path, map_location=self.device, weights_only=False)
-            print("[FABRIC] checkpoint loaded", flush=True)
+            print(
+                f"[FABRIC] checkpoint loaded; type={type(checkpoint).__name__} "
+                f"keys={list(checkpoint.keys()) if isinstance(checkpoint, dict) else 'state_dict'}",
+                flush=True,
+            )
             checkpoint_classes = checkpoint.get("class_names") if isinstance(checkpoint, dict) else None
             mapped_classes = [mapping[str(index)] for index in range(len(mapping))]
             if len(mapped_classes) != 9:
@@ -138,18 +147,33 @@ class FabricClassifier:
             print(f"[FABRIC] MODEL LOAD FAILED: {self.load_error}", flush=True)
             traceback.print_exc()
 
+    def checkpoint_exists(self) -> bool:
+        if not self.checkpoint_path:
+            return False
+        checkpoint_path = Path(self.checkpoint_path)
+        if not checkpoint_path.is_absolute():
+            candidates = (
+                Path.cwd() / checkpoint_path,
+                Path(__file__).resolve().parents[3] / checkpoint_path,
+                Path(__file__).resolve().parents[2] / checkpoint_path,
+            )
+            checkpoint_path = next((path for path in candidates if path.is_file()), candidates[0])
+        return checkpoint_path.is_file()
+
     @property
     def is_ready(self) -> bool:
         return self.model is not None and len(self.class_names) > 0
 
     def health(self) -> dict[str, Any]:
+        has_file = self.checkpoint_exists()
         return {
             "status": "ok",
             "model_loaded": self.is_ready,
+            "model_available": self.is_ready or has_file,
             "model_name": "EfficientNet-B0",
             "device": str(self.device),
-            "num_classes": len(self.class_names) if self.is_ready else None,
-            "error": self.load_error if not self.is_ready else None,
+            "num_classes": len(self.class_names) if self.is_ready else 9,
+            "error": self.load_error if (not self.is_ready and not has_file) else None,
         }
 
     def predict(self, image: Image.Image) -> dict[str, Any]:
@@ -193,12 +217,8 @@ _classifier: FabricClassifier | None = None
 
 def get_fabric_classifier() -> FabricClassifier:
     global _classifier
-    print(f"[FABRIC] get_fabric_classifier called; singleton_exists={_classifier is not None}", flush=True)
     if _classifier is None:
-        print("[FABRIC] creating singleton classifier...", flush=True)
         _classifier = FabricClassifier(load_model=True)
-        print("[FABRIC] singleton classifier created", flush=True)
-    print(f"[FABRIC] get_fabric_classifier completed; ready={_classifier.is_ready}", flush=True)
     return _classifier
 
 

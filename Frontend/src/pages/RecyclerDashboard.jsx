@@ -467,6 +467,11 @@ export default function RecyclerDashboard() {
                     const source = mc?.source || selectedBatch.analysis?.prediction_source;
                     const mlActive = source === 'MODEL' && (mc?.model_available !== false);
                     const mlUnavailable = !mlActive && (source === 'MODEL_NOT_AVAILABLE' || mc?.model_available === false);
+                    const materialModelStatus = mc?.model_status || (
+                      mc?.model_available === true || source === 'MODEL'
+                        ? 'AVAILABLE'
+                        : 'MODEL_NOT_READY'
+                    );
                     const probabilities = mc?.probabilities && Object.keys(mc.probabilities).length > 0 ? mc.probabilities : null;
                     const maxProb = probabilities ? Math.max(...Object.values(probabilities)) : 0;
 
@@ -495,7 +500,7 @@ export default function RecyclerDashboard() {
                             <div><strong>Predicted Material:</strong> {mc?.predicted_fabric || selectedBatch.analysis?.predicted_material || 'UNKNOWN / UNSUPPORTED'}</div>
                             <div><strong>ML Confidence:</strong> {mc?.confidence ?? selectedBatch.analysis?.material_confidence ?? '—'}% ({mc?.confidence_status || selectedBatch.analysis?.confidence_status || 'N/A'})</div>
                             <div><strong>Model:</strong> {mc?.model_name || 'EfficientNet-B0'}</div>
-                            <div><strong>Model Status:</strong> {mc?.model_status || 'MODEL_NOT_READY'}</div>
+                            <div><strong>Model Status:</strong> {materialModelStatus}</div>
                             {probabilities && (
                               <div style={{ marginTop: '6px', display: 'grid', gap: '4px' }}>
                                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Class probability distribution</span>

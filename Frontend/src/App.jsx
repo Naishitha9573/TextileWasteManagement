@@ -6,8 +6,6 @@ import ManufacturerDashboard from './pages/ManufacturerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Inventory from './pages/Inventory';
 import Datasets from './pages/Datasets';
-import FabricClassification from './pages/FabricClassification';
-import WasteCategorization from './pages/WasteCategorization';
 import ExecutiveDashboard from './pages/ExecutiveDashboard';
 import Reports from './pages/Reports';
 
@@ -181,12 +179,6 @@ export default function App() {
     if (activeView === 'datasets') {
       return <Datasets />;
     }
-    if (activeView === 'classification') {
-      return <FabricClassification />;
-    }
-    if (activeView === 'waste-classification') {
-      return <WasteCategorization />;
-    }
     if (activeView === 'executive') return <ExecutiveDashboard />;
     if (activeView === 'reports') return <Reports />;
     return renderDashboard();
@@ -346,8 +338,6 @@ export default function App() {
           <button className={`btn ${activeView === 'executive' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('executive')}>Executive</button>
           <button className={`btn ${activeView === 'inventory' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('inventory')}>Inventory</button>
           <button className={`btn ${activeView === 'datasets' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('datasets')}>Datasets</button>
-          <button className={`btn ${activeView === 'classification' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('classification')}>Classify Fabric</button>
-          <button className={`btn ${activeView === 'waste-classification' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('waste-classification')}>Categorize Waste</button>
           <button className={`btn ${activeView === 'reports' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setActiveView('reports')}>Reports</button>
         </div>
 

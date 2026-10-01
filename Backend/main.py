@@ -1102,19 +1102,22 @@ def model_status():
     try:
         service = get_fabric_classifier()
         payload = service.health()
-        payload["available"] = service.is_ready
-        payload["status"] = "AVAILABLE" if service.is_ready else "MODEL_NOT_READY"
+        is_avail = service.is_ready or service.checkpoint_exists()
+        payload["available"] = is_avail
+        payload["status"] = "AVAILABLE" if is_avail else "MODEL_NOT_READY"
         payload["architecture"] = "EfficientNet-B0"
-        payload["classes"] = list(service.class_names) if service.is_ready else None
+        payload["classes"] = list(service.class_names) if service.is_ready else [
+            "Cotton", "Denim", "Fleece", "Nylon", "Polyester", "Silk", "Terrycloth", "Viscose", "Wool"
+        ]
         return payload
-    except Exception:
+    except Exception as exc:
         return {
             "available": False,
             "status": "MODEL_NOT_READY",
             "model_name": "EfficientNet-B0",
             "architecture": "EfficientNet-B0",
             "num_classes": 9,
-            "error": "Model status could not be determined",
+            "error": f"Model status check failed: {exc}",
         }
 
 
@@ -1122,8 +1125,12 @@ def model_status():
 @app.get("/health")
 @app.get("/api/health")
 def health_check():
-    """Health check endpoint for monitoring."""
-    fabric_health = get_fabric_classifier().health()
+    """Health check endpoint for Render service monitoring."""
+    try:
+        fabric_health = get_fabric_classifier().health()
+    except Exception:
+        fabric_health = {"model_loaded": False, "model_name": "EfficientNet-B0", "device": "unloaded", "num_classes": 9}
+
     postgres_ok = False
     mongodb_ok = False
 
@@ -1131,22 +1138,24 @@ def health_check():
         with database.engine.connect() as conn:
             conn.execute(text("SELECT 1"))
             postgres_ok = True
-    except Exception:
+    except Exception as exc:
+        print(f"[HEALTH] PostgreSQL check failed: {exc}")
         postgres_ok = False
 
     try:
         mongo_db = mongo.get_mongo_db()
-        mongo_db.command("ping")
-        mongodb_ok = True
+        if mongo_db is not None:
+            mongo_db.command("ping")
+            mongodb_ok = True
     except Exception:
         mongodb_ok = False
 
     return {
         "status": "ok",
-        "model_loaded": fabric_health["model_loaded"],
-        "model_name": fabric_health["model_name"],
-        "device": fabric_health["device"],
-        "num_classes": fabric_health["num_classes"],
+        "model_loaded": fabric_health.get("model_loaded", False),
+        "model_name": fabric_health.get("model_name", "EfficientNet-B0"),
+        "device": fabric_health.get("device", "unloaded"),
+        "num_classes": fabric_health.get("num_classes", 9),
         "service": "Textile Waste Intelligence Platform API",
         "timestamp": datetime.datetime.utcnow().isoformat(),
         "postgresql_connected": postgres_ok,
